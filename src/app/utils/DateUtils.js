@@ -16,7 +16,12 @@ class DateUtils {
         } else {
           return "Invalid month number. Please provide a number between 0 and 11.";
         }
-      }
+    }
+
+    static getWeekDayOfFirstDayOfMonth(month, year) {
+        var date = new Date(year, month, 1)
+        return date.getDay()
+    }
 }
 
 export default DateUtils

@@ -18,8 +18,6 @@ import { useState } from "react";
 export default function punchScreenResponsive() {
     
     
-    // var curMonth = 0
-    // var curYear = 2023
     
     const [curMonth, updateCurMonth] = useState(0)
     const [curYear, updateCurYear] = useState(2023)
@@ -47,7 +45,19 @@ export default function punchScreenResponsive() {
             updateCurMonth(auxMonth)
         }
     }
-    
+
+    function pushDayOneToAppropriateWeekDay() {
+        var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(curMonth, curYear)
+        console.log("Week day of day one: " + weekDay)
+        
+        var spanArray = []
+
+        for (let i = 0; i < weekDay; i++) {
+            spanArray.push(<span className="invisible">.</span>)
+        }
+        return spanArray
+    }
+
     function arrayOfDateBoxes() {
     
         console.log("Hello")
@@ -88,6 +98,14 @@ export default function punchScreenResponsive() {
 
                 </div>
                 <span className="inline-grid grid-cols-7 gap-4">
+                    <span>Sunday</span>
+                    <span>Monday</span>
+                    <span>Tuesday</span>
+                    <span>Wednesday</span>
+                    <span>Thursday</span>
+                    <span>Friday</span>
+                    <span>Saturday</span>
+                    {pushDayOneToAppropriateWeekDay()}
                     {arrayOfDateBoxes()}
                 </span>
 
