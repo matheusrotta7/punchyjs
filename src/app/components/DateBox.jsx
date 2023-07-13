@@ -25,7 +25,6 @@ export default function DateBox (props) {
             <div className="absolute left-0 top-0 text-black/50">{props.day}</div>
             <div className="absolute right-0 bottom-0 flex">
                 {renderPunchCircles()}
-                
             </div>
         </div>
     )

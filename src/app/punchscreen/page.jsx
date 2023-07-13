@@ -95,13 +95,13 @@ export default function punchScreen() {
 
                 </div>
                 <span className="inline-grid grid-cols-7 gap-4">
-                    <span>Sunday</span>
-                    <span>Monday</span>
-                    <span>Tuesday</span>
-                    <span>Wednesday</span>
-                    <span>Thursday</span>
-                    <span>Friday</span>
-                    <span>Saturday</span>
+                    <span className="text-center">Sunday</span>
+                    <span className="text-center">Monday</span>
+                    <span className="text-center">Tuesday</span>
+                    <span className="text-center">Wednesday</span>
+                    <span className="text-center">Thursday</span>
+                    <span className="text-center">Friday</span>
+                    <span className="text-center">Saturday</span>
                     {pushDayOneToAppropriateWeekDay()}
                     {arrayOfDateBoxes()}
                 </span>
