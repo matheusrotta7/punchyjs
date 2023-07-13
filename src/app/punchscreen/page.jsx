@@ -10,22 +10,19 @@ import {getPunches} from '../services/PunchService'
 export default function punchScreen() {
     
     
-    
-    const [curMonth, updateCurMonth] = useState(11)
-    const [curYear, updateCurYear] = useState(2023)
-    const [punchList, updatePunchList] = useState(0)
-
     const fetchPunches = () => {
         getPunches(2, curMonth, curYear)
           .then(punches => {
-            console.log(punches)
             updatePunchList(punches);
           });
-      }
+    }
+    
+    const [curMonth, updateCurMonth] = useState(11)
+    const [curYear, updateCurYear] = useState(2023)
+    const [punchList, updatePunchList] = useState()
+
     
     function goBackOneMonth() {
-        console.log(curMonth)
-        console.log(curYear)
         const auxMonth = curMonth - 1;
         if (auxMonth === -1) {
             updateCurYear(curYear-1)
@@ -37,8 +34,6 @@ export default function punchScreen() {
     }
 
     function goForwardOneMonth() {
-        console.log(curMonth)
-        console.log(curYear)
         const auxMonth = curMonth + 1;
         if (auxMonth === 12) {
             updateCurYear(curYear+1)
@@ -51,7 +46,6 @@ export default function punchScreen() {
 
     function pushDayOneToAppropriateWeekDay() {
         var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(curMonth, curYear)
-        console.log("Week day of day one: " + weekDay)
         
         var spanArray = []
 
@@ -63,11 +57,9 @@ export default function punchScreen() {
 
     function arrayOfDateBoxes() {
     
-        console.log("Hello")
-    
         var result = []
         const lastDay = dateUtils.getLastDayForAMonthYear(curMonth, curYear);
-        console.log("lastDay: " + lastDay)
+
         for (let i = 1; i<=lastDay; i++) {
             result.push(<DateBox 
                 key={i}
@@ -78,6 +70,7 @@ export default function punchScreen() {
     
         return result;
     }
+
     
     return (
         
