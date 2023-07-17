@@ -1,81 +1,54 @@
 'use client';
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import DateBox from "../components/DateBox";
-import dateUtils from "../utils/DateUtils";
+import { ChevronLeft, ChevronRight, LoaderIcon } from "lucide-react";
 import MonthYearHeader from "../components/MonthYearHeader";
-import { useState } from "react";
-import {getPunches} from '../services/PunchService'
+import { useState, useEffect } from "react";
+
+import PunchCalendar from "../components/PunchCalendar";
 
 export default function punchScreen() {
-    
-    
-    const fetchPunches = () => {
-        getPunches(2, curMonth, curYear)
-          .then(punches => {
-            updatePunchList(punches);
-          });
-    }
-    
-    const [curMonth, updateCurMonth] = useState(11)
-    const [curYear, updateCurYear] = useState(2023)
-    const [punchList, updatePunchList] = useState()
 
     
+    
+
+      
+    const [curMonth, setCurMonth] = useState(2)
+    const [curYear, setCurYear] = useState(2023)
+    const [punchList, setPunchList] = useState()
+    
+      
+      
+    
+
     function goBackOneMonth() {
-        const auxMonth = curMonth - 1;
+        var auxMonth = curMonth - 1;
         if (auxMonth === -1) {
-            updateCurYear(curYear-1)
-            updateCurMonth(11)
+            setCurYear(curYear-1)
+            setCurMonth(11)
         } else {
-            updateCurMonth(auxMonth)
+            setCurMonth(auxMonth)
         }
-        fetchPunches()
+        setPunchList(null)
     }
-
+    
     function goForwardOneMonth() {
-        const auxMonth = curMonth + 1;
+        var auxMonth = curMonth + 1;
         if (auxMonth === 12) {
-            updateCurYear(curYear+1)
-            updateCurMonth(0)
+            setCurYear(curYear+1)
+            setCurMonth(0)
         } else {
-            updateCurMonth(auxMonth)
+            setCurMonth(auxMonth)
         }
-        fetchPunches()
+        setPunchList(null)
     }
 
-    function pushDayOneToAppropriateWeekDay() {
-        var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(curMonth, curYear)
-        
-        var spanArray = []
-
-        for (let i = 0; i < weekDay; i++) {
-            spanArray.push(<span key={i} className="invisible">.</span>)
-        }
-        return spanArray
-    }
-
-    function arrayOfDateBoxes() {
     
-        var result = []
-        const lastDay = dateUtils.getLastDayForAMonthYear(curMonth, curYear);
-
-        for (let i = 1; i<=lastDay; i++) {
-            result.push(<DateBox 
-                key={i}
-                day={i}
-                punchList={punchList}
-                ></DateBox>)
-        }
-    
-        return result;
-    }
 
     
     return (
         
         <>
-            <h1 className="text-gray-200">Punch Screen Responsive</h1>
+            <h1 className="text-gray-200">Punch Screen - Employee</h1>
             <div className="text-gray-200 mt-6">
                 <div className="flex mb-3 ">
                     <button className="rounded-full bg-blue-700/30 mr-1"
@@ -86,7 +59,7 @@ export default function punchScreen() {
                     <MonthYearHeader 
                         month={curMonth}
                         year={curYear}
-                        />
+                    />
                     <button className="rounded-full bg-blue-700/30 ml-1"
                             onClick={goForwardOneMonth}
                             >
@@ -94,17 +67,15 @@ export default function punchScreen() {
                     </button>
 
                 </div>
-                <span className="inline-grid grid-cols-7 gap-4">
-                    <span className="text-center">Sunday</span>
-                    <span className="text-center">Monday</span>
-                    <span className="text-center">Tuesday</span>
-                    <span className="text-center">Wednesday</span>
-                    <span className="text-center">Thursday</span>
-                    <span className="text-center">Friday</span>
-                    <span className="text-center">Saturday</span>
-                    {pushDayOneToAppropriateWeekDay()}
-                    {arrayOfDateBoxes()}
-                </span>
+                <PunchCalendar 
+                    punchList={punchList}
+                    setPunchList={setPunchList}
+                    curMonth={curMonth}
+                    curYear={curYear}
+                /> 
+                
+                
+                
 
             </div>
         </>

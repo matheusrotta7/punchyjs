@@ -13,7 +13,7 @@ export default function DateBox (props) {
             var punchListForThisDay = extractThisDayPunches(punchList)
             if (notEmpty(punchListForThisDay)) {
                 for (let i = 0; i < punchListForThisDay.length; i++) {
-                    punchCircleArray.push(<LittlePunchCircle/>)
+                    punchCircleArray.push(<LittlePunchCircle key={i} />)
                 }
             }
         }
