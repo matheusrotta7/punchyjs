@@ -14,6 +14,7 @@ export default function PunchCalendar(props) {
         fetchPunches();
     }, [props.curMonth, props.curYear])
 
+
     function fetchPunches() {
         console.log("Inside use effect curmonth: " + props.curMonth);
         getPunches(2, props.curMonth, props.curYear)
@@ -22,6 +23,7 @@ export default function PunchCalendar(props) {
                 props.setPunchList(punches);
             });
     }
+
 
     function pushDayOneToAppropriateWeekDay() {
         var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(props.curMonth, props.curYear)
@@ -33,6 +35,7 @@ export default function PunchCalendar(props) {
         }
         return spanArray
     }
+    
 
     function arrayOfDateBoxes() {
         
