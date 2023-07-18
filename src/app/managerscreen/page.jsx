@@ -26,7 +26,7 @@ export default function managerscreen() {
 
 
     const [employeeList, setEmployeeList] = useState();
-    const [selectedOption, setSelectedOption] = useState(options[0].value);
+    const [selectedOption, setSelectedOption] = useState("");
 
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
@@ -34,15 +34,14 @@ export default function managerscreen() {
 
     return(
         <>
-            <div className="ml-3">
+            <div className="ml-3 mt-3">
                 <h1>Manager Screen</h1>
 
-                <h2 className="mt-6">Add new employee: </h2>
+                <h2 className="mt-6">Add new employee to my supervision: </h2>
              
                 <div>
                     { employeeList != null  && employeeList != undefined ? <Dropdown options={employeeList} selectedOption={selectedOption} handleChange={handleChange} /> : <LoaderIcon/>}
-                
-                <p>Selected option: {selectedOption}</p>
+                    <p>Selected option: {selectedOption}</p>
                     
                 </div>
 
