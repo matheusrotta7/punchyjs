@@ -5,6 +5,7 @@ import Dropdown from "../../components/Dropdown";
 import { useState, useEffect } from "react";
 import { getAllManagers } from "../../services/ManagerService";
 import { createNewEmployee } from "../../services/EmployeeService";
+import SubmitButton from "@/app/components/SubmitButton";
 
 export default function adminscreen() {
 
@@ -55,8 +56,7 @@ export default function adminscreen() {
                 <div className="mt-3">
                     <span className="mr-3">Manager:</span> { managerList != null  && managerList != undefined ? <Dropdown options={managerList} selectedOption={selectedManagerName} handleChange={handleChange} /> : <LoaderIcon/>}
                 </div>
-                <button className="bg-sky-800 sm:rounded-lg w-16 mt-3 hover:bg-sky-500" onClick={callCreateNewEmployee}>Submit</button>
-                
+                <SubmitButton onClickFunction={callCreateNewEmployee} text="Submit" />
 
             </div>
         </>
