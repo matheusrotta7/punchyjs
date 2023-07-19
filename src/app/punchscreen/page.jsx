@@ -5,6 +5,7 @@ import MonthYearHeader from "../components/MonthYearHeader";
 import { useState, useEffect } from "react";
 
 import PunchCalendar from "../components/PunchCalendar";
+import Head from "next/head";
 
 export default function punchScreen() {
 

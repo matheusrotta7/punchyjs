@@ -1,8 +1,8 @@
 export default function() {
 
     return (
-        <svg className="h-3 w-3 flex-none fill-sky-100 stroke-sky-500 stroke-1" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="3" cy="3" r="2" />
+        <svg className="h-3 w-2 mr-1 flex-none fill-sky-100 stroke-sky-500 stroke-1">
+            <circle cx="4" cy="4" r="3" />
         </svg>
     )
 }
