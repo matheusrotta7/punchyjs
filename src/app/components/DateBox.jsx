@@ -13,7 +13,9 @@ export default function DateBox (props) {
             var punchListForThisDay = extractThisDayPunches(punchList)
             if (notEmpty(punchListForThisDay)) {
                 for (let i = 0; i < punchListForThisDay.length; i++) {
-                    punchCircleArray.push(<LittlePunchCircle key={i} />)
+                    let curPunch = punchListForThisDay[i]
+                    console.log(curPunch)
+                    punchCircleArray.push(<LittlePunchCircle key={i} timestamp={curPunch.timestamp} />)
                 }
             }
         }

@@ -3,6 +3,7 @@
 import SubmitButton from "@/app/components/SubmitButton";
 import { punch } from "@/app/services/PunchService";
 import dateUtils from '../../utils/DateUtils'
+// import {Alert} from 'react-alert'
 
 import { useState } from "react";
 
@@ -16,8 +17,12 @@ export default function addPunchScreen () {
         //get cur timestamp
         console.log("hello")
         var curTime = dateUtils.getCurrentTimestamp()
-
-        punch(id, curTime)
+        
+        punch(id, curTime).then(punchResponse => {
+            if (punchResponse != null) {
+                alert("Your punch was succesfully registered at " + punchResponse.timestamp)
+            }
+        })
     }
 
 
