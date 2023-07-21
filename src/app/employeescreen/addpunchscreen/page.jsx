@@ -29,11 +29,8 @@ export default function addPunchScreen () {
     return (
 
         <>
-            <h1>Register you punch now!</h1>
-            <SubmitButton text="Punch" onClickFunction={punchNow} />
-
-
-        
+                <h1>Register you punch now!</h1>
+                <SubmitButton text="Punch" onClickFunction={punchNow} />
         </>
     )
 

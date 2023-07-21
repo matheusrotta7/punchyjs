@@ -24,14 +24,15 @@ export default function adminscreen() {
     const [managerList, setManagerList] = useState();
     const [selectedManagerName, setSelectedManagerName] = useState("")
     const [selectedManagerObj, setSelectedManagerObj] = useState(null)
-    const [selectedManager, setSelectedManager] = useState("")
     const [newEmployeeName, setNewEmployeeName] = useState("")
 
 
     function callCreateNewEmployee() {
-        console.log("hello!")
-        console.log("selectedManagerObj" + selectedManagerObj)
-        createNewEmployee(newEmployeeName, selectedManagerObj.id)
+        createNewEmployee(newEmployeeName, selectedManagerObj.id).then(employeeResponse => {
+            if (employeeResponse != null) {
+                alert("Employee " + employeeResponse.name + " was successfully created!")
+            }
+        })
     }
 
     
@@ -47,12 +48,14 @@ export default function adminscreen() {
 
     return (
         <>
-            <div className="ml-3 mt-3">
+            <div className="p-4">
 
                 <h1>Admin Screen</h1>
-                <h2 className="mt-3">Enroll new employee: </h2>
-                <div className="mt-3"></div>
-                <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>
+                <h2 className="mt-4">Enroll new Employee: </h2>
+                <div className="mt-2">
+                    <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>
+                </div>
+                
                 <div className="mt-3">
                     <span className="mr-3">Manager:</span> { managerList != null  && managerList != undefined ? <Dropdown options={managerList} selectedOption={selectedManagerName} handleChange={handleChange} /> : <LoaderIcon/>}
                 </div>

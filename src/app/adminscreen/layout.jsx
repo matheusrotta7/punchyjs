@@ -1,20 +1,20 @@
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, Crown, User } from "lucide-react";
 import Link from "next/link";
 
-export default function employeeLayout( {children}) {
+export default function adminLayout( {children}) {
 
     return (
 
         <>
             <div className="h-screen flex flex-col">
                 <div className="flex flex-1">
-                    <aside className="w-52 bg-zinc-950 border-r border-zinc-800 p-6">
+                    <aside className="w-56 bg-zinc-950 border-r border-zinc-800 p-6">
                             
-                        <Link href="/employeescreen/addpunchscreen" className="flex p-2 hover:bg-zinc-800">
-                            <Clock /> <span className="ml-2">Punch in</span>
+                        <Link href="/adminscreen/addemployee" className="flex p-2 hover:bg-zinc-800">
+                            <User /> <span className="ml-2">Add Employees</span>
                         </Link>
-                        <Link href="/employeescreen/punchmirrorscreen" className="flex p-2 hover:bg-zinc-800">
-                            <Calendar /> <span className="ml-2">Punch Mirror</span>
+                        <Link href="/adminscreen/addmanager" className="flex p-2 hover:bg-zinc-800">
+                            <Crown /> <span className="ml-2">Add Managers</span>
                         </Link>
                     </aside>
                     <main className="flex-1 p-6">

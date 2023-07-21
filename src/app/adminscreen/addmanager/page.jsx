@@ -12,12 +12,16 @@ export default function addmanager() {
 
     function callCreateNewManager() {
         console.log("hello")
-        createNewManager(managerName)
+        createNewManager(managerName).then(managerResponse => {
+            if (managerResponse != null) {
+                alert("Manager " + managerResponse.name + " was successfully created!")
+            }
+        })
     }
 
     return (
         <>
-            <div className="ml-3">
+            <div className="p-4">
                 <h1>Admin Screen</h1>
                 <h2 className="mt-4">Enroll new Manager: </h2>
                 <div className="mt-2">

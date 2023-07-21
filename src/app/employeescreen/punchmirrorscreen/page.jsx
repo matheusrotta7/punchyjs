@@ -48,7 +48,7 @@ export default function punchScreen() {
     return (
         
         <>
-            <div className="text-gray-200 mt-6">
+            <div className="text-gray-200 ">
                 <div className="flex mb-3 ">
                     <button className="rounded-full bg-sky-800 hover:bg-sky-500 mr-1"
                             onClick={goBackOneMonth}
