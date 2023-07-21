@@ -1,11 +1,10 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, LoaderIcon } from "lucide-react";
-import MonthYearHeader from "../components/MonthYearHeader";
+import MonthYearHeader from "../../components/MonthYearHeader";
 import { useState, useEffect } from "react";
 
-import PunchCalendar from "../components/PunchCalendar";
-import Head from "next/head";
+import PunchCalendar from "../../components/PunchCalendar";
 
 export default function punchScreen() {
 

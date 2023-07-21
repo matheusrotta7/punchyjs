@@ -22,6 +22,27 @@ class DateUtils {
         var date = new Date(year, month, 1)
         return date.getDay()
     }
+
+    static getCurrentTimestamp() {
+
+      function generateStringFromNumber(num, numberOfDigits) {
+        return num.toLocaleString(undefined, {minimumIntegerDigits: numberOfDigits})
+      }
+
+      var date = new Date();
+
+      var dateString = date.getFullYear()
+              + '-'  + generateStringFromNumber(date.getMonth() + 1, 2)
+              + '-'  + generateStringFromNumber(date.getDate(), 2)
+              + ' ' + generateStringFromNumber(date.getHours(), 2)
+              + ':'  + generateStringFromNumber(date.getMinutes(), 2)
+              + ':'  + generateStringFromNumber(date.getSeconds(), 2)
+
+      console.log("datestring: " + dateString)
+
+      return dateString
+    }
+
 }
 
 export default DateUtils
