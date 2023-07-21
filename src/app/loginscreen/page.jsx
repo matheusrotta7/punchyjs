@@ -1,16 +1,19 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SubmitButton from "../components/SubmitButton";
 import { login } from "../services/LoginService";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function loginscreen () {
 
 
+    const router = useRouter()
+
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [loginResponse, setLoginResponse] = useState({})
 
     function callLogin() {
         console.log("Hello!");
@@ -18,18 +21,23 @@ export default function loginscreen () {
         login(username, password)
             .then(loginResponse => {
                 console.log(loginResponse);
-                redirectToPage(loginResponse)
+                // redirectToPage(loginResponse)
+                setLoginResponse(loginResponse)
             });
         
     }
 
-    function redirectToPage(loginResponse) {
+    useEffect(() => {
+        redirectToPage()
+    }, [loginResponse])
+
+    function redirectToPage() {
         if (loginResponse.role === "Manager") {
-            Router.push("/managerscreen");
+            router.push("/managerscreen");
         } else if (loginResponse.role === "Employee") {
-            Router.push("/punchscreen");
+            router.push("/punchscreen");
         } else if (loginResponse.role === "Admin"){
-            Router.push("/adminscreen/addemployee");
+            router.push("/adminscreen/addemployee");
         } else {
             console.log("Invalid role")
         }
@@ -47,6 +55,7 @@ export default function loginscreen () {
                     <span>Password:</span> <input className="ml-3 text-zinc-800" type="password" onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <SubmitButton text="Login" onClickFunction={callLogin} />
+
             </div>
         </>
     )
