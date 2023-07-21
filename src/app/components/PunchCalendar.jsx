@@ -17,7 +17,7 @@ export default function PunchCalendar(props) {
 
     function fetchPunches() {
         console.log("Inside use effect curmonth: " + props.curMonth);
-        getPunches(2, props.curMonth, props.curYear)
+        getPunches(props.employeeId, props.curMonth, props.curYear)
             .then(punches => {
                 console.log(punches);
                 props.setPunchList(punches);

@@ -35,7 +35,7 @@ export default function loginscreen () {
         if (loginResponse.role === "Manager") {
             router.push("/managerscreen");
         } else if (loginResponse.role === "Employee") {
-            router.push("/employeescreen/punchmirrorscreen");
+            router.push("/employeescreen/punchmirrorscreen?id=" + loginResponse.id);
         } else if (loginResponse.role === "Admin"){
             router.push("/adminscreen/addemployee");
         } else {

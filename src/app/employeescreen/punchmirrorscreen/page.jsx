@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, LoaderIcon } from "lucide-react";
 import MonthYearHeader from "../../components/MonthYearHeader";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 import PunchCalendar from "../../components/PunchCalendar";
 
@@ -10,11 +11,14 @@ export default function punchScreen() {
 
     
     
-
+    const searchParams = useSearchParams()
+ 
+    const employeeId = searchParams.get('id')
       
     const [curMonth, setCurMonth] = useState(2)
     const [curYear, setCurYear] = useState(2023)
     const [punchList, setPunchList] = useState()
+    // const [employeeId, setEmployeeId] = useState(0)
     
       
       
@@ -66,7 +70,8 @@ export default function punchScreen() {
                     </button>
 
                 </div>
-                <PunchCalendar 
+                <PunchCalendar
+                    employeeId={employeeId}
                     punchList={punchList}
                     setPunchList={setPunchList}
                     curMonth={curMonth}
