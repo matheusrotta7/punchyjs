@@ -29,8 +29,7 @@ export default function addPunchScreen () {
     return (
 
         <>
-            <h1>Add Punch Screen</h1>
-            <h2>**Show Date and Clock here dynamically**</h2>
+            <h1>Register you punch now!</h1>
             <SubmitButton text="Punch" onClickFunction={punchNow} />
 
 

@@ -48,10 +48,9 @@ export default function punchScreen() {
     return (
         
         <>
-            <h1 className="text-gray-200">Punch Screen - Employee</h1>
             <div className="text-gray-200 mt-6">
                 <div className="flex mb-3 ">
-                    <button className="rounded-full bg-blue-700/30 mr-1"
+                    <button className="rounded-full bg-sky-800 hover:bg-sky-500 mr-1"
                             onClick={goBackOneMonth}
                             >
                         <ChevronLeft/>
@@ -60,7 +59,7 @@ export default function punchScreen() {
                         month={curMonth}
                         year={curYear}
                     />
-                    <button className="rounded-full bg-blue-700/30 ml-1"
+                    <button className="rounded-full bg-sky-800 hover:bg-sky-500 ml-1"
                             onClick={goForwardOneMonth}
                             >
                         <ChevronRight/>
