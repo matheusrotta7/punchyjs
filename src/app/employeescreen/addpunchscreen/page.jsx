@@ -29,8 +29,12 @@ export default function addPunchScreen () {
     return (
 
         <>
+            <div className="p-6">
                 <h1>Register you punch now!</h1>
-                <SubmitButton text="Punch" onClickFunction={punchNow} />
+                <div className="ml-0">
+                    <SubmitButton text="Punch" onClickFunction={punchNow} />
+                </div>
+            </div>
         </>
     )
 

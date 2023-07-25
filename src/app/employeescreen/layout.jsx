@@ -17,9 +17,10 @@ export default function employeeLayout( {children}) {
                             <Calendar /> <span className="ml-2">Punch Mirror</span>
                         </Link>
                     </aside>
-                    <main className="flex-1 p-6">
+                    {/* <main className="p-6"> */}
                         {children}
-                    </main>
+                    {/* </main> */}
+                    
                 </div>
                 <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy: created by Matheus Rotta Alves</footer>
             </div>

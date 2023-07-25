@@ -45,10 +45,8 @@ export default function punchScreen() {
     return (
         
         <>
-            <aside className="float-right bg-zinc-400">
-                sidebar to the right yolo
-            </aside>
-            <div className="text-gray-200 ">
+            
+            <div className="text-gray-200 p-6">
                 
 
                 <div>
@@ -83,6 +81,18 @@ export default function punchScreen() {
                 
 
             </div>
+            <aside className="float-right bg-zinc-950 flex-1 border-l border-zinc-800">
+                <div className="flex text-center justify-center flex-col">
+                    <h1>sidebar to the right</h1>
+                    <div className="flex text-center justify-center mt-20">
+                        <MonthYearHeader 
+                                month={curMonth}
+                                year={curYear}
+                        />
+                        
+                    </div>
+                </div>
+            </aside>
         </>
     )
 
