@@ -18,6 +18,16 @@ class DateUtils {
         }
     }
 
+    static dayOfWeekFor(day, month, year) {
+      console.log("Hello, day, month, year: " + day + " " + month + " " + year)
+      const weekDays = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+      ];
+    
+      var date = new Date(year, month, day)
+      return weekDays[date.getDay()]
+    }
+
     static getWeekDayOfFirstDayOfMonth(month, year) {
         var date = new Date(year, month, 1)
         return date.getDay()

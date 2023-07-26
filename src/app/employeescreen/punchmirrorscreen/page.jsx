@@ -5,6 +5,9 @@ import MonthYearHeader from "../../components/MonthYearHeader";
 import { useState, useEffect } from "react";
 
 import PunchCalendar from "../../components/PunchCalendar";
+import PunchCircleTimestamped from "@/app/components/PunchCircleTimestamped";
+
+import dateUtils from "../../utils/DateUtils";
 
 export default function punchScreen() {
 
@@ -15,6 +18,7 @@ export default function punchScreen() {
     const [curMonth, setCurMonth] = useState(date.getMonth())
     const [curYear, setCurYear] = useState(date.getFullYear())
     const [punchList, setPunchList] = useState()
+    const [selectedDay, setSelectedDay] = useState(date.getDate())
 
 
     function goBackOneMonth() {
@@ -68,6 +72,7 @@ export default function punchScreen() {
 
                     </div>
                     <PunchCalendar 
+                        setSelectedDay={setSelectedDay}
                         punchList={punchList}
                         setPunchList={setPunchList}
                         curMonth={curMonth}
@@ -83,32 +88,30 @@ export default function punchScreen() {
             </div>
             <aside className="float-right bg-zinc-950 flex-1 border-l border-zinc-800">
                 <div className="flex text-center justify-center flex-col">
-                    <h1>sidebar to the right</h1>
+                    <h1>sidebar to the right (selected day)</h1>
                     <div className="flex text-center justify-center mt-20 text-xl">
                         <MonthYearHeader 
-                                month={curMonth}
-                                year={curYear}
+                            month={curMonth}
+                            year={curYear}
                         />
                     </div>
                     <div>
-                        <div className="relative bg-zinc-800 px-10 mt-5 pt-10 pb-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto  sm:rounded-full w-40 h-40">
+                        <div className="relative bg-zinc-800 px-5 mt-5 pt-10 pb-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto  sm:rounded-full w-40 h-40">
                             <div className="flex flex-col">
                                 <div className="text-xl">
-                                    Thursday    
+                                    {dateUtils.dayOfWeekFor(selectedDay, curMonth, curYear)}    
                                 </div>
                                 <div className="text-5xl mt-2">
-                                    3
+                                    {selectedDay}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="flex flex-row mt-4 justify-center">
-                        <div className="relative bg-zinc-800  py-3 shadow-xl ring-1 ring-gray-900/5   sm:rounded-full w-12 h-12 mx-2">09:34</div>
-                        <div className="relative bg-zinc-800  py-3 shadow-xl ring-1 ring-gray-900/5   sm:rounded-full w-12 h-12 mx-2">12:07</div>
-                        <div className="relative bg-zinc-800  py-3 shadow-xl ring-1 ring-gray-900/5   sm:rounded-full w-12 h-12 mx-2">13:11</div>
-                        <div className="relative bg-zinc-800  py-3 shadow-xl ring-1 ring-gray-900/5   sm:rounded-full w-12 h-12 mx-2">18:52</div>
-
-
+                        <PunchCircleTimestamped time="09:34" />
+                        <PunchCircleTimestamped time="12:07" />
+                        <PunchCircleTimestamped time="13:11" />
+                        <PunchCircleTimestamped time="18:52" />
                     </div>
                     <div className="flex flex-col text-sm">
                         <div>
@@ -119,10 +122,7 @@ export default function punchScreen() {
                             <span className="float-left p-3">Compensação</span>
                             <span className="float-right p-3">00:51</span>
                         </div>
-                        <div>
-                            <span className="float-left p-3">Hora extra 50%</span>
-                            <span className="float-right p-3">02:25</span>
-                        </div>
+                        
                     </div>
                 </div>
             </aside>
