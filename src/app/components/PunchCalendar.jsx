@@ -3,27 +3,10 @@
 import DateBox from "../components/DateBox";
 import dateUtils from "../utils/DateUtils";
 import { useState, useEffect } from "react";
-import {getPunches} from '../services/PunchService'
+
+import punchUtils from '../utils/PunchUtils'
 
 export default function PunchCalendar(props) {
-
-    
-    
-    
-    useEffect(() => {
-        fetchPunches();
-    }, [props.curMonth, props.curYear])
-
-
-    function fetchPunches() {
-        console.log("Inside use effect curmonth: " + props.curMonth);
-        getPunches(2, props.curMonth, props.curYear)
-            .then(punches => {
-                console.log(punches);
-                props.setPunchList(punches);
-            });
-    }
-
 
     function pushDayOneToAppropriateWeekDay() {
         var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(props.curMonth, props.curYear)
@@ -44,7 +27,7 @@ export default function PunchCalendar(props) {
 
         for (let i = 1; i<=lastDay; i++) {
 
-            var punchesOfThisDay = extractThisDayPunches(props.punchList, i)
+            var punchesOfThisDay = punchUtils.extractThisDayPunches(props.punchList, i)
 
             result.push(<DateBox
                 setSelectedDayPunchList={props.setSelectedDayPunchList}
@@ -58,34 +41,8 @@ export default function PunchCalendar(props) {
         return result;
     }
 
-    function notEmpty(punchList) {
-        return typeof punchList != "undefined" && punchList != null && punchList.length > 0;
-    }
-
-    function extractThisDayPunches(punchList, day) {
-        
-
-        if (notEmpty(punchList)) {
-            var resultArray = []
     
-            for (let i = 0; i < punchList.length; i++) {
-                const curPunch = punchList[i];
-                const curDayStr = curPunch.timestamp.split(" ")[0].split("-")[2];
-                var curDay = parseInt(curDayStr)
-                if (day === curDay) {
-                    resultArray.push(curPunch)
-                }
-                
-            }
-            
-            return resultArray
-
-        } else {
-            return null
-        }
-
-
-    }
+    
 
     return (
         <>

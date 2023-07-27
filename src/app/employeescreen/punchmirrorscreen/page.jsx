@@ -8,19 +8,40 @@ import PunchCalendar from "../../components/PunchCalendar";
 import PunchCircleTimestamped from "@/app/components/PunchCircleTimestamped";
 
 import dateUtils from "../../utils/DateUtils";
+import punchUtils from "../../utils/PunchUtils";
+
+import {getPunches} from '../../services/PunchService'
+
 
 export default function punchScreen() {
 
     
     
+    
     let date = new Date()
-      
+    
     const [curMonth, setCurMonth] = useState(date.getMonth())
     const [curYear, setCurYear] = useState(date.getFullYear())
     const [punchList, setPunchList] = useState()
     const [selectedDay, setSelectedDay] = useState(date.getDate())
-    const [selectedDayPunchList, setSelectedDayPunchList] = useState()
+    const [selectedDayPunchList, setSelectedDayPunchList] = useState([])
 
+    useEffect(() => {
+        setSelectedDayPunchList(punchUtils.extractThisDayPunches(punchList, selectedDay))
+    }, [punchList, selectedDay])
+    
+    useEffect(() => {
+        fetchPunches();
+    }, [curMonth, curYear])
+
+
+    function fetchPunches() {
+        console.log("Inside use effect curmonth: " + curMonth);
+        getPunches(2, curMonth, curYear)
+            .then(punches => {
+                setPunchList(punches);
+            });
+    }
 
     function goBackOneMonth() {
         var auxMonth = curMonth - 1;
@@ -30,7 +51,6 @@ export default function punchScreen() {
         } else {
             setCurMonth(auxMonth)
         }
-        setPunchList(null)
     }
     
     function goForwardOneMonth() {
@@ -41,7 +61,6 @@ export default function punchScreen() {
         } else {
             setCurMonth(auxMonth)
         }
-        setPunchList(null)
     }
 
     function generatePunchCirclesTimestamped() {
@@ -60,6 +79,31 @@ export default function punchScreen() {
         return result
     }
 
+    function calculateWorkedHours() {
+        if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
+            return "00:00"
+        }
+        if (selectedDayPunchList.length === 0) {
+            return "00:00"
+        }
+        if (selectedDayPunchList.length % 2 === 1) {
+            return "Odd number of punches"
+        }
+
+        var openingPunch = true
+        var prevPunch = null
+
+        for (let i = 0; i < selectedDayPunchList.length; i++) {
+            var curPunch = selectedDayPunchList[i];
+            if (openingPunch) {
+                prevPunch = curPunch
+            }
+            
+        }
+
+
+    }
+
     
 
     
@@ -68,8 +112,6 @@ export default function punchScreen() {
         <>
             
             <div className="text-gray-200 p-6">
-                
-
                 <div>
                     <div className="flex mb-3 ">
                         <button className="rounded-full bg-sky-800 hover:bg-sky-500 mr-1"
@@ -97,17 +139,11 @@ export default function punchScreen() {
                         curYear={curYear}
                     /> 
                 </div>
-
-                
-                
-                
-                
-
             </div>
+
             <aside className="float-right bg-zinc-950 flex-1 border-l border-zinc-800">
                 <div className="flex text-center justify-center flex-col">
-                    <h1>sidebar to the right (selected day)</h1>
-                    <div className="flex text-center justify-center mt-20 text-xl">
+                    <div className="flex text-center justify-center mt-24 text-xl">
                         <MonthYearHeader 
                             month={curMonth}
                             year={curYear}
@@ -130,13 +166,10 @@ export default function punchScreen() {
                     </div>
                     <div className="flex flex-col text-sm">
                         <div>
-                            <span className="float-left p-3">Horas trabalhadas</span>
-                            <span className="float-right p-3">08:35</span>
+                            <span className="float-left p-3">Worked hours:</span>
+                            <span className="float-right p-3">{calculateWorkedHours()}</span>
                         </div>
-                        <div>
-                            <span className="float-left p-3">Compensação</span>
-                            <span className="float-right p-3">00:51</span>
-                        </div>
+                        
                         
                     </div>
                 </div>

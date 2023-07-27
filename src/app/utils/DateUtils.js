@@ -53,6 +53,35 @@ class DateUtils {
       return dateString
     }
 
+    static calculateWorkedHours(selectedDayPunchList) {
+
+      if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
+          return "00:00"
+      }
+      if (selectedDayPunchList.length === 0) {
+          return "00:00"
+      }
+      if (selectedDayPunchList.length % 2 === 1) {
+          return "Odd number of punches"
+      }
+
+      var openingPunch = true
+      var prevPunch = null
+
+      for (let i = 0; i < selectedDayPunchList.length; i++) {
+          var curPunch = selectedDayPunchList[i];
+          if (openingPunch) {
+              prevPunch = curPunch
+              openingPunch = false
+          } else {
+              var offsetTime = calculateOffsetTime()
+          }
+          
+      }
+
+
+  }
+
 }
 
 export default DateUtils
