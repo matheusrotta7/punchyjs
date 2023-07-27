@@ -19,6 +19,7 @@ export default function punchScreen() {
     const [curYear, setCurYear] = useState(date.getFullYear())
     const [punchList, setPunchList] = useState()
     const [selectedDay, setSelectedDay] = useState(date.getDate())
+    const [selectedDayPunchList, setSelectedDayPunchList] = useState()
 
 
     function goBackOneMonth() {
@@ -41,6 +42,22 @@ export default function punchScreen() {
             setCurMonth(auxMonth)
         }
         setPunchList(null)
+    }
+
+    function generatePunchCirclesTimestamped() {
+        if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
+            return null
+        } 
+
+        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} />)
+    }
+
+    function simplifyTimestamp(timestamp) {
+        var timeString = timestamp.split(" ")[1]
+        var timeStringSplit = timeString.split(":")
+        console.log(timeStringSplit)
+        var result = timeStringSplit[0] + ":" + timeStringSplit[1]
+        return result
     }
 
     
@@ -72,6 +89,7 @@ export default function punchScreen() {
 
                     </div>
                     <PunchCalendar 
+                        setSelectedDayPunchList={setSelectedDayPunchList}
                         setSelectedDay={setSelectedDay}
                         punchList={punchList}
                         setPunchList={setPunchList}
@@ -108,10 +126,7 @@ export default function punchScreen() {
                         </div>
                     </div>
                     <div className="flex flex-row mt-4 justify-center">
-                        <PunchCircleTimestamped time="09:34" />
-                        <PunchCircleTimestamped time="12:07" />
-                        <PunchCircleTimestamped time="13:11" />
-                        <PunchCircleTimestamped time="18:52" />
+                        {generatePunchCirclesTimestamped()}
                     </div>
                     <div className="flex flex-col text-sm">
                         <div>

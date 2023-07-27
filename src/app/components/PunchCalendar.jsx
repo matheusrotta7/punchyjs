@@ -43,14 +43,48 @@ export default function PunchCalendar(props) {
         const lastDay = dateUtils.getLastDayForAMonthYear(props.curMonth, props.curYear);
 
         for (let i = 1; i<=lastDay; i++) {
-            result.push(<DateBox 
+
+            var punchesOfThisDay = extractThisDayPunches(props.punchList, i)
+
+            result.push(<DateBox
+                setSelectedDayPunchList={props.setSelectedDayPunchList}
+                setSelectedDay={props.setSelectedDay} 
                 key={i}
                 day={i}
-                punchList={props.punchList}
+                punchList={punchesOfThisDay}
                 ></DateBox>)
         }
     
         return result;
+    }
+
+    function notEmpty(punchList) {
+        return typeof punchList != "undefined" && punchList != null && punchList.length > 0;
+    }
+
+    function extractThisDayPunches(punchList, day) {
+        
+
+        if (notEmpty(punchList)) {
+            var resultArray = []
+    
+            for (let i = 0; i < punchList.length; i++) {
+                const curPunch = punchList[i];
+                const curDayStr = curPunch.timestamp.split(" ")[0].split("-")[2];
+                var curDay = parseInt(curDayStr)
+                if (day === curDay) {
+                    resultArray.push(curPunch)
+                }
+                
+            }
+            
+            return resultArray
+
+        } else {
+            return null
+        }
+
+
     }
 
     return (
