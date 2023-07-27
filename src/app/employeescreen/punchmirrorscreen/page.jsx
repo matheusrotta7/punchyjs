@@ -79,30 +79,7 @@ export default function punchScreen() {
         return result
     }
 
-    function calculateWorkedHours() {
-        if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
-            return "00:00"
-        }
-        if (selectedDayPunchList.length === 0) {
-            return "00:00"
-        }
-        if (selectedDayPunchList.length % 2 === 1) {
-            return "Odd number of punches"
-        }
-
-        var openingPunch = true
-        var prevPunch = null
-
-        for (let i = 0; i < selectedDayPunchList.length; i++) {
-            var curPunch = selectedDayPunchList[i];
-            if (openingPunch) {
-                prevPunch = curPunch
-            }
-            
-        }
-
-
-    }
+    
 
     
 
@@ -167,7 +144,7 @@ export default function punchScreen() {
                     <div className="flex flex-col text-sm">
                         <div>
                             <span className="float-left p-3">Worked hours:</span>
-                            <span className="float-right p-3">{calculateWorkedHours()}</span>
+                            <span className="float-right p-3">{dateUtils.calculateWorkedHours(selectedDayPunchList)}</span>
                         </div>
                         
                         
