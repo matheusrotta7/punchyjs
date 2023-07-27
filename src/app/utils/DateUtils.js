@@ -68,7 +68,7 @@ class DateUtils {
     }
 
     static calculateWorkedHours(selectedDayPunchList) {
-        
+
         if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
             return "00:00"
         }
@@ -92,6 +92,7 @@ class DateUtils {
             } else {
                 var offsetTime = DateUtils.calculateOffsetTime(curPunch, prevPunch)
                 offsetTimeSum += offsetTime
+                openingPunch = true
             }
 
         }
