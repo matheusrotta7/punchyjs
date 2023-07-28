@@ -1,9 +1,12 @@
-import { createContext, useState } from "react";
+'use client'
+
+import { createContext, useEffect, useState } from "react";
 
 import { login } from "../services/LoginService";
-import { setCookie } from "nookies";
+import { setCookie, parseCookies } from "nookies";
+import { useRouter } from "next/navigation";
 
-const AuthContext = createContext({})
+export const AuthContext = createContext({})
 
 export default function AuthProvider({children}) {
 
@@ -11,20 +14,49 @@ export default function AuthProvider({children}) {
 
     const isAuthenticated = !!user;
 
+    const router = useRouter()
+
+    useEffect(() => {
+        const { 'punchy.token': token } = parseCookies()
+
+        if (token) {
+
+        }
+    }, [])
+
     async function signIn(username, password) {
 
-        const {token, user} = await login(username, password)
+        const loginResponse = await login(username, password)
 
-        setCookie(undefined, 'punchy.token', token, {
-            maxAge: 60 * 60 * 1, // 1 hour
+        if (loginResponse === null || loginResponse === undefined) {
+            alert("Wrong (username, password) pair")
+            return
+        }
+
+        setCookie(undefined, 'punchy.token', loginResponse.token, {
+            maxAge: 60 * 60 * 8, // 8 hour
         })
 
-        setUser(user)
+        setUser({
+            role: loginResponse.role,
+            id: loginResponse.id,
+            name: loginResponse.name
+        })
 
         redirectToPage()
+
     }
 
+    useEffect(() => {
+        redirectToPage()
+    }, [user])
+
     function redirectToPage() {
+
+        if (user === null || user === undefined) {
+            return
+        }
+
         if (user.role === "Manager") {
             router.push("/managerscreen");
         } else if (user.role === "Employee") {
@@ -37,7 +69,7 @@ export default function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, signIn }}>
             {children}
         </AuthContext.Provider>
     )

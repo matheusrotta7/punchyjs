@@ -3,13 +3,11 @@
 import { useContext, useEffect, useState } from "react";
 import SubmitButton from "../components/SubmitButton";
 import { login } from "../services/LoginService";
-import { useRouter } from "next/navigation";
+
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function loginscreen() {
 
-
-    const router = useRouter()
 
     const { signIn } = useContext(AuthContext)
 
@@ -18,10 +16,11 @@ export default function loginscreen() {
     const [password, setPassword] = useState("")
     // const [loginResponse, setLoginResponse] = useState({})
 
-    function callLogin() {
+    async function callLogin() {
         console.log("Hello!");
         console.log("Inside call login");
-        signIn(username, password)
+        await signIn(username, password)
+        
     }
 
 
