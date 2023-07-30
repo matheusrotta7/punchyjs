@@ -14,7 +14,6 @@ export default function loginscreen() {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    // const [loginResponse, setLoginResponse] = useState({})
 
     async function callLogin() {
         console.log("Hello!");

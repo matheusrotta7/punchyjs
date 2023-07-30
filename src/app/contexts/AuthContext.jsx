@@ -20,7 +20,7 @@ export default function AuthProvider({children}) {
         const { 'punchy.token': token } = parseCookies()
 
         if (token) {
-
+            
         }
     }, [])
 
@@ -34,7 +34,7 @@ export default function AuthProvider({children}) {
         }
 
         setCookie(undefined, 'punchy.token', loginResponse.token, {
-            maxAge: 60 * 60 * 8, // 8 hour
+            maxAge: 60 * 60 * 8, // 8 hours, in backend it's 9 hours
         })
 
         setUser({
