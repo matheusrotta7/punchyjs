@@ -33,11 +33,7 @@ export async function recoverUserThroughToken(token) {
                 'Access-Control-Allow-Methods': 'GET, POST', // Allow GET and POST methods
                 'Access-Control-Allow-Headers': 'Content-Type', // Allow Content-Type header
                 'token': token
-            },
-            body: JSON.stringify({
-                "username": username,
-                "password": password
-            })
+            }
             
           });
         return await response.json();

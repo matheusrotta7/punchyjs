@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from "react";
 
-import { login } from "../services/LoginService";
+import { login, recoverUserThroughToken } from "../services/LoginService";
 import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 
@@ -20,8 +20,17 @@ export default function AuthProvider({children}) {
         const { 'punchy.token': token } = parseCookies()
 
         if (token) {
-            
+            console.log("token: " + token)
+            recoverUserThroughToken(token).then(loginResponse => {
+                console.log("loginResponse: " + loginResponse)
+                setUser({
+                    role: loginResponse.role,
+                    id: loginResponse.id,
+                    name: loginResponse.name
+                })
+            })
         }
+
     }, [])
 
     async function signIn(username, password) {
@@ -54,7 +63,8 @@ export default function AuthProvider({children}) {
     function redirectToPage() {
 
         if (user === null || user === undefined) {
-            return
+            router.push("/loginscreen");
+            return;
         }
 
         if (user.role === "Manager") {

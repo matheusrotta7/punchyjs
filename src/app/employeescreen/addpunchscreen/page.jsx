@@ -5,16 +5,18 @@ import { punch } from "@/app/services/PunchService";
 import dateUtils from '../../utils/DateUtils'
 // import {Alert} from 'react-alert'
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/app/contexts/AuthContext";
 
 export default function addPunchScreen () {
 
+    const { user } = useContext(AuthContext)
+
 
     const [id, setId] = useState(2)
+    const [name, setName] = useState("user")
 
     function punchNow() {
-        //call punch function backend
-        //get cur timestamp
         console.log("hello")
         var curTime = dateUtils.getCurrentTimestamp()
         
@@ -25,12 +27,20 @@ export default function addPunchScreen () {
         })
     }
 
+    useEffect(() => {
+        if (user != null && user != undefined) {
+            setId(user.id)
+            setName(user.name)
+        }
+    }, [user])
+
 
     return (
 
         <>
             <div className="p-6">
-                <h1>Register you punch now!</h1>
+                <h1>Welcome, {name}</h1>
+                <h2>Register you punch now!</h2>
                 <div className="ml-0">
                     <SubmitButton text="Punch" onClickFunction={punchNow} />
                 </div>
