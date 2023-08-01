@@ -12,6 +12,9 @@ import punchUtils from "../../utils/PunchUtils";
 
 import {getPunches} from '../../services/PunchService'
 import { AuthContext } from "@/app/contexts/AuthContext";
+import Modal from "@/app/components/Modal";
+import SubmitButton from "@/app/components/SubmitButton";
+import Dropdown from "@/app/components/Dropdown";
 
 
 export default function punchScreen() {
@@ -26,6 +29,8 @@ export default function punchScreen() {
     const [punchList, setPunchList] = useState()
     const [selectedDay, setSelectedDay] = useState(date.getDate())
     const [selectedDayPunchList, setSelectedDayPunchList] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false) 
+    const [selectedPunchAlterationOption, setSelectedPunchAlterationOption] = useState("Addition")
 
     useEffect(() => {
         setSelectedDayPunchList(punchUtils.extractThisDayPunches(punchList, selectedDay))
@@ -86,11 +91,12 @@ export default function punchScreen() {
         return result
     }
 
-    
+    function savePunchAlterationRequestAndCloseModal() {
+        //make call to backend to add punch alteration
 
-    
+        setIsModalOpen(false)
+    }
 
-    
     return (
         
         <>
@@ -135,7 +141,7 @@ export default function punchScreen() {
                         />
                     </div>
                     <div>
-                        <div className="relative bg-zinc-800 px-5 mt-5 pt-10 pb-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto  sm:rounded-full w-40 h-40">
+                        <div className="relative bg-zinc-800 px-5 mt-5 pt-10 pb-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto  sm:rounded-full w-40 h-40 border border-zinc-700">
                             <div className="flex flex-col">
                                 <div className="text-xl">
                                     {dateUtils.dayOfWeekFor(selectedDay, curMonth, curYear)}    
@@ -150,10 +156,32 @@ export default function punchScreen() {
                         {generatePunchCirclesTimestamped()}
                     </div>
                     <div className="flex flex-col text-sm">
-                        <div>
+                        <div className="mt-5">
                             <span className="float-left p-3">Worked hours:</span>
                             <span className="float-right p-3">{dateUtils.calculateWorkedHours(selectedDayPunchList)}</span>
                         </div>
+
+                        <div className="cursor-pointer mt-5 float-left bg-zinc-800 p-3 shadow-xl ring-1 ring-gray-900/5 border mx-3 border-zinc-700   sm:rounded-md w-auto h-auto"
+                                onClick={() => {setIsModalOpen(true)}}
+                        >
+                            <span>Punch alteration request</span>
+                        </div>
+                        <Modal 
+                            isModalOpen={isModalOpen} 
+                            setIsModalOpen={setIsModalOpen}
+                        >
+                            <div className="flex flex-col">
+                                <span className="text-gray-200">Punch alteration request</span>
+                                <span>Type: </span> <Dropdown options={["Addition", "Removal"]} selectedOption={selectedPunchAlterationOption} handleChange={(e) => setSelectedPunchAlterationOption(e.target.value)} />
+                                <span>Hour:</span> <input type="time"></input>
+                                <span>Justification: </span> <input type="text" maxLength={100}></input>
+                                <SubmitButton 
+                                    text="Submit"
+                                    onClickFunction={savePunchAlterationRequestAndCloseModal}
+                                ></SubmitButton>
+
+                            </div>
+                        </Modal>
                         
                         
                     </div>
