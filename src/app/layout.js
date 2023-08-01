@@ -19,3 +19,12 @@ export default function RootLayout({ children }) {
         </AuthProvider>
     )
 }
+
+export const gerServerSideProps = async (ctx) => {
+    console.log(ctx.req.cookies)
+    console.log("hello")
+
+    return {
+        props:{}
+    }
+}

@@ -3,7 +3,7 @@
 import { createContext, useEffect, useState } from "react";
 
 import { login, recoverUserThroughToken } from "../services/LoginService";
-import { setCookie, parseCookies } from "nookies";
+import { setCookie, parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext({})
@@ -18,6 +18,7 @@ export default function AuthProvider({children}) {
 
     useEffect(() => {
         const { 'punchy.token': token } = parseCookies()
+        console.log("Inside use effect in AuthContext")
 
         if (token) {
             console.log("token: " + token)
@@ -32,6 +33,13 @@ export default function AuthProvider({children}) {
         }
 
     }, [])
+
+    function logOut() {
+        console.log("Inside Logout")
+        destroyCookie(undefined, 'punchy.token')
+        setUser(null)
+        redirectToPage()
+    }
 
     async function signIn(username, password) {
 
@@ -68,7 +76,7 @@ export default function AuthProvider({children}) {
         }
 
         if (user.role === "Manager") {
-            router.push("/managerscreen");
+            router.push("/managerscreen/myemployees");
         } else if (user.role === "Employee") {
             router.push("/employeescreen/punchmirrorscreen");
         } else if (user.role === "Admin") {
@@ -79,7 +87,7 @@ export default function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, signIn }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, signIn, logOut }}>
             {children}
         </AuthContext.Provider>
     )

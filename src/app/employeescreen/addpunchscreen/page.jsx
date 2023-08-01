@@ -13,18 +13,20 @@ export default function addPunchScreen () {
     const { user } = useContext(AuthContext)
 
 
-    const [id, setId] = useState(2)
-    const [name, setName] = useState("user")
+    const [id, setId] = useState(null)
+    const [name, setName] = useState(null)
 
     function punchNow() {
         console.log("hello")
         var curTime = dateUtils.getCurrentTimestamp()
         
-        punch(id, curTime).then(punchResponse => {
-            if (punchResponse != null) {
-                alert("Your punch was succesfully registered at " + punchResponse.timestamp)
-            }
-        })
+        if (id != null) {
+            punch(id, curTime).then(punchResponse => {
+                if (punchResponse != null) {
+                    alert("Your punch was succesfully registered at " + punchResponse.timestamp)
+                }
+            })
+        }
     }
 
     useEffect(() => {
@@ -39,7 +41,7 @@ export default function addPunchScreen () {
 
         <>
             <div className="p-6">
-                <h1>Welcome, {name}</h1>
+                <h1>Welcome, {name}!</h1>
                 <h2>Register you punch now!</h2>
                 <div className="ml-0">
                     <SubmitButton text="Punch" onClickFunction={punchNow} />

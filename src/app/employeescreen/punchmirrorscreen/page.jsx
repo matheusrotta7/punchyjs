@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight, LoaderIcon } from "lucide-react";
 import MonthYearHeader from "../../components/MonthYearHeader";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import PunchCalendar from "../../components/PunchCalendar";
 import PunchCircleTimestamped from "@/app/components/PunchCircleTimestamped";
@@ -11,11 +11,12 @@ import dateUtils from "../../utils/DateUtils";
 import punchUtils from "../../utils/PunchUtils";
 
 import {getPunches} from '../../services/PunchService'
+import { AuthContext } from "@/app/contexts/AuthContext";
 
 
 export default function punchScreen() {
 
-    
+    const {user, logOut} = useContext(AuthContext)
     
     
     let date = new Date()
@@ -32,15 +33,21 @@ export default function punchScreen() {
     
     useEffect(() => {
         fetchPunches();
-    }, [curMonth, curYear])
+    }, [curMonth, curYear, user])
 
 
     function fetchPunches() {
         console.log("Inside use effect curmonth: " + curMonth);
-        getPunches(2, curMonth, curYear)
-            .then(punches => {
-                setPunchList(punches);
-            });
+        if (user != null && user != undefined) {
+            console.log("user.id")
+            console.log(user.id)
+            getPunches(user.id, curMonth, curYear)
+                .then(punches => {
+                    console.log("punches")
+                    console.log(punches)
+                    setPunchList(punches);
+                });
+        }
     }
 
     function goBackOneMonth() {
@@ -89,6 +96,7 @@ export default function punchScreen() {
         <>
             
             <div className="text-gray-200 p-6">
+                <h1 className="mb-3">Welcome, {user != null ? user.name : ""}!</h1>
                 <div>
                     <div className="flex mb-3 ">
                         <button className="rounded-full bg-sky-800 hover:bg-sky-500 mr-1"
