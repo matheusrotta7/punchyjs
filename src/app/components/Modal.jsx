@@ -13,7 +13,7 @@ const MODAL_STYLE = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
-    padding: '250px',
+    // padding: '250px',
     backgroundColor: '#666',
     borderRadius: '10px',
     color: 'black',
