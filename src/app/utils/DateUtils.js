@@ -33,20 +33,21 @@ class DateUtils {
         return date.getDay()
     }
 
+    static generateStringFromNumber(num, numberOfDigits) {
+        return num.toLocaleString(undefined, { minimumIntegerDigits: numberOfDigits })
+    }
+
     static getCurrentTimestamp() {
 
-        function generateStringFromNumber(num, numberOfDigits) {
-            return num.toLocaleString(undefined, { minimumIntegerDigits: numberOfDigits })
-        }
 
         var date = new Date();
 
         var dateString = date.getFullYear()
-            + '-' + generateStringFromNumber(date.getMonth() + 1, 2)
-            + '-' + generateStringFromNumber(date.getDate(), 2)
-            + ' ' + generateStringFromNumber(date.getHours(), 2)
-            + ':' + generateStringFromNumber(date.getMinutes(), 2)
-            + ':' + generateStringFromNumber(date.getSeconds(), 2)
+            + '-' + DateUtils.generateStringFromNumber(date.getMonth() + 1, 2)
+            + '-' + DateUtils.generateStringFromNumber(date.getDate(), 2)
+            + ' ' + DateUtils.generateStringFromNumber(date.getHours(), 2)
+            + ':' + DateUtils.generateStringFromNumber(date.getMinutes(), 2)
+            + ':' + DateUtils.generateStringFromNumber(date.getSeconds(), 2)
 
         console.log("datestring: " + dateString)
 

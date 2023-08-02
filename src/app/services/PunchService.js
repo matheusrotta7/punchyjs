@@ -25,6 +25,12 @@ export async function getPunches(employeeId, month, year) {
 
 export async function punch(employeeId, timestamp, punchStatus) {
 
+    console.log("punchStatus")
+    console.log(punchStatus)
+
+    console.log("timestamp")
+    console.log(timestamp)
+
     try{
         const response = await fetch('http://localhost:8080/punch', {
             method: 'POST',
@@ -52,9 +58,12 @@ export async function punch(employeeId, timestamp, punchStatus) {
 
 export async function alterPunch(employeeId, punchId, punchStatus) {
 
+    console.log("punchId")
+    console.log(punchId)
+
     try{
         const response = await fetch('http://localhost:8080/punch', {
-            method: 'POST',
+            method: 'PUT',
             mode: "cors",
             headers: {
                 'Content-Type': 'application/json',

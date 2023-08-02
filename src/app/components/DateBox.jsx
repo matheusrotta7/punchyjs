@@ -12,7 +12,7 @@ export default function DateBox (props) {
         if (notEmpty(punchList)) {
             for (let i = 0; i < punchList.length; i++) {
                 let curPunch = punchList[i]
-                punchCircleArray.push(<LittlePunchCircle key={i} timestamp={curPunch.timestamp} />)
+                punchCircleArray.push(<LittlePunchCircle key={i} timestamp={curPunch.timestamp} punchStatus={curPunch.punchStatus} />)
             }
         }
         return punchCircleArray

@@ -87,7 +87,7 @@ export default function punchScreen() {
             return null
         }
 
-        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} />)
+        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} punchStatus={punch.punchStatus} />)
     }
 
     function simplifyTimestamp(timestamp) {
@@ -109,12 +109,21 @@ export default function punchScreen() {
         if (selectedOptionBackendName === 'PENDING_ADDITION') {
             punch(user.id, completeDateFor(alterPunchTimestamp), 'PENDING_ADDITION')
         } else if (selectedOptionBackendName === 'PENDING_DELETION') {
-            alterPunch(user.id, toBeDeletedPunchId, 'PENDING_DELETION')
+            console.log("toBeDeletedPunch")
+            console.log(toBeDeletedPunch)
+            const toBeDeletePunchObj = selectedDayPunchList.find((p) => p.timestamp === toBeDeletedPunch);
+            console.log("toBeDeletePunchObj")
+            console.log(toBeDeletePunchObj)
+            alterPunch(user.id, toBeDeletePunchObj.id, 'PENDING_DELETION')
         } else {
             alert("An unknown alteration action was selected")
         }
 
         setIsModalOpen(false)
+    }
+
+    function completeDateFor(timeStr) {
+        return curYear+ '-' + dateUtils.generateStringFromNumber(curMonth+1, 2) + '-' + dateUtils.generateStringFromNumber(selectedDay, 2) + ' ' + timeStr + ':00';
     }
 
     return (
@@ -195,9 +204,7 @@ export default function punchScreen() {
                                 <div className="mt-5">
                                     <span>Type: </span> <Dropdown options={punchAlterationOptions} selectedOption={selectedPunchAlterationOption} handleChange={(e) => setSelectedPunchAlterationOption(e.target.value)} />
                                 </div>
-                                {/* <div className="mt-2">
-                                    <span>Selected Option: {selectedPunchAlterationOption}</span>
-                                </div> */}
+
                                 {selectedPunchAlterationOption === "Addition" ? 
                                 
                                 <div className="mt-3">
@@ -207,7 +214,6 @@ export default function punchScreen() {
                                 <div className="mt-3">
                                     <span>Which punch should be deleted? </span> <Dropdown options={selectedDayPunchList != null ? selectedDayPunchList.map((p) => ({id: p.id, name: p.timestamp})) : null} handleChange={(e) => {setToBeDeletedPunch(e.target.value)}} selectedOption={toBeDeletedPunch} />
                                 </div>
-                                
                                 
                                 }
                                 
