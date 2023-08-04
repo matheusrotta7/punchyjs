@@ -1,7 +1,7 @@
 'use client'
 
 import { Check, CheckCircle, CheckCircle2, LoaderIcon, X, XCircle } from "lucide-react";
-import { alterPunch } from "../services/PunchService";
+import { alterPunch, deletePunch } from "../services/PunchService";
 
 
 export default function PunchAlterationRequest(props) {
