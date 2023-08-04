@@ -1,5 +1,6 @@
 import { Calendar, Clock, PersonStanding } from "lucide-react";
 import Link from "next/link";
+import LogoutButton from "../components/LogoutButton";
 
 export default function managerLayout({children}) {
 
@@ -12,6 +13,7 @@ export default function managerLayout({children}) {
                         <Link href="/managerscreen/myemployees" className="flex p-2 hover:bg-zinc-800">
                             <PersonStanding /> <span className="ml-2">My employees</span>
                         </Link>
+                        <LogoutButton />
                     </aside>
 
                     {children}

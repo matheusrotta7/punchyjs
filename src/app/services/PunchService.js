@@ -1,4 +1,4 @@
-export async function getPunches(employeeId, month, year) {
+export async function getPunches(employeeId, month, year, punchStatus = null) {
 
     try{
         const response = await fetch('http://localhost:8080/punchSearch', {
@@ -13,7 +13,8 @@ export async function getPunches(employeeId, month, year) {
             body: JSON.stringify({
                 employeeId: employeeId,
                 month: month,
-                year: year
+                year: year,
+                punchStatus: punchStatus
             })
           });
         return await response.json();

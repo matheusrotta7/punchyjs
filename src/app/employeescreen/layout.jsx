@@ -1,5 +1,6 @@
 import { Calendar, Clock } from "lucide-react";
 import Link from "next/link";
+import LogoutButton from "../components/LogoutButton";
 
 export default function employeeLayout( {children}) {
 
@@ -16,6 +17,8 @@ export default function employeeLayout( {children}) {
                         <Link href="/employeescreen/punchmirrorscreen" className="flex p-2 hover:bg-zinc-800">
                             <Calendar /> <span className="ml-2">Punch Mirror</span>
                         </Link>
+                        <LogoutButton />
+
                     </aside>
                     
                     {children}
