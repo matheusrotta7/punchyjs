@@ -3,9 +3,10 @@
 import Dropdown from "../../components/Dropdown"
 import { useContext, useEffect, useState } from "react";
 import { getAllEmployeesWithManager } from "../../services/EmployeeService";
-import { LoaderIcon } from "lucide-react";
+import { Check, CheckCircle, CheckCircle2, LoaderIcon, X, XCircle } from "lucide-react";
 import { AuthContext } from "@/app/contexts/AuthContext";
 import { getPunches } from "@/app/services/PunchService";
+import PunchAlterationRequest from "@/app/components/PunchAlterationRequest";
 
 export default function myEmployeesScreen() {
 
@@ -45,9 +46,15 @@ export default function myEmployeesScreen() {
     };
 
     function renderPendingPunches() {
-        if (pendingPunches != null && pendingPunches != undefined) {
+        if (employeeList === null || employeeList === undefined) {
+            return
+        }
+        var employeeId = employeeList.find(emp => (emp.name === selectedEmployee))?.id
+        if (pendingPunches != null && pendingPunches != undefined && pendingPunches.length > 0) {
             console.log(pendingPunches)
-            return pendingPunches.map(p => <li key={p.id}>{p.timestamp} {p.punchStatus}</li>)
+            return pendingPunches.map(p => 
+                <PunchAlterationRequest key={p.id} punch={p} employeeId={employeeId} />
+            )
         } else {
             return null
         }
@@ -67,7 +74,7 @@ export default function myEmployeesScreen() {
                         {employeeList != null && employeeList != undefined ? <Dropdown options={employeeList} selectedOption={selectedEmployee} handleChange={handleChange} /> : <LoaderIcon />}
                     </div>
 
-                    <div className="mt-5">
+                    <div className="mt-5 mb-3">
                         <span>Punch alteration requests from {selectedEmployee} that need your attention:</span>
                     </div>
 

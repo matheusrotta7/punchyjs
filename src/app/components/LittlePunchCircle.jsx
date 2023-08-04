@@ -1,10 +1,11 @@
+
 export default function LittlePunchCircle(props) {
 
     var timeString = props.timestamp.split(" ")[1]
     var punchStatus = props.punchStatus
 
     function getStrokeColor() {
-        if (punchStatus === null || punchStatus === 'NORMAL') {
+        if (punchStatus === null || punchStatus === 'NORMAL' || punchStatus === 'APPROVED') {
             return "stroke-sky-500"
         } else if (punchStatus === 'PENDING_ADDITION') {
             return "stroke-green-500"

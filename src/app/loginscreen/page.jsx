@@ -22,6 +22,14 @@ export default function loginscreen() {
         
     }
 
+    const handleKeyDown = (ev) => {
+        if (ev.key === 'Enter') {
+            callLogin()
+        }
+    } 
+        
+    
+
 
     return (
         <>
@@ -31,7 +39,7 @@ export default function loginscreen() {
                     <span>Username:</span> <input className="ml-3 text-zinc-800" type="text" onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div className="mt-3">
-                    <span>Password:</span> <input className="ml-3 text-zinc-800" type="password" onChange={e => setPassword(e.target.value)} />
+                    <span>Password:</span> <input className="ml-3 text-zinc-800" type="password" onKeyDown={handleKeyDown} onChange={e => setPassword(e.target.value)} />
                 </div>
                 <SubmitButton text="Login" onClickFunction={callLogin} />
 

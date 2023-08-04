@@ -3,7 +3,7 @@ export default function PunchCircleTimestamped (props) {
     var punchStatus = props.punchStatus
 
     function getBorderColor() {
-        if (punchStatus === null || punchStatus === 'NORMAL') {
+        if (punchStatus === null || punchStatus === 'NORMAL' || punchStatus === 'APPROVED') {
             return "border-zinc-700"
         } else if (punchStatus === 'PENDING_ADDITION') {
             return "border-green-700"
@@ -23,7 +23,7 @@ export default function PunchCircleTimestamped (props) {
     }
 
     function getIfBorderDashed() {
-        return punchStatus === null || punchStatus === 'NORMAL' ? "" : "border-dashed"
+        return punchStatus === null || punchStatus === 'NORMAL' || punchStatus === 'APPROVED' ? "" : "border-dashed"
     }
 
     return (

@@ -1,5 +1,10 @@
 export async function getPunches(employeeId, month, year, punchStatus = null) {
 
+    console.log("month")
+    console.log(month)
+    console.log("year")
+    console.log(year)
+
     try{
         const response = await fetch('http://localhost:8080/punchSearch', {
             method: 'POST',
@@ -79,6 +84,29 @@ export async function alterPunch(employeeId, punchId, punchStatus) {
                 "id": punchId,
                 "punchStatus": punchStatus
             })
+          });
+        return await response.json();
+    }catch(error) {
+        return [];
+    }
+    
+}
+
+export async function deletePunch(punchId) {
+
+    console.log("punchId")
+    console.log(punchId)
+
+    try{
+        const response = await fetch('http://localhost:8080/punch/' + punchId, {
+            method: 'DELETE',
+            mode: "cors",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+                'Access-Control-Allow-Methods': 'GET, POST', // Allow GET and POST methods
+                'Access-Control-Allow-Headers': 'Content-Type', // Allow Content-Type header
+              },
           });
         return await response.json();
     }catch(error) {
