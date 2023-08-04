@@ -38,7 +38,7 @@ export async function getAllEmployeesWithManager(managerId) {
     
 }
 
-export async function createNewEmployee(employeeName, managerId) {
+export async function createNewEmployee(employeeName, managerId, email, password) {
     try {
         const response = await fetch('http://localhost:8080/employee', {
             method: 'POST',
@@ -53,8 +53,9 @@ export async function createNewEmployee(employeeName, managerId) {
                 "name": employeeName,
                 "manager": {
                     "id": managerId
-                }
-
+                },
+                "username": email,
+                "password": password
             })
             
           });
