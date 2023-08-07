@@ -8,7 +8,7 @@ export async function getPunches(employeeId, month, year, punchStatus = null) {
     console.log(year)
 
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/punchSearch', {
+        const response = await fetch(hostUtils.getHost() + ':8080/punchSearch', {
             method: 'POST',
             mode: "cors",
             headers: {
@@ -40,7 +40,7 @@ export async function punch(employeeId, timestamp, punchStatus) {
     console.log(timestamp)
 
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/punch', {
+        const response = await fetch(hostUtils.getHost() + ':8080/punch', {
             method: 'POST',
             mode: "cors",
             headers: {
@@ -70,7 +70,7 @@ export async function alterPunch(employeeId, punchId, punchStatus) {
     console.log(punchId)
 
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/punch', {
+        const response = await fetch(hostUtils.getHost() + ':8080/punch', {
             method: 'PUT',
             mode: "cors",
             headers: {
@@ -100,7 +100,7 @@ export async function deletePunch(punchId) {
     console.log(punchId)
 
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/punch/' + punchId, {
+        const response = await fetch(hostUtils.getHost() + ':8080/punch/' + punchId, {
             method: 'DELETE',
             mode: "cors",
             headers: {

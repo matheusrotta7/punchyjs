@@ -4,10 +4,10 @@ class HostUtils {
         
         const env = process.env.NODE_ENV
         if(env == "development"){
-            return "localhost"
+            return "http://localhost"
         }
         else if (env == "production"){
-            return "punchy.app"
+            return "https://punchy.app"
         }
         
     }

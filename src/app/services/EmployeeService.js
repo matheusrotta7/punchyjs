@@ -3,7 +3,7 @@ import hostUtils from "../utils/HostUtils";
 export async function getAllEmployees() {
     
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/employee', {
+        const response = await fetch(hostUtils.getHost() + ':8080/employee', {
             method: 'GET',
             mode: "cors",
             headers: {
@@ -23,7 +23,7 @@ export async function getAllEmployees() {
 export async function getAllEmployeesWithManager(managerId) {
 
     try{
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/employee/manager/' + managerId, {
+        const response = await fetch(hostUtils.getHost() + ':8080/employee/manager/' + managerId, {
             method: 'GET',
             mode: "cors",
             headers: {
@@ -42,7 +42,7 @@ export async function getAllEmployeesWithManager(managerId) {
 
 export async function createNewEmployee(employeeName, managerId, email, password) {
     try {
-        const response = await fetch('http://' + hostUtils.getHost() + ':8080/employee', {
+        const response = await fetch(hostUtils.getHost() + ':8080/employee', {
             method: 'POST',
             mode: "cors",
             headers: {
