@@ -18,7 +18,7 @@ export async function getAllManagers() {
     
 }
 
-export async function createNewManager(managerName) {
+export async function createNewManager(managerName, managerEmail, managerPassword) {
     try {
         const response = await fetch('http://localhost:8080/manager', {
             method: 'POST',
@@ -30,7 +30,9 @@ export async function createNewManager(managerName) {
                 'Access-Control-Allow-Headers': 'Content-Type', // Allow Content-Type header
             },
             body: JSON.stringify({
-                "name": managerName
+                "name": managerName,
+                "username": managerEmail,
+                "password": managerPassword
             })
             
           });
