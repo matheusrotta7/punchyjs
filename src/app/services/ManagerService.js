@@ -1,7 +1,9 @@
+import hostUtils from "../utils/HostUtils";
+
 export async function getAllManagers() {
 
     try{
-        const response = await fetch('http://localhost:8080/manager', {
+        const response = await fetch('http://' + hostUtils.getHost() + ':8080/manager', {
             method: 'GET',
             mode: "cors",
             headers: {
@@ -20,7 +22,7 @@ export async function getAllManagers() {
 
 export async function createNewManager(managerName, managerEmail, managerPassword) {
     try {
-        const response = await fetch('http://localhost:8080/manager', {
+        const response = await fetch('http://' + hostUtils.getHost() + ':8080/manager', {
             method: 'POST',
             mode: "cors",
             headers: {
