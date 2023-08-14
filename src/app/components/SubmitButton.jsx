@@ -12,11 +12,19 @@ export default function SubmitButton(props) {
         }
     }
 
+    function getWidth() {
+        if (props.width != null && props.width != undefined) {
+            return props.width
+        } else {
+            return "w-16"
+        }
+    }
+
     return (
         <>
             <button 
                 disabled={wasDisabled()} 
-                className={" sm:rounded-lg w-16 mt-3 " + getBackgroundColor()} 
+                className={" sm:rounded-lg mt-3 " + getWidth() + " " + getBackgroundColor()} 
                 onClick={props.onClickFunction}>{props.text}
             </button>
         </>

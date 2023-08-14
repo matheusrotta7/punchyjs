@@ -15,6 +15,9 @@ import { AuthContext } from "@/app/contexts/AuthContext";
 import Modal from "@/app/components/Modal";
 import SubmitButton from "@/app/components/SubmitButton";
 import Dropdown from "@/app/components/Dropdown";
+import { getReport } from "@/app/services/ReportService";
+
+import { saveAs } from 'file-saver';
 
 
 export default function punchScreen() {
@@ -126,6 +129,29 @@ export default function punchScreen() {
         return curYear+ '-' + dateUtils.generateStringFromNumber(curMonth+1, 2) + '-' + dateUtils.generateStringFromNumber(selectedDay, 2) + ' ' + timeStr + ':00';
     }
 
+    function generateMonthlyPunchReport() {
+        console.log("Mr. SplashMan, I'll make it splash man")
+        console.log("I don't care about your comission, I'm on a mission, to make it splash")
+        var pdfReportByteArray
+        getReport(user.id, curMonth, curYear).then((response) => {
+            pdfReportByteArray = response
+            console.log("pdfReportByteArray")
+            console.log(pdfReportByteArray)
+            console.log(typeof pdfReportByteArray)
+            const file = new Blob([pdfReportByteArray], {
+                type: 'application/pdf',
+              });
+              
+            const fileURL = URL.createObjectURL(file);
+            
+            window.open(fileURL);
+
+            // const file = new Blob([blob]);
+
+            saveAs(file, 'testpdf.pdf');
+        })
+    }
+
     return (
 
         <>
@@ -158,6 +184,9 @@ export default function punchScreen() {
                         curMonth={curMonth}
                         curYear={curYear}
                     />
+                    <div className="mt-20 w-72">
+                        <SubmitButton width="w-72 h-14" onClickFunction={generateMonthlyPunchReport}  text="Generate Report of the Month"/>
+                    </div>
                 </div>
             </div>
 
