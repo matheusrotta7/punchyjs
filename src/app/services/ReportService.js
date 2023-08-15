@@ -10,7 +10,7 @@ export async function getReport(employeeId, month, year) {
     console.log(employeeId)
 
     try{
-        const response = await fetch(hostUtils.getHost() + ':8080/report', {
+        const response = await fetch(hostUtils.getHost() + '/report', {
             method: 'POST',
             mode: "cors",
             headers: {

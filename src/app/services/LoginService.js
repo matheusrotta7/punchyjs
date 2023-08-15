@@ -3,7 +3,7 @@ import hostUtils from "../utils/HostUtils";
 export async function login(username, password) {
     console.log("client side or server side? (test)")
     try {
-        const response = await fetch(hostUtils.getHost() + ':8080/login', {
+        const response = await fetch(hostUtils.getHost() + '/login', {
             method: 'POST',
             mode: "cors",
             headers: {
@@ -27,7 +27,7 @@ export async function login(username, password) {
 
 export async function recoverUserThroughToken(token) {
     try {
-        const response = await fetch(hostUtils.getHost() + ':8080/login', {
+        const response = await fetch(hostUtils.getHost() + '/login', {
             method: 'GET',
             mode: "cors",
             headers: {
