@@ -16,8 +16,9 @@ import Modal from "@/app/components/Modal";
 import SubmitButton from "@/app/components/SubmitButton";
 import Dropdown from "@/app/components/Dropdown";
 import { getReport } from "@/app/services/ReportService";
+import download from "downloadjs";
+// import { download } from "downloadjs"
 
-import { saveAs } from 'file-saver';
 
 
 export default function punchScreen() {
@@ -134,21 +135,26 @@ export default function punchScreen() {
         console.log("I don't care about your comission, I'm on a mission, to make it splash")
         var pdfReportByteArray
         getReport(user.id, curMonth, curYear).then((response) => {
-            pdfReportByteArray = response
+            var arrayBuffer = response
             console.log("pdfReportByteArray")
             console.log(pdfReportByteArray)
             console.log(typeof pdfReportByteArray)
-            const file = new Blob([pdfReportByteArray], {
-                type: 'application/pdf',
-              });
-              
-            const fileURL = URL.createObjectURL(file);
+            // console.log(pdfReportByteArray.length)
             
-            window.open(fileURL);
+            // var str= "hello world",	arr= new Uint8Array(str.length);
+            
+            // str.split("").forEach(function(a,b){
+            //     arr[b]=a.charCodeAt();
+            // });
+            console.log("arrayBuffer")
+            console.log(arrayBuffer)
+            console.log("arrayBuffer.Uint8Array")
+            console.log(arrayBuffer.Uint8Array)
 
-            // const file = new Blob([blob]);
+            var uint8View = new Uint8Array(arrayBuffer);
 
-            saveAs(file, 'testpdf.pdf');
+            download( uint8View, "report.pdf", "application/pdf" );
+            
         })
     }
 

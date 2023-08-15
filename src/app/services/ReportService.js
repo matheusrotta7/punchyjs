@@ -6,6 +6,8 @@ export async function getReport(employeeId, month, year) {
     console.log(month)
     console.log("year")
     console.log(year)
+    console.log("employeeId")
+    console.log(employeeId)
 
     try{
         const response = await fetch(hostUtils.getHost() + ':8080/report', {
@@ -23,9 +25,10 @@ export async function getReport(employeeId, month, year) {
                 year: year
             })
           });
-        return await response.json();
+        return await response.arrayBuffer();
     }catch(error) {
-        return [];
+        console.log(error)
+        return null;
     }
     
 }
