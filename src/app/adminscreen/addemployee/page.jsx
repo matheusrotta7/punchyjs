@@ -7,6 +7,8 @@ import { getAllManagers } from "../../services/ManagerService";
 import { createNewEmployee } from "../../services/EmployeeService";
 import SubmitButton from "@/app/components/SubmitButton";
 
+import cryptoUtils from "../../utils/CryptoUtils"
+
 export default function adminscreen() {
 
     useEffect(() => {
@@ -32,7 +34,8 @@ export default function adminscreen() {
 
 
     function callCreateNewEmployee() {
-        createNewEmployee(newEmployeeName, selectedManagerObj.id, newEmployeeEmail, newEmployeePassword).then(employeeResponse => {
+        var passwordHash = cryptoUtils.calculateHash(newEmployeePassword)
+        createNewEmployee(newEmployeeName, selectedManagerObj.id, newEmployeeEmail, passwordHash).then(employeeResponse => {
             if (employeeResponse != null) {
                 alert("Employee " + employeeResponse.name + " was successfully created!")
             }
