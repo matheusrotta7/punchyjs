@@ -5,6 +5,7 @@ import SubmitButton from "../components/SubmitButton";
 import { login } from "../services/LoginService";
 
 import { AuthContext } from "../contexts/AuthContext"
+import cryptoUtils from "../utils/CryptoUtils"
 
 export default function loginscreen() {
 
@@ -18,7 +19,8 @@ export default function loginscreen() {
     async function callLogin() {
         console.log("Hello!");
         console.log("Inside call login");
-        await signIn(username, password)
+        var passwordHash = cryptoUtils.calculateHash(password)
+        await signIn(username, passwordHash)
         
     }
 
