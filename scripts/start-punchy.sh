@@ -1,1 +1,1 @@
-sudo npm run start & > /etc/punchy/frontend.log
+npm run start  > /etc/punchy/frontend.log &
