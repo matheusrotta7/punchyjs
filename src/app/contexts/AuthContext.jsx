@@ -16,6 +16,15 @@ export default function AuthProvider({children}) {
 
     const router = useRouter()
 
+    function setUserWithResponse(loginResponse) {
+        setUser({
+            role: loginResponse.role,
+            id: loginResponse.id,
+            name: loginResponse.name,
+            isRoot: loginResponse.root
+        })
+    }
+
     useEffect(() => {
         const { 'punchy.token': token } = parseCookies()
         console.log("Inside use effect in AuthContext")
@@ -23,12 +32,9 @@ export default function AuthProvider({children}) {
         if (token) {
             console.log("token: " + token)
             recoverUserThroughToken(token).then(loginResponse => {
-                console.log("loginResponse: " + loginResponse)
-                setUser({
-                    role: loginResponse.role,
-                    id: loginResponse.id,
-                    name: loginResponse.name
-                })
+                console.log("loginResponse")
+                console.log(loginResponse)
+                setUserWithResponse(loginResponse)
             })
         }
 
@@ -54,11 +60,7 @@ export default function AuthProvider({children}) {
             maxAge: 60 * 60 * 8, // 8 hours, in backend it's 9 hours
         })
 
-        setUser({
-            role: loginResponse.role,
-            id: loginResponse.id,
-            name: loginResponse.name
-        })
+        setUserWithResponse(loginResponse)
 
         redirectToPage()
 
@@ -80,7 +82,15 @@ export default function AuthProvider({children}) {
         } else if (user.role === "Employee") {
             router.push("/employeescreen/punchmirrorscreen");
         } else if (user.role === "Admin") {
-            router.push("/adminscreen/addemployee");
+            console.log("user")
+            console.log(user)
+            console.log("user.isRoot")
+            console.log(user.isRoot)
+            if (user.isRoot) {
+                router.push("/rootscreen/addcompany")
+            } else {
+                router.push("/adminscreen/addemployee");
+            }
         } else {
             console.log("Invalid role")
         }
