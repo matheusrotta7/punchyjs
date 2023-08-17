@@ -7,7 +7,7 @@ import { getAllManagers } from "../../services/ManagerService";
 import { createNewEmployee } from "../../services/EmployeeService";
 import SubmitButton from "@/app/components/SubmitButton";
 
-import cryptoUtils from "../../utils/CryptoUtils"
+import cryptoUtils from "../../utils/CryptoUtils.js"
 
 export default function adminscreen() {
 

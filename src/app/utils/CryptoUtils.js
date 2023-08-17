@@ -7,7 +7,7 @@ class CryptoUtils {
 
     
     static calculateHash(password) {
-        const hash = crypto.createHmac('sha256', password).digest('hex');
+        const hash = crypto.createHash('sha256').update(password).digest('hex');
         return hash
     }
     

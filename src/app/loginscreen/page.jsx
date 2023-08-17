@@ -5,7 +5,7 @@ import SubmitButton from "../components/SubmitButton";
 import { login } from "../services/LoginService";
 
 import { AuthContext } from "../contexts/AuthContext"
-import cryptoUtils from "../utils/CryptoUtils"
+import cryptoUtils from "../utils/CryptoUtils.js"
 
 export default function loginscreen() {
 
