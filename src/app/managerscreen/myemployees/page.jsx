@@ -13,12 +13,18 @@ export default function myEmployeesScreen() {
     const { user } = useContext(AuthContext)
 
     const [employeeList, setEmployeeList] = useState();
-    const [selectedEmployee, setSelectedEmployee] = useState("");
+    const [selectedEmployee, setSelectedEmployee] = useState({});
     const [pendingPunches, setPendingPunches] = useState([])
 
     useEffect(() => {
         fetchEmployees()
     }, [user])
+
+    useEffect(() => {
+        if (atLeastOneEmployee(employeeList)) {
+            setSelectedEmployee(employeeList[0])
+        }
+    }, [employeeList])
 
     const fetchEmployees = () => {
         if (user === null || user === undefined) {
@@ -34,23 +40,20 @@ export default function myEmployeesScreen() {
         if (employeeList === null || employeeList === undefined) {
             return
         }
-        var employeeId = employeeList.find(emp => (emp.name === selectedEmployee))?.id
+        var employeeId = selectedEmployee.id
         getPunches(employeeId, null, null, "ALL_PENDING").then(punches => {
             setPendingPunches(punches)
         })
     }, [selectedEmployee])
 
 
-    const handleChange = (event) => {
-        setSelectedEmployee(event.target.value);
-    };
-
     function renderPendingPunches() {
         if (employeeList === null || employeeList === undefined) {
             return
         }
-        var employeeId = employeeList.find(emp => (emp.name === selectedEmployee))?.id
-        if (pendingPunches != null && pendingPunches != undefined && pendingPunches.length > 0) {
+
+        var employeeId = selectedEmployee.id
+        if (atLeastOnePendingPunch()) {
             console.log(pendingPunches)
             return pendingPunches.map(p => 
                 <PunchAlterationRequest key={p.id} punch={p} employeeId={employeeId} />
@@ -58,6 +61,14 @@ export default function myEmployeesScreen() {
         } else {
             return null
         }
+    }
+
+    function atLeastOneEmployee(employeeList) {
+        return employeeList != null && employeeList != undefined && employeeList.length > 0
+    }
+
+    function atLeastOnePendingPunch() {
+        return pendingPunches != null && pendingPunches != undefined && pendingPunches.length > 0
     }
 
 
@@ -71,18 +82,26 @@ export default function myEmployeesScreen() {
                     <h2 className="mt-6">My employees: </h2>
 
                     <div>
-                        {employeeList != null && employeeList != undefined ? <Dropdown options={employeeList} selectedOption={selectedEmployee} handleChange={handleChange} /> : <LoaderIcon />}
+                        { atLeastOneEmployee(employeeList) ? <Dropdown options={employeeList} selectedOption={selectedEmployee} setSelectedOption={setSelectedEmployee} /> : <LoaderIcon />}
                     </div>
 
                     <div className="mt-5 mb-3">
-                        <span>Punch alteration requests from {selectedEmployee} that need your attention:</span>
+                        {atLeastOnePendingPunch() ?  
+                            <div>
+                                <span>Punch alteration requests from {selectedEmployee.name} that need your attention:</span>
+                                <div>
+                                    <ul>
+                                        {renderPendingPunches()}
+                                    </ul>
+                                </div>
+
+                            </div>    
+                            :
+                            <span>There are no punch alteration requests from {selectedEmployee.name}</span>
+
+                        }
                     </div>
 
-                    <div>
-                        <ul>
-                            {renderPendingPunches()}
-                        </ul>
-                    </div>
 
                 </main>
 

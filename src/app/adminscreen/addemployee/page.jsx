@@ -11,9 +11,29 @@ import cryptoUtils from "../../utils/CryptoUtils.js"
 
 export default function adminscreen() {
 
+    const [managerList, setManagerList] = useState();
+    const [selectedManager, setSelectedManager] = useState(null)
+    const [newEmployeeName, setNewEmployeeName] = useState("")
+    const [newEmployeeEmail, setNewEmployeeEmail] = useState("")
+    const [newEmployeePassword, setNewEmployeePassword] = useState("")
+    const [newEmployeePasswordCheck, setNewEmployeePasswordCheck] = useState("")
+    const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
+
     useEffect(() => {
         fetchManagers()
     }, [])
+
+    function atLeastOneManager(managerList) {
+        console.log("inside at least one  manager")
+        return managerList != null && managerList != undefined && managerList.length > 0;
+    }
+
+    useEffect(() => {
+        if (atLeastOneManager(managerList)) {
+            console.log("setting selected manager")
+            setSelectedManager(managerList[0])
+        }
+    }, [managerList])
 
     const fetchManagers = () => {
         getAllManagers()
@@ -22,36 +42,14 @@ export default function adminscreen() {
         });
     }
 
-
-    const [managerList, setManagerList] = useState();
-    const [selectedManagerName, setSelectedManagerName] = useState("")
-    const [selectedManagerObj, setSelectedManagerObj] = useState(null)
-    const [newEmployeeName, setNewEmployeeName] = useState("")
-    const [newEmployeeEmail, setNewEmployeeEmail] = useState("")
-    const [newEmployeePassword, setNewEmployeePassword] = useState("")
-    const [newEmployeePasswordCheck, setNewEmployeePasswordCheck] = useState("")
-    const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
-
-
     function callCreateNewEmployee() {
         var passwordHash = cryptoUtils.calculateHash(newEmployeePassword)
-        createNewEmployee(newEmployeeName, selectedManagerObj.id, newEmployeeEmail, passwordHash).then(employeeResponse => {
+        createNewEmployee(newEmployeeName, selectedManager.id, newEmployeeEmail, passwordHash).then(employeeResponse => {
             if (employeeResponse != null) {
                 alert("Employee " + employeeResponse.name + " was successfully created!")
             }
         })
     }
-
-    
-
-    const handleChange = (event) => {
-        console.log("Inside handleChange()")
-        console.log("event.target.value: " + event.target.value)
-        setSelectedManagerObj(managerList.find((manager) => manager.name === event.target.value));
-        console.log("selectedManagerObj inside handle change: " + selectedManagerObj)
-        setSelectedManagerName(event.target.value);
-        console.log("selected manager: " + selectedManagerName)
-    };
 
     const handlePasswordCheckChange = (e) => {
         var passwordCheck = e.target.value
@@ -75,7 +73,7 @@ export default function adminscreen() {
     }
 
     function disableButton() {
-        const shouldDisableButton = alertPasswordsDontMatch || isEmptyString(newEmployeeName) || isEmptyString(newEmployeeEmail) || isEmptyString(newEmployeePassword) || (selectedManagerName === null || selectedManagerName === undefined);
+        const shouldDisableButton = alertPasswordsDontMatch || isEmptyString(newEmployeeName) || isEmptyString(newEmployeeEmail) || isEmptyString(newEmployeePassword) || (selectedManager === null || selectedManager === undefined);
         console.log("shouldDisableButton")
         console.log(shouldDisableButton)
         return shouldDisableButton;
@@ -111,7 +109,7 @@ export default function adminscreen() {
                 </div>
                 
                 <div className="mt-3">
-                    <span className="mr-3">Manager:</span> { managerList != null  && managerList != undefined ? <Dropdown options={managerList} selectedOption={selectedManagerName} handleChange={handleChange} /> : <LoaderIcon/>}
+                    <span className="mr-3">Manager:</span> { atLeastOneManager(managerList) && selectedManager != null ? <Dropdown options={managerList} selectedOption={selectedManager} setSelectedOption={setSelectedManager} /> : <LoaderIcon/>}
                 </div>
                 <SubmitButton disabled={disableButton()} onClickFunction={callCreateNewEmployee} text="Submit" />
 
@@ -119,3 +117,5 @@ export default function adminscreen() {
         </>
     )
 }
+
+

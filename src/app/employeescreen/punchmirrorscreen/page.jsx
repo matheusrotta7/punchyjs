@@ -44,6 +44,11 @@ export default function punchScreen() {
     ];
 
     useEffect(() => {
+        setSelectedPunchAlterationOption(punchAlterationOptions[0])
+    }, [])
+
+
+    useEffect(() => {
         setSelectedDayPunchList(punchUtils.extractThisDayPunches(punchList, selectedDay))
     }, [punchList, selectedDay])
 
@@ -104,21 +109,11 @@ export default function punchScreen() {
 
     function savePunchAlterationRequestAndCloseModal() {
         //make call to backend to add punch alteration
-        console.log(user.id)
-        console.log(alterPunchTimestamp)
-        console.log(selectedPunchAlterationOption)
 
-        var selectedOptionBackendName = punchAlterationOptions.find((option) => option.name === selectedPunchAlterationOption).backendName
-        console.log(selectedOptionBackendName)
-        if (selectedOptionBackendName === 'PENDING_ADDITION') {
+        if (selectedPunchAlterationOption.backendName === 'PENDING_ADDITION') {
             punch(user.id, completeDateFor(alterPunchTimestamp), 'PENDING_ADDITION')
-        } else if (selectedOptionBackendName === 'PENDING_DELETION') {
-            console.log("toBeDeletedPunch")
-            console.log(toBeDeletedPunch)
-            const toBeDeletePunchObj = selectedDayPunchList.find((p) => p.timestamp === toBeDeletedPunch);
-            console.log("toBeDeletePunchObj")
-            console.log(toBeDeletePunchObj)
-            alterPunch(user.id, toBeDeletePunchObj.id, 'PENDING_DELETION')
+        } else if (selectedPunchAlterationOption.backendName === 'PENDING_DELETION') {
+            alterPunch(user.id, toBeDeletedPunch.id, 'PENDING_DELETION')
         } else {
             alert("An unknown alteration action was selected")
         }
@@ -131,30 +126,10 @@ export default function punchScreen() {
     }
 
     function generateMonthlyPunchReport() {
-        console.log("Mr. SplashMan, I'll make it splash man")
-        console.log("I don't care about your comission, I'm on a mission, to make it splash")
-        var pdfReportByteArray
         getReport(user.id, curMonth, curYear).then((response) => {
             var arrayBuffer = response
-            console.log("pdfReportByteArray")
-            console.log(pdfReportByteArray)
-            console.log(typeof pdfReportByteArray)
-            // console.log(pdfReportByteArray.length)
-            
-            // var str= "hello world",	arr= new Uint8Array(str.length);
-            
-            // str.split("").forEach(function(a,b){
-            //     arr[b]=a.charCodeAt();
-            // });
-            console.log("arrayBuffer")
-            console.log(arrayBuffer)
-            console.log("arrayBuffer.Uint8Array")
-            console.log(arrayBuffer.Uint8Array)
-
             var uint8View = new Uint8Array(arrayBuffer);
-
             download( uint8View, "report.pdf", "application/pdf" );
-            
         })
     }
 
@@ -237,17 +212,17 @@ export default function punchScreen() {
                             <div className="flex flex-col items-center">
                                 <span className="text-black text-lg mt-32">Punch alteration request</span>
                                 <div className="mt-5">
-                                    <span>Type: </span> <Dropdown options={punchAlterationOptions} selectedOption={selectedPunchAlterationOption} handleChange={(e) => setSelectedPunchAlterationOption(e.target.value)} />
+                                    <span>Type: </span> <Dropdown options={punchAlterationOptions} selectedOption={selectedPunchAlterationOption} setSelectedOption={setSelectedPunchAlterationOption} />
                                 </div>
 
-                                {selectedPunchAlterationOption === "Addition" ? 
+                                {selectedPunchAlterationOption.name === "Addition" ? 
                                 
                                 <div className="mt-3">
                                     <span>Hour:</span> <input type="time" value={alterPunchTimestamp} onChange={(e) => setAlterPunchTimestamp(e.target.value)} ></input>
                                 </div> :
 
                                 <div className="mt-3">
-                                    <span>Which punch should be deleted? </span> <Dropdown options={selectedDayPunchList != null ? selectedDayPunchList.map((p) => ({id: p.id, name: p.timestamp})) : null} handleChange={(e) => {setToBeDeletedPunch(e.target.value)}} selectedOption={toBeDeletedPunch} />
+                                    <span>Which punch should be deleted? </span> <Dropdown options={selectedDayPunchList != null ? selectedDayPunchList.map((p) => ({id: p.id, name: p.timestamp})) : null} setSelectedOption={setToBeDeletedPunch} selectedOption={toBeDeletedPunch} />
                                 </div>
                                 
                                 }
@@ -273,3 +248,4 @@ export default function punchScreen() {
     )
 
 }
+

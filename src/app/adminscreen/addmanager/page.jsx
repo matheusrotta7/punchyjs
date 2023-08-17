@@ -5,6 +5,8 @@ import { useState } from "react"
 import SubmitButton from "@/app/components/SubmitButton"
 import { AlertCircle } from "lucide-react";
 
+import cryptoUtils from "../../utils/CryptoUtils.js"
+
 export default function addmanager() {
 
 
@@ -16,8 +18,7 @@ export default function addmanager() {
 
 
     function callCreateNewManager() {
-        console.log("hello")
-        createNewManager(newManagerName, newManagerEmail, newManagerPassword).then(managerResponse => {
+        createNewManager(newManagerName, newManagerEmail, cryptoUtils.calculateHash(newManagerPassword)).then(managerResponse => {
             if (managerResponse != null) {
                 alert("Manager " + managerResponse.name + " was successfully created!")
             }
@@ -47,8 +48,6 @@ export default function addmanager() {
 
     function disableButton() {
         const shouldDisableButton = alertPasswordsDontMatch || isEmptyString(newManagerName) || isEmptyString(newManagerEmail) || isEmptyString(newManagerPassword);
-        console.log("shouldDisableButton")
-        console.log(shouldDisableButton)
         return shouldDisableButton;
     }
 

@@ -19,7 +19,6 @@ class DateUtils {
     }
 
     static dayOfWeekFor(day, month, year) {
-        console.log("Hello, day, month, year: " + day + " " + month + " " + year)
         const weekDays = [
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
         ];
