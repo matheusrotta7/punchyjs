@@ -1,9 +1,11 @@
 'use client'
 
 import { createNewManager } from "@/app/services/ManagerService"
-import { useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import SubmitButton from "@/app/components/SubmitButton"
 import { AlertCircle } from "lucide-react";
+
+import { AuthContext } from "@/app/contexts/AuthContext";
 
 import cryptoUtils from "../../utils/CryptoUtils.js"
 
@@ -15,14 +17,28 @@ export default function addmanager() {
     const [newManagerPassword, setNewManagerPassword] = useState("")
     const [newManagerPasswordCheck, setNewManagerPasswordCheck] = useState("")
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
+    const [adminId, setAdminId] = useState("")
 
+    const { user } = useContext(AuthContext)
+
+    function userIsDefined(user) {
+        return user != null && user != undefined;
+    }
+
+    useEffect(() => {
+        if (userIsDefined(user)) {
+            setAdminId(user.id)
+        }
+    }, [user])
 
     function callCreateNewManager() {
-        createNewManager(newManagerName, newManagerEmail, cryptoUtils.calculateHash(newManagerPassword)).then(managerResponse => {
-            if (managerResponse != null) {
-                alert("Manager " + managerResponse.name + " was successfully created!")
-            }
-        })
+        if (userIsDefined) {
+            createNewManager(newManagerName, newManagerEmail, cryptoUtils.calculateHash(newManagerPassword), adminId).then(managerResponse => {
+                if (managerResponse != null) {
+                    alert("Manager " + managerResponse.name + " was successfully created!")
+                }
+            })
+        }
     }
 
     const handlePasswordCheckChange = (e) => {
@@ -84,3 +100,4 @@ export default function addmanager() {
     )
 
 }
+

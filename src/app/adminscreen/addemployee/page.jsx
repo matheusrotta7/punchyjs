@@ -2,10 +2,12 @@
 
 import { AlertCircle, LoaderIcon } from "lucide-react";
 import Dropdown from "../../components/Dropdown";
-import { useState, useEffect } from "react";
-import { getAllManagers } from "../../services/ManagerService";
+import { useState, useEffect, useContext } from "react";
+import {  getAllManagersFromAdmin } from "../../services/ManagerService";
 import { createNewEmployee } from "../../services/EmployeeService";
 import SubmitButton from "@/app/components/SubmitButton";
+
+import { AuthContext } from "@/app/contexts/AuthContext";
 
 import cryptoUtils from "../../utils/CryptoUtils.js"
 
@@ -18,10 +20,23 @@ export default function adminscreen() {
     const [newEmployeePassword, setNewEmployeePassword] = useState("")
     const [newEmployeePasswordCheck, setNewEmployeePasswordCheck] = useState("")
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
+    const [adminId, setAdminId] = useState("")
+
+    const { user } = useContext(AuthContext)
+
+    function userIsDefined(user) {
+        return user != null && user != undefined;
+    }
+
+    useEffect(() => {
+        if (userIsDefined(user)) {
+            setAdminId(user.id)
+        }
+    }, [user])
 
     useEffect(() => {
         fetchManagers()
-    }, [])
+    }, [adminId])
 
     function atLeastOneManager(managerList) {
         console.log("inside at least one  manager")
@@ -36,7 +51,7 @@ export default function adminscreen() {
     }, [managerList])
 
     const fetchManagers = () => {
-        getAllManagers()
+        getAllManagersFromAdmin(adminId)
         .then(managers => {
         setManagerList(managers);
         });

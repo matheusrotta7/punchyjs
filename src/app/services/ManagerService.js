@@ -1,9 +1,10 @@
 import hostUtils from "../utils/HostUtils";
 
-export async function getAllManagers() {
+
+export async function getAllManagersFromAdmin(adminId) {
 
     try{
-        const response = await fetch(hostUtils.getHost() + '/manager', {
+        const response = await fetch(hostUtils.getHost() + '/manager/admin/' + adminId, {
             method: 'GET',
             mode: "cors",
             headers: {
@@ -20,7 +21,9 @@ export async function getAllManagers() {
     
 }
 
-export async function createNewManager(managerName, managerEmail, managerPassword) {
+export async function createNewManager(managerName, managerEmail, managerPassword, adminId) {
+    console.log("adminId")
+    console.log(adminId)
     try {
         const response = await fetch(hostUtils.getHost() + '/manager', {
             method: 'POST',
@@ -34,13 +37,17 @@ export async function createNewManager(managerName, managerEmail, managerPasswor
             body: JSON.stringify({
                 "name": managerName,
                 "username": managerEmail,
-                "password": managerPassword
+                "password": managerPassword,
+                "admin": {
+                    "id": adminId
+                }
             })
             
           });
         return await response.json();
     } catch(error) {
         //add visual alert of failure to user
+        alert("There was an error creating the manager!")
         console.log(error)
     }
 }
