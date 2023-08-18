@@ -3,58 +3,58 @@
 import { AlertCircle, LoaderIcon } from "lucide-react";
 import Dropdown from "../../components/Dropdown";
 import { useState, useEffect } from "react";
-import { getAllManagers } from "../../services/ManagerService";
-import { createNewEmployee } from "../../services/EmployeeService";
+import { getAllCompanys } from "../../services/CompanyService";
+import { createNewAdmin } from "../../services/AdminService";
 import SubmitButton from "@/app/components/SubmitButton";
 
 import cryptoUtils from "../../utils/CryptoUtils.js"
 
 export default function adminscreen() {
 
-    const [managerList, setManagerList] = useState();
-    const [selectedManager, setSelectedManager] = useState(null)
-    const [newEmployeeName, setNewEmployeeName] = useState("")
-    const [newEmployeeEmail, setNewEmployeeEmail] = useState("")
-    const [newEmployeePassword, setNewEmployeePassword] = useState("")
-    const [newEmployeePasswordCheck, setNewEmployeePasswordCheck] = useState("")
+    const [companyList, setCompanyList] = useState();
+    const [selectedCompany, setSelectedCompany] = useState(null)
+    const [newAdminName, setNewAdminName] = useState("")
+    const [newAdminEmail, setNewAdminEmail] = useState("")
+    const [newAdminPassword, setNewAdminPassword] = useState("")
+    const [newAdminPasswordCheck, setNewAdminPasswordCheck] = useState("")
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
 
     useEffect(() => {
-        fetchManagers()
+        fetchCompanys()
     }, [])
 
-    function atLeastOneManager(managerList) {
-        console.log("inside at least one  manager")
-        return managerList != null && managerList != undefined && managerList.length > 0;
+    function atLeastOneCompany(companyList) {
+        console.log("inside at least one  company")
+        return companyList != null && companyList != undefined && companyList.length > 0;
     }
 
     useEffect(() => {
-        if (atLeastOneManager(managerList)) {
-            console.log("setting selected manager")
-            setSelectedManager(managerList[0])
+        if (atLeastOneCompany(companyList)) {
+            console.log("setting selected company")
+            setSelectedCompany(companyList[0])
         }
-    }, [managerList])
+    }, [companyList])
 
-    const fetchManagers = () => {
-        getAllManagers()
-        .then(managers => {
-        setManagerList(managers);
+    const fetchCompanys = () => {
+        getAllCompanys()
+        .then(companys => {
+        setCompanyList(companys);
         });
     }
 
-    function callCreateNewEmployee() {
-        var passwordHash = cryptoUtils.calculateHash(newEmployeePassword)
-        createNewEmployee(newEmployeeName, selectedManager.id, newEmployeeEmail, passwordHash).then(employeeResponse => {
-            if (employeeResponse != null) {
-                alert("Employee " + employeeResponse.name + " was successfully created!")
+    function callCreateNewAdmin() {
+        var passwordHash = cryptoUtils.calculateHash(newAdminPassword)
+        createNewAdmin(newAdminName, selectedCompany.id, newAdminEmail, passwordHash).then(adminResponse => {
+            if (adminResponse != null) {
+                alert("Admin " + adminResponse.name + " was successfully created!")
             }
         })
     }
 
     const handlePasswordCheckChange = (e) => {
         var passwordCheck = e.target.value
-        setNewEmployeePasswordCheck(passwordCheck)
-        if (passwordCheck != newEmployeePassword) {
+        setNewAdminPasswordCheck(passwordCheck)
+        if (passwordCheck != newAdminPassword) {
             setAlertPasswordsDontMatch(true)
         } else {
             setAlertPasswordsDontMatch(false)
@@ -64,8 +64,8 @@ export default function adminscreen() {
 
     const handlePasswordChange = (e) => {
         var password = e.target.value
-        setNewEmployeePassword(password)
-        if (password != newEmployeePasswordCheck) {
+        setNewAdminPassword(password)
+        if (password != newAdminPasswordCheck) {
             setAlertPasswordsDontMatch(true)
         } else {
             setAlertPasswordsDontMatch(false)
@@ -73,7 +73,7 @@ export default function adminscreen() {
     }
 
     function disableButton() {
-        const shouldDisableButton = alertPasswordsDontMatch || isEmptyString(newEmployeeName) || isEmptyString(newEmployeeEmail) || isEmptyString(newEmployeePassword) || (selectedManager === null || selectedManager === undefined);
+        const shouldDisableButton = alertPasswordsDontMatch || isEmptyString(newAdminName) || isEmptyString(newAdminEmail) || isEmptyString(newAdminPassword) || (selectedCompany === null || selectedCompany === undefined);
         console.log("shouldDisableButton")
         console.log(shouldDisableButton)
         return shouldDisableButton;
@@ -88,13 +88,13 @@ export default function adminscreen() {
             <div className="p-4">
 
                 <h1>Admin Screen</h1>
-                <h2 className="mt-4">Enroll new Employee: </h2>
+                <h2 className="mt-4">Enroll new admin: </h2>
                 <div className="mt-2">
-                    <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>
+                    <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewAdminName(e.target.value)}></input>
                 </div>
 
                 <div className="mt-2">
-                    <span className="mr-3">E-mail:</span> <input type="email" className="text-zinc-800" onChange={(e) => setNewEmployeeEmail(e.target.value)}></input>
+                    <span className="mr-3">E-mail:</span> <input type="email" className="text-zinc-800" onChange={(e) => setNewAdminEmail(e.target.value)}></input>
                 </div>
 
                 <div className="mt-2">
@@ -109,9 +109,9 @@ export default function adminscreen() {
                 </div>
                 
                 <div className="mt-3">
-                    <span className="mr-3">Manager:</span> { atLeastOneManager(managerList) && selectedManager != null ? <Dropdown options={managerList} selectedOption={selectedManager} setSelectedOption={setSelectedManager} /> : <LoaderIcon/>}
+                    <span className="mr-3">Company:</span> { atLeastOneCompany(companyList) && selectedCompany != null ? <Dropdown options={companyList} selectedOption={selectedCompany} setSelectedOption={setSelectedCompany} /> : <LoaderIcon/>}
                 </div>
-                <SubmitButton disabled={disableButton()} onClickFunction={callCreateNewEmployee} text="Submit" />
+                <SubmitButton disabled={disableButton()} onClickFunction={callCreateNewAdmin} text="Submit" />
 
             </div>
         </>
