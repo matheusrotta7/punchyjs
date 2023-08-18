@@ -1,5 +1,24 @@
 import hostUtils from "../utils/HostUtils";
 
+export async function getAllCompanies() {
+
+    try{
+        const response = await fetch(hostUtils.getHost() + '/company', {
+            method: 'GET',
+            mode: "cors",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+                'Access-Control-Allow-Methods': 'GET, POST', // Allow GET and POST methods
+                'Access-Control-Allow-Headers': 'Content-Type', // Allow Content-Type header
+              }
+          });
+        return await response.json();
+    }catch(error) {
+        return [];
+    }
+    
+}
 
 
 export async function createNewCompany(companyName, isPaying, maxNumberOfEmployees) {

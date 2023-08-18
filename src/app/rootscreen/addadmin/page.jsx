@@ -3,7 +3,7 @@
 import { AlertCircle, LoaderIcon } from "lucide-react";
 import Dropdown from "../../components/Dropdown";
 import { useState, useEffect } from "react";
-import { getAllCompanys } from "../../services/CompanyService";
+import { getAllCompanies } from "../../services/CompanyService";
 import { createNewAdmin } from "../../services/AdminService";
 import SubmitButton from "@/app/components/SubmitButton";
 
@@ -20,7 +20,7 @@ export default function adminscreen() {
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
 
     useEffect(() => {
-        fetchCompanys()
+        fetchCompanies()
     }, [])
 
     function atLeastOneCompany(companyList) {
@@ -35,8 +35,8 @@ export default function adminscreen() {
         }
     }, [companyList])
 
-    const fetchCompanys = () => {
-        getAllCompanys()
+    const fetchCompanies = () => {
+        getAllCompanies()
         .then(companys => {
         setCompanyList(companys);
         });

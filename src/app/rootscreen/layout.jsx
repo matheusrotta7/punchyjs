@@ -14,7 +14,7 @@ export default function adminLayout( {children}) {
                         <Link href="/rootscreen/addcompany" className="flex p-2 hover:bg-zinc-800">
                             <User /> <span className="ml-2">Add Companies</span>
                         </Link>
-                        <Link href="/adminscreen/addadmin" className="flex p-2 hover:bg-zinc-800">
+                        <Link href="/rootscreen/addadmin" className="flex p-2 hover:bg-zinc-800">
                             <Crown /> <span className="ml-2">Add Admins</span>
                         </Link>
                         <LogoutButton />
