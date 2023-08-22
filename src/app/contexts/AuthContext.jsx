@@ -52,7 +52,6 @@ export default function AuthProvider({children}) {
         const loginResponse = await login(username, password)
 
         if (loginResponse === null || loginResponse === undefined) { //todo personalize alert for specific error code from backend
-            alert("Wrong (username, password) pair")
             return
         }
 

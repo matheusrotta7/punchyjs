@@ -1,7 +1,7 @@
 import hostUtils from "../utils/HostUtils";
 
 export async function login(username, password) {
-    console.log("client side or server side? (test)")
+
     try {
         const response = await fetch(hostUtils.getHost() + '/login', {
             method: 'POST',
@@ -17,10 +17,18 @@ export async function login(username, password) {
                 "password": password
             })
             
-          });
-        return await response.json();
+        });
+
+        var responseJson = await response.json()
+
+        if (!response.ok) {
+            alert(responseJson.message)
+            throw new Error(`Request failed with status ${response.status}: ${errorMessage}`);
+
+        }
+
+        return responseJson;
     } catch(error) {
-        //add visual alert of failure to user
         console.log(error)
     }
 }

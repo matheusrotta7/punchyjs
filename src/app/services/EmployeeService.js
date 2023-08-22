@@ -60,10 +60,18 @@ export async function createNewEmployee(employeeName, managerId, email, password
                 "password": password
             })
             
-          });
-        return await response.json();
+        });
+
+        var responseJson = await response.json()
+
+        if (!response.ok) {
+            alert(responseJson.message)
+            throw new Error(`Request failed with status ${response.status}: ${errorMessage}`);
+
+        }
+
+        return responseJson;
     } catch(error) {
-        //add visual alert of failure to user
         console.log(error)
     }
 }
