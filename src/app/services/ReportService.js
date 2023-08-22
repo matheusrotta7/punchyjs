@@ -2,13 +2,6 @@ import hostUtils from "../utils/HostUtils";
 
 export async function getReport(employeeId, month, year) {
 
-    console.log("month")
-    console.log(month)
-    console.log("year")
-    console.log(year)
-    console.log("employeeId")
-    console.log(employeeId)
-
     try{
         const response = await fetch(hostUtils.getHost() + '/report', {
             method: 'POST',

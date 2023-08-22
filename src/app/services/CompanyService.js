@@ -22,12 +22,6 @@ export async function getAllCompanies() {
 
 
 export async function createNewCompany(companyName, isPaying, maxNumberOfEmployees) {
-    console.log("companyName")
-    console.log(companyName)
-    console.log("isPaying")
-    console.log(isPaying)
-    console.log("maxNumberOfEmployees")
-    console.log(maxNumberOfEmployees)
     try {
         const response = await fetch(hostUtils.getHost() + '/company', {
             method: 'POST',

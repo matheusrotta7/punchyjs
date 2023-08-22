@@ -21,10 +21,6 @@ export default function addcompany() {
     }
 
     const handleIsPayingChange = (e) => {
-        console.log("e.target.value")
-        console.log(e.target.value)
-        console.log("isNewCompanyPaying")
-        console.log(isNewCompanyPaying)
         setIsNewCompanyPaying(!isNewCompanyPaying)
     }
 

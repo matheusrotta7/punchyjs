@@ -22,8 +22,6 @@ export async function getAllManagersFromAdmin(adminId) {
 }
 
 export async function createNewManager(managerName, managerEmail, managerPassword, adminId) {
-    console.log("adminId")
-    console.log(adminId)
     try {
         const response = await fetch(hostUtils.getHost() + '/manager', {
             method: 'POST',

@@ -17,8 +17,6 @@ export default function loginscreen() {
     const [password, setPassword] = useState("")
 
     async function callLogin() {
-        console.log("Hello!");
-        console.log("Inside call login");
         var passwordHash = cryptoUtils.calculateHash(password)
         await signIn(username, passwordHash)
         

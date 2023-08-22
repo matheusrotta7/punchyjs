@@ -2,11 +2,6 @@ import hostUtils from "../utils/HostUtils";
 
 export async function getPunches(employeeId, month, year, punchStatus = null) {
 
-    console.log("month")
-    console.log(month)
-    console.log("year")
-    console.log(year)
-
     try{
         const response = await fetch(hostUtils.getHost() + '/punchSearch', {
             method: 'POST',
@@ -32,12 +27,6 @@ export async function getPunches(employeeId, month, year, punchStatus = null) {
 }
 
 export async function punch(employeeId, timestamp, punchStatus) {
-
-    console.log("punchStatus")
-    console.log(punchStatus)
-
-    console.log("timestamp")
-    console.log(timestamp)
 
     try{
         const response = await fetch(hostUtils.getHost() + '/punch', {
@@ -66,9 +55,6 @@ export async function punch(employeeId, timestamp, punchStatus) {
 
 export async function alterPunch(employeeId, punchId, punchStatus) {
 
-    console.log("punchId")
-    console.log(punchId)
-
     try{
         const response = await fetch(hostUtils.getHost() + '/punch', {
             method: 'PUT',
@@ -95,9 +81,6 @@ export async function alterPunch(employeeId, punchId, punchStatus) {
 }
 
 export async function deletePunch(punchId) {
-
-    console.log("punchId")
-    console.log(punchId)
 
     try{
         const response = await fetch(hostUtils.getHost() + '/punch/' + punchId, {
