@@ -27,6 +27,10 @@ export default function loginscreen() {
             callLogin()
         }
     } 
+
+    function handleForgotPassword() {
+        console.log("Forgot Password!")
+    }
         
     
 
@@ -42,7 +46,9 @@ export default function loginscreen() {
                     <span>Password:</span> <input className="ml-3 text-zinc-800" type="password" onKeyDown={handleKeyDown} onChange={e => setPassword(e.target.value)} />
                 </div>
                 <SubmitButton text="Login" onClickFunction={callLogin} />
-
+                <div className="mt-5">
+                    <span className="text-xs text-sky-600 hover:text-sky-400 hover:cursor-pointer" onClick={handleForgotPassword}>Forgot Password?</span>
+                </div>
             </div>
         </>
     )
