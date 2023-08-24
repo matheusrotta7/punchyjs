@@ -1,11 +1,11 @@
 'use client'
 
 import { useContext, useEffect, useState } from "react";
-import SubmitButton from "../components/SubmitButton";
-import { login } from "../services/LoginService";
+import SubmitButton from "../../components/SubmitButton";
+import { login } from "../../services/LoginService";
 
-import { AuthContext } from "../contexts/AuthContext"
-import cryptoUtils from "../utils/CryptoUtils.js"
+import { AuthContext } from "../../contexts/AuthContext"
+import cryptoUtils from "../../utils/CryptoUtils.js"
 
 export default function loginscreen() {
 

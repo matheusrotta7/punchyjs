@@ -24,7 +24,7 @@ export default function employeeLayout( {children}) {
                     {children}
                     
                 </div>
-                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy: created by Matheus Rotta Alves</footer>
+                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy: created by Matheus R.</footer>
             </div>
 
         </>

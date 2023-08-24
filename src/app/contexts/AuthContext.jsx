@@ -72,7 +72,7 @@ export default function AuthProvider({children}) {
     function redirectToPage() {
 
         if (user === null || user === undefined) {
-            router.push("/loginscreen");
+            router.push("/main/landingscreen");
             return;
         }
 
