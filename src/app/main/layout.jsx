@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Clock, Crown, LogIn, Monitor, User } from "lucide-react";
+import { Calendar, CircleDollarSign, Clock, Crown, LogIn, Monitor, User } from "lucide-react";
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 
@@ -17,6 +17,9 @@ export default function mainlayout({children}) {
                         </Link>
                         <Link href="/main/landingscreen" className="flex p-2 hover:bg-zinc-800">
                             <Monitor /> <span className="ml-2">Landing Page</span>
+                        </Link>
+                        <Link href="/main/pricingscreen" className="flex p-2 hover:bg-zinc-800">
+                            <CircleDollarSign /> <span className="ml-2">Pricing</span>
                         </Link>
                     </aside>
                     <main className="flex-1 p-6">
