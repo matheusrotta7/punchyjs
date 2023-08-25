@@ -36,6 +36,8 @@ export default function landingscreen() {
                 />
 
                 <h3 className='mt-10 text-xl'>Get in touch with our sales team now and learn more!</h3>
+                <h4 className='mt-3 text-xl'>E-mail: support@punchy.app</h4>
+                <h4 className='mt-3 text-xl'>Whatsapp: +55 (12) 99768-0036</h4>
             </div>
 
         
