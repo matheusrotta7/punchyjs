@@ -13,6 +13,7 @@ export default function PunchAlterationRequest(props) {
         //approve a punch alteration
         //if we are approving an addition, call alter punch and change punch status from PENDING_ADDITION to APPROVED
         //if we are approving a deletion, call a delete punch method
+        props.setManagerActionCounter(props.managerActionCounter + 1) //this has the important side effect of triggering a refetch of pending punches
         if (p.punchStatus === "PENDING_ADDITION") {
             alterPunch(props.employeeId, p.id, "APPROVED").then(alert("punch addition was approved sucessfully!"))
         } else if (p.punchStatus === "PENDING_DELETION") {
@@ -25,6 +26,7 @@ export default function PunchAlterationRequest(props) {
         //deny a punch alteration
         //if we are denying an addition, we should delete the punch that was created
         //if we are denying a deletion, then we should change punch status from PENDING_DELETION to NORMAL 
+        props.setManagerActionCounter(props.managerActionCounter + 1) //this has the important side effect of triggering a refetch of pending punches
         if (p.punchStatus === "PENDING_ADDITION") {
             deletePunch(p.id).then(alert("punch addition was denied and so the pending punch was deleted"))
         } else if (p.punchStatus === "PENDING_DELETION") {

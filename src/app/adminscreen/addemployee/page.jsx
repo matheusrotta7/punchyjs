@@ -102,7 +102,7 @@ export default function adminscreen() {
         <>
             <div className="p-4">
 
-                <h1>Admin Screen</h1>
+                <h1>Welcome, {user?.name}</h1>
                 <h2 className="mt-4">Enroll new Employee: </h2>
                 <div className="mt-2">
                     <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>

@@ -15,6 +15,7 @@ export default function myEmployeesScreen() {
     const [employeeList, setEmployeeList] = useState();
     const [selectedEmployee, setSelectedEmployee] = useState({});
     const [pendingPunches, setPendingPunches] = useState([])
+    const [managerActionCounter, setManagerActionCounter] = useState(0)
 
     useEffect(() => {
         fetchEmployees()
@@ -44,7 +45,7 @@ export default function myEmployeesScreen() {
         getPunches(employeeId, null, null, "ALL_PENDING").then(punches => {
             setPendingPunches(punches)
         })
-    }, [selectedEmployee])
+    }, [selectedEmployee, managerActionCounter])
 
 
     function renderPendingPunches() {
@@ -56,7 +57,13 @@ export default function myEmployeesScreen() {
         if (atLeastOnePendingPunch()) {
             console.log(pendingPunches)
             return pendingPunches.map(p => 
-                <PunchAlterationRequest key={p.id} punch={p} employeeId={employeeId} />
+                <PunchAlterationRequest 
+                    key={p.id} 
+                    punch={p} 
+                    employeeId={employeeId} 
+                    managerActionCounter={managerActionCounter} 
+                    setManagerActionCounter={setManagerActionCounter} 
+                />
             )
         } else {
             return null

@@ -105,9 +105,9 @@ export default function punchScreen() {
         //make call to backend to add punch alteration
 
         if (selectedPunchAlterationOption.backendName === 'PENDING_ADDITION') {
-            punch(user.id, completeDateFor(alterPunchTimestamp), 'PENDING_ADDITION')
+            punch(user.id, completeDateFor(alterPunchTimestamp), 'PENDING_ADDITION').then(alert("Your punch addition was succesfully requested!"))
         } else if (selectedPunchAlterationOption.backendName === 'PENDING_DELETION') {
-            alterPunch(user.id, toBeDeletedPunch.id, 'PENDING_DELETION')
+            alterPunch(user.id, toBeDeletedPunch.id, 'PENDING_DELETION').then(alert("Your punch deletion was successfully requested!"))
         } else {
             alert("An unknown alteration action was selected")
         }
