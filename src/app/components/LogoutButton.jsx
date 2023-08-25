@@ -14,7 +14,7 @@ export default function LogoutButton() {
     }
 
     return (
-        <button className="flex p-6" onClick={callLogout}>
+        <button className="flex p-2 hover:bg-zinc-800" onClick={callLogout}>
             <LogOut /> <span className="ml-2">Logout</span>                    
         </button>
     )

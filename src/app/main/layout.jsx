@@ -4,6 +4,9 @@ import { Calendar, CircleDollarSign, Clock, Crown, LogIn, Monitor, User } from "
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 
+import Image from 'next/image'
+import PunchyLogo from "../components/PunchyLogo";
+
 
 export default function mainlayout({children}) {
     return (
@@ -11,7 +14,7 @@ export default function mainlayout({children}) {
             <div className="h-screen flex flex-col">
                 <div className="flex flex-1">
                     <aside className="w-56 bg-zinc-950 border-r border-zinc-800 p-6">
-                            
+                        <PunchyLogo/>
                         <Link href="/main/loginscreen" className="flex p-2 hover:bg-zinc-800">
                             <LogIn /> <span className="ml-2">Login</span>
                         </Link>

@@ -24,13 +24,11 @@ export default function adminscreen() {
     }, [])
 
     function atLeastOneCompany(companyList) {
-        console.log("inside at least one  company")
         return companyList != null && companyList != undefined && companyList.length > 0;
     }
 
     useEffect(() => {
         if (atLeastOneCompany(companyList)) {
-            console.log("setting selected company")
             setSelectedCompany(companyList[0])
         }
     }, [companyList])
