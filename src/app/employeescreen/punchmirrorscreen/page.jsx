@@ -58,14 +58,9 @@ export default function punchScreen() {
 
 
     function fetchPunches() {
-        console.log("Inside use effect curmonth: " + curMonth);
         if (user != null && user != undefined) {
-            console.log("user.id")
-            console.log(user.id)
             getPunches(user.id, curMonth, curYear)
                 .then(punches => {
-                    console.log("punches")
-                    console.log(punches)
                     setPunchList(punches);
                 });
         }
@@ -102,7 +97,6 @@ export default function punchScreen() {
     function simplifyTimestamp(timestamp) {
         var timeString = timestamp.split(" ")[1]
         var timeStringSplit = timeString.split(":")
-        console.log(timeStringSplit)
         var result = timeStringSplit[0] + ":" + timeStringSplit[1]
         return result
     }
@@ -160,6 +154,7 @@ export default function punchScreen() {
                     <PunchCalendar
                         setSelectedDayPunchList={setSelectedDayPunchList}
                         setSelectedDay={setSelectedDay}
+                        selectedDay={selectedDay}
                         punchList={punchList}
                         setPunchList={setPunchList}
                         curMonth={curMonth}

@@ -32,6 +32,7 @@ export default function PunchCalendar(props) {
             result.push(<DateBox
                 setSelectedDayPunchList={props.setSelectedDayPunchList}
                 setSelectedDay={props.setSelectedDay} 
+                selectedDay={props.selectedDay}
                 key={i}
                 day={i}
                 punchList={punchesOfThisDay}
@@ -46,7 +47,7 @@ export default function PunchCalendar(props) {
 
     return (
         <>
-            <span className="inline-grid grid-cols-7 gap-4">
+            <span className="inline-grid grid-cols-7 gap-x-4 gap-y-5">
                 <span className="text-center">Sunday</span>
                 <span className="text-center">Monday</span>
                 <span className="text-center">Tuesday</span>
