@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 
 import { login, recoverUserThroughToken } from "../services/LoginService";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export const AuthContext = createContext({})
 
@@ -15,6 +15,8 @@ export default function AuthProvider({children}) {
     const isAuthenticated = !!user;
 
     const router = useRouter()
+
+    const pathname = usePathname()
 
     function setUserWithResponse(loginResponse) {
         setUser({
@@ -72,6 +74,17 @@ export default function AuthProvider({children}) {
     function redirectToPage() {
 
         if (user === null || user === undefined) {
+            console.log("usePathname")
+            console.log(pathname)
+            var stringArr = pathname.split("/")
+            var firstFolder = null
+            if (stringArr.length > 1) {
+                firstFolder = stringArr[1]
+            }
+            if (firstFolder === "passwordresetscreen") { //don't redirect person if they are trying to reset their password
+                return;
+            }
+
             router.push("/main/landingscreen");
             return;
         }
