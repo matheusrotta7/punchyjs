@@ -16,7 +16,13 @@ export async function callPasswordResetStart(emailAddress) {
             })
             
           });
-        return await response.json();
+
+        if (!response.ok) {
+            var responseJson = await response.json()
+            alert(responseJson.message)
+        } else {
+            alert("An email has been sent to " + emailAddress + " with a password reset link")
+        }
     } catch(error) {
         //add visual alert of failure to user
         alert("There was an error when trying to start password reset process")
@@ -41,10 +47,16 @@ export async function callPasswordResetEnd(passwordHash, passwordToken) {
             })
             
         });
-        return await response.json();
+
+        if (!response.ok) {
+            var responseJson = await response.json()
+            alert(responseJson.message)
+        } else {
+            alert("Your password has been succesfully reset!")
+        }
     } catch(error) {
         //add visual alert of failure to user
-        alert("There was an error creating the manager!")
+        alert("There was an error when trying to set new password!")
         console.log(error)
     }
 }

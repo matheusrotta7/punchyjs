@@ -3,6 +3,7 @@
 import { AlertCircle } from "lucide-react";
 import { useState } from "react";
 import SubmitButton from "@/app/components/SubmitButton";
+import { useRouter } from "next/navigation";
 
 import cryptoUtils from "../../utils/CryptoUtils.js"
 import { callPasswordResetEnd } from "@/app/services/PasswordResetService.js";
@@ -13,11 +14,15 @@ export default function Page({ params }) {
     const [newPasswordCheck, setNewPasswordCheck] = useState("")
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
 
+    const router = useRouter()
+
     function callFinishPasswordResetMethod() {
         var passwordToken = params.token
         var passwordHash = cryptoUtils.calculateHash(newPassword)
 
         callPasswordResetEnd(passwordHash, passwordToken)
+        router.push("/main/loginscreen")
+        
     }
 
     const handlePasswordCheckChange = (e) => {
@@ -54,7 +59,7 @@ export default function Page({ params }) {
 
     return (
         <>
-            <div>Password Reset Token: {params.token}</div>
+            <div>Password Reset Screen</div>
             <div className="mt-2">
                 <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
             </div>
