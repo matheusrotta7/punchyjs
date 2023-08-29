@@ -6,11 +6,15 @@ import { login } from "../../services/LoginService";
 
 import { AuthContext } from "../../contexts/AuthContext"
 import cryptoUtils from "../../utils/CryptoUtils.js"
+import { callPasswordResetStart } from "@/app/services/PasswordResetService";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function loginscreen() {
 
 
     const { signIn } = useContext(AuthContext)
+
+    const router = useRouter()
 
 
     const [username, setUsername] = useState("")
@@ -30,6 +34,7 @@ export default function loginscreen() {
 
     function handleForgotPassword() {
         console.log("Forgot Password!")
+        router.push("/main/forgotpasswordscreen")
     }
         
     
