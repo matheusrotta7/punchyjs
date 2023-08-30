@@ -11,6 +11,7 @@ export const AuthContext = createContext({})
 export default function AuthProvider({children}) {
 
     const [user, setUser] = useState(null)
+    const [locale, setLocale] = useState("pt")
 
     const isAuthenticated = !!user;
 
@@ -78,30 +79,30 @@ export default function AuthProvider({children}) {
             console.log(pathname)
             var stringArr = pathname.split("/")
             var firstFolder = null
-            if (stringArr.length > 1) {
-                firstFolder = stringArr[1]
+            if (stringArr.length > 2) {
+                firstFolder = stringArr[2]
             }
-            if (firstFolder === "passwordresetscreen") { //don't redirect person if they are trying to reset their password
+            if (firstFolder === ("passwordresetscreen")) { //don't redirect person if they are trying to reset their password
                 return;
             }
 
-            router.push("/main/landingscreen");
+            router.push(locale + "/main/landingscreen");
             return;
         }
 
         if (user.role === "Manager") {
-            router.push("/managerscreen/myemployees");
+            router.push(locale + "/managerscreen/myemployees");
         } else if (user.role === "Employee") {
-            router.push("/employeescreen/punchmirrorscreen");
+            router.push(locale + "/employeescreen/punchmirrorscreen");
         } else if (user.role === "Admin") {
             console.log("user")
             console.log(user)
             console.log("user.isRoot")
             console.log(user.isRoot)
             if (user.isRoot) {
-                router.push("/rootscreen/addcompany")
+                router.push(locale + "/rootscreen/addcompany")
             } else {
-                router.push("/adminscreen/addemployee");
+                router.push(locale + "/adminscreen/addemployee");
             }
         } else {
             console.log("Invalid role")
@@ -109,7 +110,7 @@ export default function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, signIn, logOut }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, signIn, logOut, locale, setLocale }}>
             {children}
         </AuthContext.Provider>
     )

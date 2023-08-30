@@ -5,7 +5,7 @@ import { useState } from "react";
 import SubmitButton from "@/app/components/SubmitButton";
 import { useRouter } from "next/navigation";
 
-import cryptoUtils from "../../utils/CryptoUtils.js"
+import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetEnd } from "@/app/services/PasswordResetService.js";
 
 export default function Page({ params }) {

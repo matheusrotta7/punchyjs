@@ -2,10 +2,10 @@
 
 import { useContext, useEffect, useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
-import { login } from "../../services/LoginService";
+import { login } from "../../../services/LoginService";
 
-import { AuthContext } from "../../contexts/AuthContext"
-import cryptoUtils from "../../utils/CryptoUtils.js"
+import { AuthContext } from "../../../contexts/AuthContext"
+import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetStart } from "@/app/services/PasswordResetService";
 import { useRouter, usePathname } from "next/navigation";
 

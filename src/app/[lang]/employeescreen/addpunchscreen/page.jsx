@@ -2,15 +2,18 @@
 
 import SubmitButton from "@/app/components/SubmitButton";
 import { punch } from "@/app/services/PunchService";
-import dateUtils from '../../utils/DateUtils'
+import dateUtils from '../../../utils/DateUtils'
 // import {Alert} from 'react-alert'
 
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/contexts/AuthContext";
 
-export default function addPunchScreen () {
+import { getDictionary } from "../../dictionaries";
+
+export default async function addPunchScreen ({ params: { lang } }) {
 
     const { user } = useContext(AuthContext)
+    const dict = await getDictionary(lang)
 
 
     const [id, setId] = useState(null)
@@ -23,7 +26,7 @@ export default function addPunchScreen () {
         if (id != null) {
             punch(id, curTime).then(punchResponse => {
                 if (punchResponse != null) {
-                    alert("Your punch was succesfully registered at " + punchResponse.timestamp)
+                    alert(dict.addpunchscreen.punchsuccess + punchResponse.timestamp)
                 }
             })
         }

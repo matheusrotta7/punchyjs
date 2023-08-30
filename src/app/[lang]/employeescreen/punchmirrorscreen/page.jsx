@@ -7,10 +7,10 @@ import { useState, useEffect, useContext } from "react";
 import PunchCalendar from "../../components/PunchCalendar";
 import PunchCircleTimestamped from "@/app/components/PunchCircleTimestamped";
 
-import dateUtils from "../../utils/DateUtils";
-import punchUtils from "../../utils/PunchUtils";
+import dateUtils from "../../../utils/DateUtils";
+import punchUtils from "../../../utils/PunchUtils";
 
-import { alterPunch, getPunches, punch } from '../../services/PunchService'
+import { alterPunch, getPunches, punch } from '../../../services/PunchService'
 import { AuthContext } from "@/app/contexts/AuthContext";
 import Modal from "@/app/components/Modal";
 import SubmitButton from "@/app/components/SubmitButton";
