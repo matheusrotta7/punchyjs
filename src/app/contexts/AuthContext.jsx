@@ -11,6 +11,7 @@ export const AuthContext = createContext({})
 export default function AuthProvider({children}) {
 
     const [user, setUser] = useState(null)
+    const [locale, setLocale] = useState("pt")
 
     const isAuthenticated = !!user;
 
@@ -109,7 +110,7 @@ export default function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, signIn, logOut }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, signIn, logOut, locale, setLocale }}>
             {children}
         </AuthContext.Provider>
     )

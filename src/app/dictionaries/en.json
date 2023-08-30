@@ -1,0 +1,8 @@
+{
+    "addpunchscreen": {
+        "punchsuccess": "Your punch was succesfully registered at ",
+        "registerpunchnow": "Register you punch now:",
+        "punchbuttontext": "Punch"
+    },
+    "welcome": "Welcome"
+}

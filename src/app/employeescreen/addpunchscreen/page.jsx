@@ -7,10 +7,20 @@ import dateUtils from '../../utils/DateUtils'
 
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/contexts/AuthContext";
+import { getDictionary } from "@/app/dictionaries";
+import { LoaderIcon } from "lucide-react";
 
 export default function addPunchScreen () {
 
-    const { user } = useContext(AuthContext)
+    const { user, locale } = useContext(AuthContext)
+    
+    const [dict, setDict] = useState()
+
+    useEffect(() => {
+        setDict(getDictionary(locale))  
+        console.log("dict")
+        console.log(dict)
+    }, [])
 
 
     const [id, setId] = useState(null)
@@ -23,7 +33,7 @@ export default function addPunchScreen () {
         if (id != null) {
             punch(id, curTime).then(punchResponse => {
                 if (punchResponse != null) {
-                    alert("Your punch was succesfully registered at " + punchResponse.timestamp)
+                    alert(dict.addpunchscreen.punchsuccess + punchResponse.timestamp)
                 }
             })
         }
@@ -40,13 +50,18 @@ export default function addPunchScreen () {
     return (
 
         <>
-            <div className="p-6">
-                <h1>Welcome, {name}!</h1>
-                <h2>Register you punch now!</h2>
-                <div className="ml-0">
-                    <SubmitButton text="Punch" onClickFunction={punchNow} />
+            {dict != null && dict != undefined ? 
+                <div className="p-6">
+                    <h1>{dict.welcome}, {name}!</h1>
+                    <h2>{dict.addpunchscreen.registerpunchnow}</h2>
+                    <div className="ml-0">
+                        <SubmitButton text={dict.addpunchscreen.punchbuttontext} onClickFunction={punchNow} />
+                    </div>
                 </div>
-            </div>
+        :
+            <></>
+        }
+            
         </>
     )
 
