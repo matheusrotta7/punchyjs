@@ -39,6 +39,11 @@
         "adminfeatures": "Your admin can enroll new employees and managers",
         "getintouch": "Get in touch with our sales team now and learn more!"
     },
+    "loginscreen": {
+        "loginscreen": "Login Screen",
+        "password": "Password:",
+        "forgotpassword": "Forgot your password?"
+    },
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "welcome": "Welcome",
