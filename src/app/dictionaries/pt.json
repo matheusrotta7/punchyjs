@@ -43,6 +43,19 @@
         "password": "Senha:",
         "forgotpassword": "Esqueceu a sua senha?"
     },
+    "mainlayoutscreen": {
+        "aboutpunchy": "Sobre o Punchy",
+        "pricing": "Preços"
+    },
+    "pricingscreen": {
+        "pricingsummary": "Nossos preços são baseados no número de pessoas da sua empresa que vão interagir com o Punchy",
+        "employeecategories": "Isso inclui três categorias: funcionários, gerentes e um administrador.",
+        "accessdetails": "Uma vez fechado o negócio, nosso suporte técnico irá cadastrar a sua empresa no nosso banco de dados e te dará um acesso de administrador à sua empresa.",
+        "adminactions": "A partir daí o administrador será capaz de cadastrar gerentes e os seus funcionários, contanto que o número total de pessoas não exceda o plano contratado.",
+        "testbudget": "Teste agora mesmo quanto o Punchy custará por mês selecionando o número de pessoas na sua empresa que interagirão com o Punchy",
+        "numofemployees": "Número de funcionários",
+        "estimatedcost": "Custo estimado por mês"
+    },
     "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
     "weekdays": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
     "welcome": "Bem vindo",

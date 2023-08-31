@@ -44,6 +44,19 @@
         "password": "Password:",
         "forgotpassword": "Forgot your password?"
     },
+    "mainlayoutscreen": {
+        "aboutpunchy": "About Punchy",
+        "pricing": "pricing"
+    },
+    "pricingscreen": {
+        "pricingsummary": "Our pricing is based on the number of employees in your company that will interact with Punchy",
+        "employeecategories": "That includes three categories: employees, managers and one admin.",
+        "accessdetails": "Once a deal is closed, our tech support will enroll your company in our database and give you one admin access to your company.",
+        "adminactions": "The admin will then be able to enroll managers and their employees, as long as the total number doesn't exceed the plan that was hired",
+        "testbudget": "Test now how much it would cost per month by selecting the number of employees in your company that would interact with punchy:",
+        "numofemployees": "Number of employees",
+        "estimatedcost": "Estimated cost per month"
+    },
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "welcome": "Welcome",
