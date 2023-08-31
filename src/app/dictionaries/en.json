@@ -26,8 +26,22 @@
         "saturday": "Saturday",
         "sunday": "Sunday"
     },
+    "employeelayoutscreen": {
+        "punchin": "Punch in",
+        "punchmirror": "Punch Mirror"
+        
+    },
+    "landingscreen": {
+        "welcometopunchy": "Welcome to Punchy!",
+        "punchysummary": "Punchy is a digital punch in system that organizes your company's punch-in/out workflow!",
+        "employeefeatures": "Your employees can easily punch-in, view and ask for alterations in their punches:",
+        "managerfeatures": "Your managers can accept or deny punch alteration requests:",
+        "adminfeatures": "Your admin can enroll new employees and managers",
+        "getintouch": "Get in touch with our sales team now and learn more!"
+    },
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "welcome": "Welcome",
-    "submit": "Submit"
+    "submit": "Submit",
+    "logout": "Logout"
 }

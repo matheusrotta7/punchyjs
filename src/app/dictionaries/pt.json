@@ -26,8 +26,21 @@
         "saturday": "Sábado",
         "sunday": "Domingo"
     },
+    "employeelayoutscreen": {
+        "punchin": "Bater ponto",
+        "punchmirror": "Espelho de ponto"
+    },
+    "landingscreen": {
+        "welcometopunchy": "Bem vindo ao Punchy!",
+        "punchysummary": "Punchy é um sistema de ponto eletrônico automatizado que facilita o processo de batida de ponto e geração de relatórios",
+        "employeefeatures": "Seus funcionários podem bater ponto, visualizar e pedir alterações de ponto para os gerentes com facilidade!",
+        "managerfeatures": "Seus gerentes podem aceitar ou recusar as alterações de ponto",
+        "adminfeatures": "Seu administrador pode cadastrar novos gerentes e funcionários",
+        "getintouch": "Entre em contato com nossa equipe de vendas e saiba mais!"
+    },
     "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
     "weekdays": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
     "welcome": "Bem vindo",
-    "submit": "Enviar"
+    "submit": "Enviar",
+    "logout": "Sair"
 }

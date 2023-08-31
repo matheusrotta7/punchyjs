@@ -38,8 +38,8 @@ export default function punchScreen() {
     const [selectedPunchAlterationOption, setSelectedPunchAlterationOption] = useState("")
     const [alterPunchTimestamp, setAlterPunchTimestamp] = useState("")
     const [toBeDeletedPunch, setToBeDeletedPunch] = useState("")
-    const [dict, setDict] = useState()
     const [punchAlterationOptions, setPunchAlterationOptions] = useState(null)
+    const [dict, setDict] = useState()
 
     useEffect(() => {
         console.log("locale")
