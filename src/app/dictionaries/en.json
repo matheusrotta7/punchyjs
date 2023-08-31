@@ -4,5 +4,30 @@
         "registerpunchnow": "Register you punch now:",
         "punchbuttontext": "Punch"
     },
-    "welcome": "Welcome"
+    "punchmirrorscreen": {
+        "addition": "Addition",
+        "deletion": "Deletion",
+        "punchadditionsuccess": "Your punch addition was succesfully requested!",
+        "punchdeletionsuccess": "Your punch deletion was successfully requested!",
+        "generatereport": "Generate Report of the Month",
+        "workedhours": "Worked hours:",
+        "oddpunches": "Odd number of punches",
+        "punchalterationrequest": "Punch alteration request",
+        "punchalterationtype": "Alteration type:",
+        "additionTime": "Time: ",
+        "whichpunchdeleted": "Which punch should be deleted?"
+    },
+    "punchcalendar": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    },
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "welcome": "Welcome",
+    "submit": "Submit"
 }

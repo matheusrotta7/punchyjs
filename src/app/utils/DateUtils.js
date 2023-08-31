@@ -5,11 +5,8 @@ class DateUtils {
         return date.getDate()
     }
 
-    static getMonthName(monthNumber) {
-        const months = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
+    static getMonthName(monthNumber, dict) {
+        const months = dict.months
 
         if (monthNumber >= 0 && monthNumber <= 11) {
             return months[monthNumber];
@@ -18,13 +15,11 @@ class DateUtils {
         }
     }
 
-    static dayOfWeekFor(day, month, year) {
-        const weekDays = [
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        ];
+    static dayOfWeekFor(day, month, year, dict) {
+        const weekdays = dict.weekdays
 
         var date = new Date(year, month, day)
-        return weekDays[date.getDay()]
+        return weekdays[date.getDay()]
     }
 
     static getWeekDayOfFirstDayOfMonth(month, year) {
@@ -67,7 +62,7 @@ class DateUtils {
         return offsetTime
     }
 
-    static calculateWorkedHours(selectedDayPunchList) {
+    static calculateWorkedHours(selectedDayPunchList, dict) {
 
         if (selectedDayPunchList === null || selectedDayPunchList === undefined) {
             return "00:00"
@@ -76,7 +71,7 @@ class DateUtils {
             return "00:00"
         }
         if (selectedDayPunchList.length % 2 === 1) {
-            return "Odd number of punches"
+            return dict.punchmirrorscreen.oddpunches
         }
 
         var openingPunch = true

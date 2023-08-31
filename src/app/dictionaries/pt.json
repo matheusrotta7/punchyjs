@@ -4,5 +4,30 @@
         "registerpunchnow": "Bata seu ponto agora mesmo:",
         "punchbuttontext": "Bater ponto"
     },
-    "welcome": "Bem vindo"
+    "punchmirrorscreen": {
+        "addition": "Adição",
+        "deletion": "Deleção",
+        "punchadditionsuccess": "Sua requisição de adição de ponto foi enviada com sucesso!",
+        "punchdeletionsuccess": "Sua requisição de deleção de ponto foi enviada com sucesso!",
+        "generatereport": "Gerar Relatório do Mês",
+        "workedhours": "Horas Trabalhadas:",
+        "oddpunches": "Número ímpar de batidas",
+        "punchalterationrequest": "Pedir alteração de ponto",
+        "punchalterationtype": "Tipo de alteração:",
+        "additionTime": "Horário: ",
+        "whichpunchdeleted": "Qual ponto deveria ser deletado?"
+    },
+    "punchcalendar": {
+        "monday": "Segunda",
+        "tuesday": "Terça",
+        "wednesday": "Quarta",
+        "thursday": "Quinta",
+        "friday": "Sexta",
+        "saturday": "Sábado",
+        "sunday": "Domingo"
+    },
+    "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    "weekdays": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+    "welcome": "Bem vindo",
+    "submit": "Enviar"
 }

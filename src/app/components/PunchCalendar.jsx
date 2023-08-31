@@ -8,6 +8,8 @@ import punchUtils from '../utils/PunchUtils'
 
 export default function PunchCalendar(props) {
 
+    const dict = props.dict
+
     function pushDayOneToAppropriateWeekDay() {
         var weekDay = dateUtils.getWeekDayOfFirstDayOfMonth(props.curMonth, props.curYear)
         
@@ -48,13 +50,13 @@ export default function PunchCalendar(props) {
     return (
         <>
             <span className="inline-grid grid-cols-7 gap-x-4 gap-y-5">
-                <span className="text-center">Sunday</span>
-                <span className="text-center">Monday</span>
-                <span className="text-center">Tuesday</span>
-                <span className="text-center">Wednesday</span>
-                <span className="text-center">Thursday</span>
-                <span className="text-center">Friday</span>
-                <span className="text-center">Saturday</span>
+                <span className="text-center">{dict.punchcalendar.sunday}</span>
+                <span className="text-center">{dict.punchcalendar.monday}</span>
+                <span className="text-center">{dict.punchcalendar.tuesday}</span>
+                <span className="text-center">{dict.punchcalendar.wednesday}</span>
+                <span className="text-center">{dict.punchcalendar.thursday}</span>
+                <span className="text-center">{dict.punchcalendar.friday}</span>
+                <span className="text-center">{dict.punchcalendar.saturday}</span>
                 {pushDayOneToAppropriateWeekDay()}
                 {arrayOfDateBoxes()}
             </span>

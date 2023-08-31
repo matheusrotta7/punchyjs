@@ -8,7 +8,6 @@ import dateUtils from '../../utils/DateUtils'
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/contexts/AuthContext";
 import { getDictionary } from "@/app/dictionaries";
-import { LoaderIcon } from "lucide-react";
 
 export default function addPunchScreen () {
 
