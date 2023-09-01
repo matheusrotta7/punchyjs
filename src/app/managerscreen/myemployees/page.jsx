@@ -1,12 +1,13 @@
 'use client'
 
 import Dropdown from "../../components/Dropdown"
-import { useContext, useEffect, useState } from "react";
 import { getAllEmployeesWithManager } from "../../services/EmployeeService";
-import { Check, CheckCircle, CheckCircle2, LoaderIcon, X, XCircle } from "lucide-react";
-import { AuthContext } from "@/app/contexts/AuthContext";
+import { LoaderIcon } from "lucide-react";
 import { getPunches } from "@/app/services/PunchService";
 import PunchAlterationRequest from "@/app/components/PunchAlterationRequest";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/app/contexts/AuthContext";
+import { getDictionary } from "@/app/dictionaries";
 
 export default function myEmployeesScreen() {
 
@@ -16,6 +17,13 @@ export default function myEmployeesScreen() {
     const [selectedEmployee, setSelectedEmployee] = useState({});
     const [pendingPunches, setPendingPunches] = useState([])
     const [managerActionCounter, setManagerActionCounter] = useState(0)
+    const [dict, setDict] = useState()
+
+    const { locale } = useContext(AuthContext)
+
+    useEffect(() => {
+        setDict(getDictionary(locale))  
+    }, [])
 
     useEffect(() => {
         fetchEmployees()
@@ -63,6 +71,7 @@ export default function myEmployeesScreen() {
                     employeeId={employeeId} 
                     managerActionCounter={managerActionCounter} 
                     setManagerActionCounter={setManagerActionCounter} 
+                    dict={dict}
                 />
             )
         } else {
@@ -81,12 +90,13 @@ export default function myEmployeesScreen() {
 
     return (
         <>
-            <div className="p-6 w-9/12">
+            {dict != null && dict != undefined ? 
+                <div className="p-6 w-9/12">
                 <main>
 
-                    <h1>Welcome, {user != null ? user.name : null}!</h1>
+                    <h1>{dict.welcome}, {user != null ? user.name : null}!</h1>
 
-                    <h2 className="mt-6">My employees: </h2>
+                    <h2 className="mt-6">{dict.myemployeesscreen.myemployees}: </h2>
 
                     <div>
                         { atLeastOneEmployee(employeeList) ? <Dropdown options={employeeList} selectedOption={selectedEmployee} setSelectedOption={setSelectedEmployee} /> : <LoaderIcon />}
@@ -95,16 +105,16 @@ export default function myEmployeesScreen() {
                     <div className="mt-5 mb-3">
                         {atLeastOnePendingPunch() ?  
                             <div>
-                                <span>Punch alteration requests from {selectedEmployee.name} that need your attention:</span>
+                                <span>{dict.myemployeesscreen.punchalterationrequests} {selectedEmployee.name} {dict.myemployeesscreen.yourattention} :</span>
                                 <div>
-                                    <ul>
+                                    <ul className="list-disc p-3">
                                         {renderPendingPunches()}
                                     </ul>
                                 </div>
 
                             </div>    
                             :
-                            <span>There are no punch alteration requests from {selectedEmployee.name}</span>
+                            <span>{dict.myemployeesscreen.nopunchalterationrequests} {selectedEmployee.name}</span>
 
                         }
                     </div>
@@ -114,6 +124,10 @@ export default function myEmployeesScreen() {
 
 
             </div>
+            :
+            <></>
+            }
+            
 
         </>
     )

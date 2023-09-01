@@ -57,6 +57,14 @@
         "numofemployees": "Number of employees",
         "estimatedcost": "Estimated cost per month"
     },
+    "myemployeesscreen": {
+        "myemployees": "My employees",
+        "nopunchalterationrequests": "There are no punch alteration requests from",
+        "punchalterationrequests": "Punch alteration requests from",
+        "yourattention": "that need your attention",
+        "additionrequestat": "Punch addition at time",
+        "deletionrequestat": "Delete punch at time"
+    },
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "welcome": "Welcome",
