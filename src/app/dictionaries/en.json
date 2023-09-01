@@ -65,9 +65,24 @@
         "additionrequestat": "Punch addition at time",
         "deletionrequestat": "Delete punch at time"
     },
+    "addemployeescreen": {
+        "enrollnewemployee": "Enroll new Employee",
+        "name": "Name",
+        "password": "Password",
+        "retypepassword": "Retype password",
+        "manager": "Manager"
+    },
+    "addmanagerscreen": {
+        "enrollnewmanager": "Enroll new Manager"
+    },
+    "adminlayoutscreen": {
+        "addemployees": "Add Employees",
+        "addmanagers": "Add Managers"
+    },
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "welcome": "Welcome",
     "submit": "Submit",
-    "logout": "Logout"
+    "logout": "Logout",
+    "hello": "Welcome"
 }

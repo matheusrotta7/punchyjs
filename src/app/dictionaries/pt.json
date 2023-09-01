@@ -64,9 +64,24 @@
         "additionrequestat": "Adição de ponto no horário",
         "deletionrequestat": "Deleção do ponto no horário"
     },
+    "addemployeescreen": {
+        "enrollnewemployee": "Cadastrar novo funcionário",
+        "name": "Nome",
+        "password": "Senha",
+        "retypepassword": "Redigite a senha",
+        "manager": "Gerente"
+    },
+    "addmanagerscreen": {
+        "enrollnewmanager": "Cadastrar novo gerente"
+    },
+    "adminlayoutscreen": {
+        "addemployees": "Adicionar Funcionários",
+        "addmanagers": "Adicionar Gerentes"
+    },
     "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
     "weekdays": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
     "welcome": "Bem vindo",
     "submit": "Enviar",
-    "logout": "Sair"
+    "logout": "Sair",
+    "hello": "Olá"
 }
