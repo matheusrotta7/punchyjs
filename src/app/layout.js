@@ -1,4 +1,5 @@
 import AuthProvider from './contexts/AuthContext'
+import LocaleProvider from './contexts/LocaleContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -12,18 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <AuthProvider>
-            <html lang="en">
-                <body className="bg-zinc-900 text-gray-200">{children}</body>
-            </html>
+            <LocaleProvider>
+                <html lang="en">
+                    <body className="bg-zinc-900 text-gray-200">{children}</body>
+                </html>
+            </LocaleProvider>
         </AuthProvider>
     )
 }
 
-export const gerServerSideProps = async (ctx) => {
-    console.log(ctx.req.cookies)
-    console.log("hello")
-
-    return {
-        props:{}
-    }
-}

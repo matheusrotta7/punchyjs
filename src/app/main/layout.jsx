@@ -8,18 +8,29 @@ import Image from 'next/image'
 import PunchyLogo from "../components/PunchyLogo";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { LocaleContext } from "../contexts/LocaleContext";
 import { getDictionary } from "../dictionaries";
+import ReactCountryFlag from "react-country-flag";
 
 
 export default function mainlayout({children}) {
 
     const [dict, setDict] = useState()
 
-    const { locale } = useContext(AuthContext)
+    const { locale, setLocale } = useContext(LocaleContext)
 
     useEffect(() => {
         setDict(getDictionary(locale))  
-    }, [])
+    }, [locale])
+
+    function changeLocale(newLocale) {
+        console.log("I am changing the locale")
+        console.log("hello")
+        setLocale(newLocale)
+    }
+
+    function hello() {
+    }
 
     return (
         <>
@@ -28,6 +39,31 @@ export default function mainlayout({children}) {
                 <div className="flex flex-1">
                     <aside className="w-56 bg-zinc-950 border-r border-zinc-800 p-6">
                         <PunchyLogo/>
+                        <div className="p-2 flex ">
+                            <button onClick={() => changeLocale("pt")}>
+                                <ReactCountryFlag
+                                    
+                                    countryCode="BR" 
+                                    className="emojiFlag"
+                                    style={{
+                                        fontSize: '2em',
+                                        lineHeight: '2em',
+                                    }}
+                                /> <span className="text-lg mx-1"> / </span> 
+                            </button>
+                            <button onClick={() => changeLocale("en")}>
+                                <ReactCountryFlag
+                                    
+                                    countryCode="US" 
+                                    className="emojiFlag"
+                                    style={{
+                                        fontSize: '2em',
+                                        lineHeight: '2em',
+                                    }}
+                                />
+                            </button>
+                        </div>
+                        <button onClick={changeLocale("en")}>Hello</button>
                         <Link href="/main/loginscreen" className="flex p-2 hover:bg-zinc-800">
                             <LogIn /> <span className="ml-2">Login</span>
                         </Link>
