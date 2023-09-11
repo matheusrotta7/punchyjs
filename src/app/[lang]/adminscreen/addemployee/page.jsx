@@ -2,16 +2,17 @@
 
 import { AlertCircle, LoaderIcon } from "lucide-react";
 import Dropdown from "../../components/Dropdown";
+import {  getAllManagersFromAdmin } from "../../../services/ManagerService";
+import { createNewEmployee } from "../../../services/EmployeeService";
+import SubmitButton from "../../components/SubmitButton";
 import { useState, useEffect, useContext } from "react";
-import {  getAllManagersFromAdmin } from "../../services/ManagerService";
-import { createNewEmployee } from "../../services/EmployeeService";
-import SubmitButton from "@/app/components/SubmitButton";
-
+import { getDictionary } from "../../dictionaries";
 import { AuthContext } from "@/app/contexts/AuthContext";
 
-import cryptoUtils from "../../utils/CryptoUtils.js"
 
-export default function adminscreen() {
+import cryptoUtils from "../../../utils/CryptoUtils.js"
+
+export default function adminscreen({ params: { lang } }) {
 
     const [managerList, setManagerList] = useState();
     const [selectedManager, setSelectedManager] = useState(null)
@@ -21,6 +22,10 @@ export default function adminscreen() {
     const [newEmployeePasswordCheck, setNewEmployeePasswordCheck] = useState("")
     const [alertPasswordsDontMatch, setAlertPasswordsDontMatch] = useState(false)
     const [adminId, setAdminId] = useState("")
+
+    const dict = getDictionary(lang)
+
+    
 
     const { user } = useContext(AuthContext)
 
@@ -39,13 +44,11 @@ export default function adminscreen() {
     }, [adminId])
 
     function atLeastOneManager(managerList) {
-        console.log("inside at least one  manager")
         return managerList != null && managerList != undefined && managerList.length > 0;
     }
 
     useEffect(() => {
         if (atLeastOneManager(managerList)) {
-            console.log("setting selected manager")
             setSelectedManager(managerList[0])
         }
     }, [managerList])
@@ -100,35 +103,39 @@ export default function adminscreen() {
 
     return (
         <>
-            <div className="p-4">
+            {dict != null && dict != undefined ? 
+                <div className="p-4">
 
-                <h1>Welcome, {user?.name}</h1>
-                <h2 className="mt-4">Enroll new Employee: </h2>
-                <div className="mt-2">
-                    <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>
-                </div>
-
-                <div className="mt-2">
-                    <span className="mr-3">E-mail:</span> <input type="email" className="text-zinc-800" onChange={(e) => setNewEmployeeEmail(e.target.value)}></input>
-                </div>
-
-                <div className="mt-2">
-                    <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
-                </div>
-
-                <div className="mt-2 flex">
-                    <span className="mr-3">Retype password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
-                    <div title="passwords don't match!">
-                        {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
+                    <h1>{dict.hello}, {user?.name}!</h1>
+                    <h2 className="mt-4">{dict.addemployeescreen.enrollnewemployee}: </h2>
+                    <div className="mt-2">
+                        <span className="mr-3">{dict.addemployeescreen.name}:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewEmployeeName(e.target.value)}></input>
                     </div>
-                </div>
-                
-                <div className="mt-3">
-                    <span className="mr-3">Manager:</span> { atLeastOneManager(managerList) && selectedManager != null ? <Dropdown options={managerList} selectedOption={selectedManager} setSelectedOption={setSelectedManager} /> : <LoaderIcon/>}
-                </div>
-                <SubmitButton disabled={disableButton()} onClickFunction={callCreateNewEmployee} text="Submit" />
 
-            </div>
+                    <div className="mt-2">
+                        <span className="mr-3">E-mail:</span> <input type="email" className="text-zinc-800" onChange={(e) => setNewEmployeeEmail(e.target.value)}></input>
+                    </div>
+
+                    <div className="mt-2">
+                        <span className="mr-3">{dict.addemployeescreen.password}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
+                    </div>
+
+                    <div className="mt-2 flex">
+                        <span className="mr-3">{dict.addemployeescreen.retypepassword}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
+                        <div title="passwords don't match!">
+                            {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
+                        </div>
+                    </div>
+                    
+                    <div className="mt-3">
+                        <span className="mr-3">{dict.addemployeescreen.manager}:</span> { atLeastOneManager(managerList) && selectedManager != null ? <Dropdown options={managerList} selectedOption={selectedManager} setSelectedOption={setSelectedManager} /> : <LoaderIcon/>}
+                    </div>
+                    <SubmitButton disabled={disableButton()} onClickFunction={callCreateNewEmployee} text={dict.submit} />
+
+                </div> :
+                <></>
+            }
+            
         </>
     )
 }

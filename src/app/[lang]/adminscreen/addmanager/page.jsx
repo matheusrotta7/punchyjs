@@ -2,14 +2,15 @@
 
 import { createNewManager } from "@/app/services/ManagerService"
 import { useEffect, useState, useContext } from "react"
-import SubmitButton from "@/app/components/SubmitButton"
+import SubmitButton from "../../components/SubmitButton.jsx";
 import { AlertCircle } from "lucide-react";
 
 import { AuthContext } from "@/app/contexts/AuthContext";
 
-import cryptoUtils from "../../utils/CryptoUtils.js"
+import cryptoUtils from "@/app/utils/CryptoUtils.js";
+import { getDictionary } from "../../dictionaries.js";
 
-export default function addmanager() {
+export default function addmanager({params: {lang}}) {
 
 
     const [newManagerName, setNewManagerName] = useState("")
@@ -20,6 +21,8 @@ export default function addmanager() {
     const [adminId, setAdminId] = useState("")
 
     const { user } = useContext(AuthContext)
+
+    const dict = getDictionary(lang)
 
     function userIsDefined(user) {
         return user != null && user != undefined;
@@ -73,29 +76,32 @@ export default function addmanager() {
 
     return (
         <>
-            <div className="p-4">
-                <h1>Welcome, {user?.name}</h1>
-                <h2 className="mt-4">Enroll new Manager: </h2>
+            {dict != null && dict != undefined ? 
+                <div className="p-4">
+                <h1>{dict.hello}, {user?.name}!</h1>
+                <h2 className="mt-4">{dict.addmanagerscreen.enrollnewmanager}: </h2>
                 <div className="mt-2">
-                    <span className="mr-3">Name:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewManagerName(e.target.value)}></input>
+                    <span className="mr-3">{dict.addemployeescreen.name}:</span> <input type="text" className="text-zinc-800" onChange={(e) => setNewManagerName(e.target.value)}></input>
                 </div>
                 <div className="mt-2">
                     <span className="mr-3">E-mail:</span> <input type="email" className="text-zinc-800" onChange={(e) => setNewManagerEmail(e.target.value)}></input>
                 </div>
 
                 <div className="mt-2">
-                    <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
+                    <span className="mr-3">{dict.addemployeescreen.password}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
                 </div>
 
                 <div className="mt-2 flex">
-                    <span className="mr-3">Retype password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
+                    <span className="mr-3">{dict.addemployeescreen.retypepassword}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
                     <div title="passwords don't match!">
                         {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
                     </div>
                 </div>
 
-                <SubmitButton disableButton={disableButton()} onClickFunction={callCreateNewManager} text="Submit"/>
-            </div>
+                <SubmitButton disableButton={disableButton()} onClickFunction={callCreateNewManager} text={dict.submit}/>
+            </div>:
+            <></>
+            }
         </>
     )
 

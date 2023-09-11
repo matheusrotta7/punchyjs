@@ -1,8 +1,16 @@
-import 'server-only'
+import ptjson from '../dictionaries/pt.json' assert {type: 'json'};
+import enjson from '../dictionaries/en.json' assert {type: 'json'};
+
+
+
+
  
-const dictionaries = {
-  en: () => import('./dictionaries/en.json').then((module) => module.default),
-  pt: () => import('./dictionaries/pt.json').then((module) => module.default),
+export  function getDictionary(locale) {
+    console.log("locale")
+    console.log(locale)
+    if (locale === "pt") {
+        return ptjson
+    } else if (locale === "en") {
+        return enjson
+    }
 }
- 
-export const getDictionary = async (locale) => dictionaries[locale]()

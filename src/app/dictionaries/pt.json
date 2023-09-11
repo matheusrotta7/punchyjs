@@ -1,5 +1,87 @@
 {
     "addpunchscreen": {
-        "punchsuccess": "Seu ponto foi registrado com sucesso às "
-    }
+        "punchsuccess": "Seu ponto foi registrado com sucesso às ",
+        "registerpunchnow": "Bata seu ponto agora mesmo:",
+        "punchbuttontext": "Bater ponto"
+    },
+    "punchmirrorscreen": {
+        "addition": "Adição",
+        "deletion": "Deleção",
+        "punchadditionsuccess": "Sua requisição de adição de ponto foi enviada com sucesso!",
+        "punchdeletionsuccess": "Sua requisição de deleção de ponto foi enviada com sucesso!",
+        "generatereport": "Gerar Relatório do Mês",
+        "workedhours": "Horas Trabalhadas:",
+        "oddpunches": "Número ímpar de batidas",
+        "punchalterationrequest": "Pedir alteração de ponto",
+        "punchalterationtype": "Tipo de alteração:",
+        "additionTime": "Horário: ",
+        "whichpunchdeleted": "Qual ponto deveria ser deletado?"
+    },
+    "punchcalendar": {
+        "monday": "Segunda",
+        "tuesday": "Terça",
+        "wednesday": "Quarta",
+        "thursday": "Quinta",
+        "friday": "Sexta",
+        "saturday": "Sábado",
+        "sunday": "Domingo"
+    },
+    "employeelayoutscreen": {
+        "punchin": "Bater ponto",
+        "punchmirror": "Espelho de ponto"
+    },
+    "landingscreen": {
+        "welcometopunchy": "Bem vindo ao Punchy!",
+        "punchysummary": "Punchy é um sistema de ponto eletrônico automatizado que facilita o processo de batida de ponto e geração de relatórios",
+        "employeefeatures": "Seus funcionários podem bater ponto, visualizar e pedir alterações de ponto para os gerentes com facilidade!",
+        "managerfeatures": "Seus gerentes podem aceitar ou recusar as alterações de ponto",
+        "adminfeatures": "Seu administrador pode cadastrar novos gerentes e funcionários",
+        "getintouch": "Entre em contato com nossa equipe de vendas e saiba mais!"
+    },
+    "loginscreen": {
+        "loginscreen": "Página de Login",
+        "password": "Senha:",
+        "forgotpassword": "Esqueceu a sua senha?"
+    },
+    "mainlayoutscreen": {
+        "aboutpunchy": "Sobre o Punchy",
+        "pricing": "Preços"
+    },
+    "pricingscreen": {
+        "pricingsummary": "Nossos preços são baseados no número de pessoas da sua empresa que vão interagir com o Punchy",
+        "employeecategories": "Isso inclui três categorias: funcionários, gerentes e um administrador.",
+        "accessdetails": "Uma vez fechado o negócio, nosso suporte técnico irá cadastrar a sua empresa no nosso banco de dados e te dará um acesso de administrador à sua empresa.",
+        "adminactions": "A partir daí o administrador será capaz de cadastrar gerentes e os seus funcionários, contanto que o número total de pessoas não exceda o plano contratado.",
+        "testbudget": "Teste agora mesmo quanto o Punchy custará por mês selecionando o número de pessoas na sua empresa que interagirão com o Punchy",
+        "numofemployees": "Número de funcionários",
+        "estimatedcost": "Custo estimado por mês"
+    },
+    "myemployeesscreen": {
+        "myemployees": "Meus funcionários",
+        "nopunchalterationrequests": "Não há requisições de alteração de ponto da parte de",
+        "punchalterationrequests": "Requisições de alteração de ponto de",
+        "yourattention": "que requerem sua atenção",
+        "additionrequestat": "Adição de ponto no horário",
+        "deletionrequestat": "Deleção do ponto no horário"
+    },
+    "addemployeescreen": {
+        "enrollnewemployee": "Cadastrar novo funcionário",
+        "name": "Nome",
+        "password": "Senha",
+        "retypepassword": "Redigite a senha",
+        "manager": "Gerente"
+    },
+    "addmanagerscreen": {
+        "enrollnewmanager": "Cadastrar novo gerente"
+    },
+    "adminlayoutscreen": {
+        "addemployees": "Adicionar Funcionários",
+        "addmanagers": "Adicionar Gerentes"
+    },
+    "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    "weekdays": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+    "welcome": "Bem vindo",
+    "submit": "Enviar",
+    "logout": "Sair",
+    "hello": "Olá"
 }

@@ -1,5 +1,88 @@
 {
     "addpunchscreen": {
-        "punchsuccess": "Your punch was succesfully registered at "
-    }
+        "punchsuccess": "Your punch was succesfully registered at ",
+        "registerpunchnow": "Register you punch now:",
+        "punchbuttontext": "Punch"
+    },
+    "punchmirrorscreen": {
+        "addition": "Addition",
+        "deletion": "Deletion",
+        "punchadditionsuccess": "Your punch addition was succesfully requested!",
+        "punchdeletionsuccess": "Your punch deletion was successfully requested!",
+        "generatereport": "Generate Report of the Month",
+        "workedhours": "Worked hours:",
+        "oddpunches": "Odd number of punches",
+        "punchalterationrequest": "Punch alteration request",
+        "punchalterationtype": "Alteration type:",
+        "additionTime": "Time: ",
+        "whichpunchdeleted": "Which punch should be deleted?"
+    },
+    "punchcalendar": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    },
+    "employeelayoutscreen": {
+        "punchin": "Punch in",
+        "punchmirror": "Punch Mirror"
+        
+    },
+    "landingscreen": {
+        "welcometopunchy": "Welcome to Punchy!",
+        "punchysummary": "Punchy is a digital punch in system that organizes your company's punch-in/out workflow!",
+        "employeefeatures": "Your employees can easily punch-in, view and ask for alterations in their punches:",
+        "managerfeatures": "Your managers can accept or deny punch alteration requests:",
+        "adminfeatures": "Your admin can enroll new employees and managers",
+        "getintouch": "Get in touch with our sales team now and learn more!"
+    },
+    "loginscreen": {
+        "loginscreen": "Login Screen",
+        "password": "Password:",
+        "forgotpassword": "Forgot your password?"
+    },
+    "mainlayoutscreen": {
+        "aboutpunchy": "About Punchy",
+        "pricing": "Pricing"
+    },
+    "pricingscreen": {
+        "pricingsummary": "Our pricing is based on the number of employees in your company that will interact with Punchy",
+        "employeecategories": "That includes three categories: employees, managers and one admin.",
+        "accessdetails": "Once a deal is closed, our tech support will enroll your company in our database and give you one admin access to your company.",
+        "adminactions": "The admin will then be able to enroll managers and their employees, as long as the total number doesn't exceed the plan that was hired",
+        "testbudget": "Test now how much it would cost per month by selecting the number of employees in your company that would interact with punchy:",
+        "numofemployees": "Number of employees",
+        "estimatedcost": "Estimated cost per month"
+    },
+    "myemployeesscreen": {
+        "myemployees": "My employees",
+        "nopunchalterationrequests": "There are no punch alteration requests from",
+        "punchalterationrequests": "Punch alteration requests from",
+        "yourattention": "that need your attention",
+        "additionrequestat": "Punch addition at time",
+        "deletionrequestat": "Delete punch at time"
+    },
+    "addemployeescreen": {
+        "enrollnewemployee": "Enroll new Employee",
+        "name": "Name",
+        "password": "Password",
+        "retypepassword": "Retype password",
+        "manager": "Manager"
+    },
+    "addmanagerscreen": {
+        "enrollnewmanager": "Enroll new Manager"
+    },
+    "adminlayoutscreen": {
+        "addemployees": "Add Employees",
+        "addmanagers": "Add Managers"
+    },
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "welcome": "Welcome",
+    "submit": "Submit",
+    "logout": "Logout",
+    "hello": "Welcome"
 }

@@ -1,10 +1,10 @@
 'use client'
 
 import DateBox from "../components/DateBox";
-import dateUtils from "../utils/DateUtils";
+import dateUtils from "../../utils/DateUtils";
 import { useState, useEffect } from "react";
 
-import punchUtils from '../utils/PunchUtils'
+import punchUtils from '../../utils/PunchUtils'
 
 export default function PunchCalendar(props) {
 

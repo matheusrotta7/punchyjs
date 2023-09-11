@@ -8,14 +8,16 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetStart } from "@/app/services/PasswordResetService";
 import { useRouter, usePathname } from "next/navigation";
+import { getDictionary } from "../../dictionaries";
 
-export default function loginscreen() {
+export default function loginscreen({params: {lang}}) {
 
 
     const { signIn } = useContext(AuthContext)
 
     const router = useRouter()
 
+    const dict = getDictionary(lang)
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -36,25 +38,30 @@ export default function loginscreen() {
         console.log("Forgot Password!")
         router.push("/main/forgotpasswordscreen")
     }
+
         
     
 
 
     return (
         <>
-            <div className="ml-3 mt-3">
-                <h1>Login Screen</h1>
+            {dict != null && dict != undefined ? 
+                <div className="ml-3 mt-3">
+                <h1>{dict.loginscreen.loginscreen}</h1>
                 <div className="mt-6">
-                    <span>Username:</span> <input className="ml-3 text-zinc-800" type="text" onChange={e => setUsername(e.target.value)} />
+                    <span>E-mail:</span> <input className="ml-3 text-zinc-800" type="text" onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div className="mt-3">
-                    <span>Password:</span> <input className="ml-3 text-zinc-800" type="password" onKeyDown={handleKeyDown} onChange={e => setPassword(e.target.value)} />
+                    <span>{dict.loginscreen.password}</span> <input className="ml-3 text-zinc-800" type="password" onKeyDown={handleKeyDown} onChange={e => setPassword(e.target.value)} />
                 </div>
                 <SubmitButton text="Login" onClickFunction={callLogin} />
                 <div className="mt-5">
-                    <span className="text-xs text-sky-600 hover:text-sky-400 hover:cursor-pointer" onClick={handleForgotPassword}>Forgot Password?</span>
+                    <span className="text-xs text-sky-600 hover:text-sky-400 hover:cursor-pointer" onClick={handleForgotPassword}>{dict.loginscreen.forgotpassword}</span>
                 </div>
             </div>
+            :
+            <></>
+            }
         </>
     )
 }

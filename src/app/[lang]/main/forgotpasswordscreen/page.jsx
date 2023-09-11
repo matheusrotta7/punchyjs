@@ -8,14 +8,16 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetStart } from "@/app/services/PasswordResetService";
 import { useRouter, usePathname } from "next/navigation";
+import { getDictionary } from "../../dictionaries";
 
-export default function forgotpasswordscreen() {
+export default function forgotpasswordscreen({params: { lang }}) {
 
 
     const { signIn } = useContext(AuthContext)
 
     const router = useRouter()
 
+    const dict = getDictionary(lang)
 
     const [email, setEmail] = useState("")
 

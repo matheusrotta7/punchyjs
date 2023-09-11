@@ -5,16 +5,16 @@ import MonthYearHeader from "../../components/MonthYearHeader";
 import { useState, useEffect, useContext } from "react";
 
 import PunchCalendar from "../../components/PunchCalendar";
-import PunchCircleTimestamped from "@/app/components/PunchCircleTimestamped";
+import PunchCircleTimestamped from "../../components/PunchCircleTimestamped";
 
 import dateUtils from "../../../utils/DateUtils";
 import punchUtils from "../../../utils/PunchUtils";
 
 import { alterPunch, getPunches, punch } from '../../../services/PunchService'
 import { AuthContext } from "@/app/contexts/AuthContext";
-import Modal from "@/app/components/Modal";
-import SubmitButton from "@/app/components/SubmitButton";
-import Dropdown from "@/app/components/Dropdown";
+import Modal from "../../components/Modal";
+import SubmitButton from "../../components/SubmitButton";
+import Dropdown from "../../components/Dropdown";
 import { getReport } from "@/app/services/ReportService";
 import download from "downloadjs";
 // import { download } from "downloadjs"

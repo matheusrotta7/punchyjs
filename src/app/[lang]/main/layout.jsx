@@ -7,12 +7,13 @@ import { AuthContext } from "@/app/contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
 import Image from 'next/image'
 import PunchyLogo from "../components/PunchyLogo";
-import ReactCountryFlag from "react-country-flag";
 import { usePathname, useRouter } from "next/navigation";
+import ChangeLocale from "../components/ChangeLocale";
+import { getDictionary } from "../dictionaries";
 
 
 
-export default function mainlayout({children}) {
+export default function mainlayout({children, params: { lang }}) {
 
     const { locale, setLocale } = useContext(AuthContext)
 
@@ -20,6 +21,8 @@ export default function mainlayout({children}) {
 
     const router = useRouter()
     const pathname = usePathname()
+
+    const dict = getDictionary(lang)
 
     useEffect(() => {
         console.log("locale soaifjowiefjowifj")
@@ -33,9 +36,7 @@ export default function mainlayout({children}) {
         router.push(newpathname)
     }, [locale])
 
-    function changeLocale(newLocale) {
-        setLocale(newLocale)
-    }
+    
 
     return (
         <>
@@ -43,38 +44,18 @@ export default function mainlayout({children}) {
                 <div className="flex flex-1">
                     <aside className="w-56 bg-zinc-950 border-r border-zinc-800 p-6">
                         <PunchyLogo/>
-                        <div className="p-2 flex ">
-                            <button onClick={() => changeLocale("pt")}>
-                                <ReactCountryFlag
-                                    
-                                    countryCode="BR" 
-                                    className="emojiFlag"
-                                    style={{
-                                        fontSize: '2em',
-                                        lineHeight: '2em',
-                                    }}
-                                /> <span className="text-lg mx-1"> / </span> 
-                            </button>
-                            <button onClick={() => changeLocale("en")}>
-                                <ReactCountryFlag
-                                    
-                                    countryCode="US" 
-                                    className="emojiFlag"
-                                    style={{
-                                        fontSize: '2em',
-                                        lineHeight: '2em',
-                                    }}
-                                />
-                            </button>
-                        </div>
+                        <ChangeLocale 
+                            setLocale={setLocale}
+
+                        />
                         <Link href={"/" + localeRef + "/main/loginscreen"} className="flex p-2 hover:bg-zinc-800">
                             <LogIn /> <span className="ml-2">Login</span>
                         </Link>
                         <Link href={"/" + localeRef + "/main/landingscreen"} className="flex p-2 hover:bg-zinc-800">
-                            <Monitor /> <span className="ml-2">Landing Page</span>
+                            <Monitor /> <span className="ml-2">{dict.mainlayoutscreen.aboutpunchy}</span>
                         </Link>
                         <Link href={"/" + localeRef + "/main/pricingscreen"} className="flex p-2 hover:bg-zinc-800">
-                            <CircleDollarSign /> <span className="ml-2">Pricing</span>
+                            <CircleDollarSign /> <span className="ml-2">{dict.mainlayoutscreen.pricing}</span>
                         </Link>
                     </aside>
                     <main className="flex-1 p-6">

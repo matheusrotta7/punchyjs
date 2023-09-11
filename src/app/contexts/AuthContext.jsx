@@ -86,23 +86,23 @@ export default function AuthProvider({children}) {
                 return;
             }
 
-            router.push(locale + "/main/landingscreen");
+            router.push("/" + locale + "/main/landingscreen");
             return;
         }
 
         if (user.role === "Manager") {
-            router.push(locale + "/managerscreen/myemployees");
+            router.push("/" + locale + "/managerscreen/myemployees");
         } else if (user.role === "Employee") {
-            router.push(locale + "/employeescreen/punchmirrorscreen");
+            router.push("/" + locale + "/employeescreen/punchmirrorscreen");
         } else if (user.role === "Admin") {
             console.log("user")
             console.log(user)
             console.log("user.isRoot")
             console.log(user.isRoot)
             if (user.isRoot) {
-                router.push(locale + "/rootscreen/addcompany")
+                router.push("/" + locale + "/rootscreen/addcompany")
             } else {
-                router.push(locale + "/adminscreen/addemployee");
+                router.push("/" + locale + "/adminscreen/addemployee");
             }
         } else {
             console.log("Invalid role")
