@@ -2,7 +2,6 @@
 
 import { Calendar, CircleDollarSign, Clock, Crown, LogIn, Monitor, User } from "lucide-react";
 import Link from "next/link";
-import LogoutButton from "../components/LogoutButton";
 import { AuthContext } from "@/app/contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
 import Image from 'next/image'
@@ -25,8 +24,6 @@ export default function mainlayout({children, params: { lang }}) {
     const dict = getDictionary(lang)
 
     useEffect(() => {
-        console.log("locale soaifjowiefjowifj")
-        console.log(locale)
         setLocaleRef(locale)
         console.log("pathname")
         console.log(pathname)

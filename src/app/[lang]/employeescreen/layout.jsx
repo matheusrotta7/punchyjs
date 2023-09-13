@@ -42,7 +42,9 @@ export default function employeeLayout( {children, params: {lang}}) {
                         <Link href={"/" + locale + "/employeescreen/punchmirrorscreen"} className="flex p-2 hover:bg-zinc-800">
                             <Calendar /> <span className="ml-2">{dict.employeelayoutscreen.punchmirror}</span>
                         </Link>
-                        <LogoutButton />
+                        <LogoutButton 
+                            dict={dict}
+                        />
 
                     </aside>
                     

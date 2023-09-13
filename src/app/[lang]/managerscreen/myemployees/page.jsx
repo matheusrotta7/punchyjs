@@ -7,10 +7,12 @@ import { Check, CheckCircle, CheckCircle2, LoaderIcon, X, XCircle } from "lucide
 import { AuthContext } from "@/app/contexts/AuthContext";
 import { getPunches } from "@/app/services/PunchService";
 import PunchAlterationRequest from "../../components/PunchAlterationRequest";
+import { getDictionary } from "../../dictionaries";
 
-export default function myEmployeesScreen() {
+export default function myEmployeesScreen({params: {lang}}) {
 
     const { user } = useContext(AuthContext)
+    const dict = getDictionary(lang)
 
     const [employeeList, setEmployeeList] = useState();
     const [selectedEmployee, setSelectedEmployee] = useState({});
@@ -81,12 +83,13 @@ export default function myEmployeesScreen() {
 
     return (
         <>
-            <div className="p-6 w-9/12">
+            {dict != null && dict != undefined ? 
+                <div className="p-6 w-9/12">
                 <main>
 
-                    <h1>Welcome, {user != null ? user.name : null}!</h1>
+                    <h1>{dict.welcome}, {user != null ? user.name : null}!</h1>
 
-                    <h2 className="mt-6">My employees: </h2>
+                    <h2 className="mt-6">{dict.myemployeesscreen.myemployees}: </h2>
 
                     <div>
                         { atLeastOneEmployee(employeeList) ? <Dropdown options={employeeList} selectedOption={selectedEmployee} setSelectedOption={setSelectedEmployee} /> : <LoaderIcon />}
@@ -95,16 +98,16 @@ export default function myEmployeesScreen() {
                     <div className="mt-5 mb-3">
                         {atLeastOnePendingPunch() ?  
                             <div>
-                                <span>Punch alteration requests from {selectedEmployee.name} that need your attention:</span>
+                                <span>{dict.myemployeesscreen.punchalterationrequests} {selectedEmployee.name} {dict.myemployeesscreen.yourattention} :</span>
                                 <div>
-                                    <ul>
+                                    <ul className="list-disc p-3">
                                         {renderPendingPunches()}
                                     </ul>
                                 </div>
 
                             </div>    
                             :
-                            <span>There are no punch alteration requests from {selectedEmployee.name}</span>
+                            <span>{dict.myemployeesscreen.nopunchalterationrequests} {selectedEmployee.name}</span>
 
                         }
                     </div>
@@ -114,6 +117,10 @@ export default function myEmployeesScreen() {
 
 
             </div>
+            :
+            <></>
+            }
+            
 
         </>
     )

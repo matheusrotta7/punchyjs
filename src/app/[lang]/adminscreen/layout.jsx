@@ -50,7 +50,9 @@ export default function adminLayout( {children, params: { lang }}) {
                             <Link href={"/" + locale + "/adminscreen/addmanager"} className="flex p-2 hover:bg-zinc-800">
                                 <Crown /> <span className="ml-2">{dict.adminlayoutscreen.addmanagers}</span>
                             </Link>
-                            <LogoutButton />
+                            <LogoutButton 
+                                dict={dict}
+                            />
                         </aside>
                         <main className="flex-1 p-6">
                             {children}

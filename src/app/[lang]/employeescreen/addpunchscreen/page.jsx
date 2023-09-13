@@ -46,9 +46,9 @@ export default function addPunchScreen ({ params: { lang } }) {
             {dict != null && dict != undefined ? 
                 <div className="p-6">
                     <h1>{dict.welcome}, {name}!</h1>
-                    <h2>{dict.addpunchscreen.registerpunchnow}</h2>
-                    <div className="ml-0">
-                        <SubmitButton text={dict.addpunchscreen.punchbuttontext} onClickFunction={punchNow} />
+                    <h2 className="mt-4">{dict.addpunchscreen.registerpunchnow}</h2>
+                    <div className="ml-0 mt-2">
+                        <SubmitButton width="w-24" text={dict.addpunchscreen.punchbuttontext} onClickFunction={punchNow} />
                     </div>
                 </div>
         :
