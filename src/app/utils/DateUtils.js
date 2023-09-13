@@ -5,11 +5,8 @@ class DateUtils {
         return date.getDate()
     }
 
-    static getMonthName(monthNumber) {
-        const months = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
+    static getMonthName(monthNumber, dict) {
+        const months = dict.months
 
         if (monthNumber >= 0 && monthNumber <= 11) {
             return months[monthNumber];
@@ -18,10 +15,8 @@ class DateUtils {
         }
     }
 
-    static dayOfWeekFor(day, month, year) {
-        const weekDays = [
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        ];
+    static dayOfWeekFor(day, month, year, dict) {
+        const weekDays = dict.weekdays
 
         var date = new Date(year, month, day)
         return weekDays[date.getDay()]

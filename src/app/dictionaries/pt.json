@@ -15,7 +15,8 @@
         "punchalterationrequest": "Pedir alteração de ponto",
         "punchalterationtype": "Tipo de alteração:",
         "additionTime": "Horário: ",
-        "whichpunchdeleted": "Qual ponto deveria ser deletado?"
+        "whichpunchdeleted": "Qual ponto deveria ser deletado?",
+        "nopunchestodelete": "Não há pontos a serem deletados"
     },
     "punchcalendar": {
         "monday": "Segunda",

@@ -15,7 +15,8 @@
         "punchalterationrequest": "Punch alteration request",
         "punchalterationtype": "Alteration type:",
         "additionTime": "Time: ",
-        "whichpunchdeleted": "Which punch should be deleted?"
+        "whichpunchdeleted": "Which punch should be deleted?",
+        "nopunchestodelete": "There are no punches to be deleted"
     },
     "punchcalendar": {
         "monday": "Monday",
