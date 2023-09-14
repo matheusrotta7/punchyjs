@@ -1,14 +1,17 @@
 'use client'
 
 import { AlertCircle } from "lucide-react";
-import { useState } from "react";
-import SubmitButton from "@/app/components/SubmitButton";
+import { useContext, useState } from "react";
+import SubmitButton from "../../components/SubmitButton.jsx";
 import { useRouter } from "next/navigation";
 
 import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetEnd } from "@/app/services/PasswordResetService.js";
+import { AuthContext } from "@/app/contexts/AuthContext.jsx";
 
 export default function Page({ params }) {
+
+    const {locale} = useContext(AuthContext)
 
     const [newPassword, setNewPassword] = useState("")
     const [newPasswordCheck, setNewPasswordCheck] = useState("")
@@ -21,7 +24,7 @@ export default function Page({ params }) {
         var passwordHash = cryptoUtils.calculateHash(newPassword)
 
         callPasswordResetEnd(passwordHash, passwordToken)
-        router.push("/main/loginscreen")
+        router.push("/" + locale + "/main/loginscreen")
         
     }
 
@@ -59,19 +62,22 @@ export default function Page({ params }) {
 
     return (
         <>
-            <div>Password Reset Screen</div>
-            <div className="mt-2">
-                <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
-            </div>
+            <div className="p-6">
 
-            <div className="mt-2 flex">
-                <span className="mr-3">Retype password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
-                <div title="passwords don't match!">
-                    {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
+                <div>Password Reset Screen</div>
+                <div className="mt-2">
+                    <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
                 </div>
+
+                <div className="mt-2 flex">
+                    <span className="mr-3">Retype password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
+                    <div title="passwords don't match!">
+                        {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
+                    </div>
+                </div>
+                
+                <SubmitButton disabled={disableButton()} onClickFunction={callFinishPasswordResetMethod} text="Submit" />
             </div>
-            
-            <SubmitButton disabled={disableButton()} onClickFunction={callFinishPasswordResetMethod} text="Submit" />
 
         </>
     )

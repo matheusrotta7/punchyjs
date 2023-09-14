@@ -45,6 +45,10 @@
         "password": "Password:",
         "forgotpassword": "Forgot your password?"
     },
+    "forgotpasswordscreen": {
+        "insertemail": "Insert your e-mail so that we can send you a password reset link",
+        "sendlink": "Send link"
+    },
     "mainlayoutscreen": {
         "aboutpunchy": "About Punchy",
         "pricing": "Pricing"

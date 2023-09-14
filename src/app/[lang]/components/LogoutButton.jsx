@@ -17,7 +17,7 @@ export default function LogoutButton(props) {
 
     return (
         <button className="flex p-2 hover:bg-zinc-800" onClick={callLogout}>
-            <LogOut /> <span className="ml-2">{dict.logout}</span>                    
+            <LogOut /> {dict != null ? <span className="ml-2">{dict.logout}</span> : <span className="ml-2">Logout</span>}                    
         </button>
     )
 

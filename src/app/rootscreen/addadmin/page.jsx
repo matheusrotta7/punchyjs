@@ -1,11 +1,11 @@
 'use client'
 
 import { AlertCircle, LoaderIcon } from "lucide-react";
-import Dropdown from "../../components/Dropdown";
+import Dropdown from "@/app/[lang]/components/Dropdown";
 import { useState, useEffect } from "react";
 import { getAllCompanies } from "../../services/CompanyService";
 import { createNewAdmin } from "../../services/AdminService";
-import SubmitButton from "@/app/components/SubmitButton";
+import SubmitButton from "@/app/[lang]/components/SubmitButton";
 
 import cryptoUtils from "../../utils/CryptoUtils.js"
 

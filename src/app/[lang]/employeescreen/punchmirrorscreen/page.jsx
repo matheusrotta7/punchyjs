@@ -55,7 +55,6 @@ export default function punchScreen({params: {lang}}) {
     }, [dict])
 
     useEffect(() => {
-        console.log("I am inside punchalterationoptions useeffect MARSHMELLOOOO")
         if (punchAlterationOptions != null) {
             console.log("punch alterations options isn't null so setting default value")
             setSelectedPunchAlterationOption(punchAlterationOptions[0])

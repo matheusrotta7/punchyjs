@@ -100,7 +100,7 @@ export default function AuthProvider({children}) {
             console.log("user.isRoot")
             console.log(user.isRoot)
             if (user.isRoot) {
-                router.push("/" + locale + "/rootscreen/addcompany")
+                router.push("/rootscreen/addcompany")
             } else {
                 router.push("/" + locale + "/adminscreen/addemployee");
             }

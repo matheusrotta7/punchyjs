@@ -13,10 +13,6 @@ import { getDictionary } from "../../dictionaries";
 export default function forgotpasswordscreen({params: { lang }}) {
 
 
-    const { signIn } = useContext(AuthContext)
-
-    const router = useRouter()
-
     const dict = getDictionary(lang)
 
     const [email, setEmail] = useState("")
@@ -39,11 +35,11 @@ export default function forgotpasswordscreen({params: { lang }}) {
     return (
         <>
             <div className="ml-3 mt-3">
-                <h1>Insert your e-mail so that we can send you a password reset link</h1>
+                <h1>{dict.forgotpasswordscreen.insertemail}</h1>
                 <div className="mt-6">
-                    <span>Email:</span> <input className="ml-3 text-zinc-800" type="text" onChange={e => setEmail(e.target.value)} />
+                    <span>E-mail:</span> <input className="ml-3 text-zinc-800" type="text" onChange={e => setEmail(e.target.value)} />
                 </div>
-                <SubmitButton text="Send link" onClickFunction={handleClick} />
+                <SubmitButton text={dict.forgotpasswordscreen.sendlink} onClickFunction={handleClick} />
             </div>
         </>
     )

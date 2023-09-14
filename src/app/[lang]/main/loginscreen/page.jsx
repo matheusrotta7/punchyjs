@@ -13,7 +13,7 @@ import { getDictionary } from "../../dictionaries";
 export default function loginscreen({params: {lang}}) {
 
 
-    const { signIn } = useContext(AuthContext)
+    const { signIn, locale } = useContext(AuthContext)
 
     const router = useRouter()
 
@@ -36,7 +36,7 @@ export default function loginscreen({params: {lang}}) {
 
     function handleForgotPassword() {
         console.log("Forgot Password!")
-        router.push("/main/forgotpasswordscreen")
+        router.push("/" + locale + "/main/forgotpasswordscreen")
     }
 
         

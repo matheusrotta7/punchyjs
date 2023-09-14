@@ -1,7 +1,7 @@
-import { Calendar, Clock, Crown, User } from "lucide-react";
+import { Crown, User } from "lucide-react";
 import Link from "next/link";
-import LogoutButton from "../components/LogoutButton";
-import PunchyLogo from "../components/PunchyLogo";
+import LogoutButton from "../[lang]/components/LogoutButton";
+import PunchyLogo from "../[lang]/components/PunchyLogo";
 
 export default function adminLayout( {children}) {
 

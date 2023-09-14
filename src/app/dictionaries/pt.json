@@ -44,6 +44,10 @@
         "password": "Senha:",
         "forgotpassword": "Esqueceu a sua senha?"
     },
+    "forgotpasswordscreen": {
+        "insertemail": "Insira o seu e-mail para que nós possamos mandar um link para trocar a senha",
+        "sendlink": "Enviar link"
+    },
     "mainlayoutscreen": {
         "aboutpunchy": "Sobre o Punchy",
         "pricing": "Preços"

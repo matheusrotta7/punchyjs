@@ -2,7 +2,7 @@
 
 import { createNewCompany } from "@/app/services/CompanyService"
 import { useState } from "react"
-import SubmitButton from "@/app/components/SubmitButton"
+import SubmitButton from "@/app/[lang]/components/SubmitButton"
 
 export default function addcompany() {
 
