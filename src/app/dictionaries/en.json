@@ -89,5 +89,6 @@
     "welcome": "Welcome",
     "submit": "Submit",
     "logout": "Logout",
-    "hello": "Welcome"
+    "hello": "Welcome",
+    "passwordresetscreen": "Password Reset Screen"
 }

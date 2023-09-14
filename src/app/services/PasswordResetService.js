@@ -1,6 +1,6 @@
 import hostUtils from "../utils/HostUtils";
 
-export async function callPasswordResetStart(emailAddress) {
+export async function callPasswordResetStart(emailAddress, locale) {
     try {
         const response = await fetch(hostUtils.getHost() + '/passwordreset/start', {
             method: 'POST',
@@ -12,7 +12,8 @@ export async function callPasswordResetStart(emailAddress) {
                 'Access-Control-Allow-Headers': 'Content-Type', // Allow Content-Type header
             },
             body: JSON.stringify({
-                "destinyEmailAddress": emailAddress
+                "destinyEmailAddress": emailAddress,
+                "locale": locale
             })
             
           });

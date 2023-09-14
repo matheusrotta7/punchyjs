@@ -8,8 +8,11 @@ import { useRouter } from "next/navigation";
 import cryptoUtils from "../../../utils/CryptoUtils.js"
 import { callPasswordResetEnd } from "@/app/services/PasswordResetService.js";
 import { AuthContext } from "@/app/contexts/AuthContext.jsx";
+import { getDictionary } from "../../dictionaries.js";
 
-export default function Page({ params }) {
+export default function Page({ params: {token, lang} }) {
+
+    const dict = getDictionary(lang)
 
     const {locale} = useContext(AuthContext)
 
@@ -20,7 +23,7 @@ export default function Page({ params }) {
     const router = useRouter()
 
     function callFinishPasswordResetMethod() {
-        var passwordToken = params.token
+        var passwordToken = token
         var passwordHash = cryptoUtils.calculateHash(newPassword)
 
         callPasswordResetEnd(passwordHash, passwordToken)
@@ -64,19 +67,19 @@ export default function Page({ params }) {
         <>
             <div className="p-6">
 
-                <div>Password Reset Screen</div>
+                <div>{dict.passwordresetscreen}</div>
                 <div className="mt-2">
-                    <span className="mr-3">Password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
+                    <span className="mr-3">{dict.addemployeescreen.password}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordChange}></input>
                 </div>
 
                 <div className="mt-2 flex">
-                    <span className="mr-3">Retype password:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
+                    <span className="mr-3">{dict.addemployeescreen.retypepassword}:</span> <input type="password" className="text-zinc-800" onChange={handlePasswordCheckChange}></input> 
                     <div title="passwords don't match!">
                         {alertPasswordsDontMatch ? <AlertCircle strokeWidth={3} className="text-red-700/75 mx-2"/> : null}
                     </div>
                 </div>
                 
-                <SubmitButton disabled={disableButton()} onClickFunction={callFinishPasswordResetMethod} text="Submit" />
+                <SubmitButton disabled={disableButton()} onClickFunction={callFinishPasswordResetMethod} text={dict.submit} />
             </div>
 
         </>

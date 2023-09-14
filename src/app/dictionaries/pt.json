@@ -88,5 +88,6 @@
     "welcome": "Bem vindo",
     "submit": "Enviar",
     "logout": "Sair",
-    "hello": "Olá"
+    "hello": "Olá",
+    "passwordresetscreen": "Tela de redefinição de senha"
 }
