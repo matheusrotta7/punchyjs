@@ -17,7 +17,7 @@ export default function landingscreen({params: {lang}}) {
 
                 <h3 className='mt-6 text-xl'>{dict.landingscreen.employeefeatures}</h3>
                 <Image className='mt-3 text-xl'
-                    src="/punchyemployeemirror.png"
+                    src={lang === "pt" ? "/johndoepunchmirror.png" : "/johndoepunchmirroren.png"}
                     width={1200}
                     height={500}
                     alt="Picture of the author"
@@ -25,7 +25,7 @@ export default function landingscreen({params: {lang}}) {
 
                 <h3 className='mt-10 text-xl'>{dict.landingscreen.managerfeatures}</h3>
                 <Image className='mt-3 text-xl'
-                    src="/managerscreenpunchy.png"
+                    src={lang === "pt" ? "/matheusmanagerpt.png" : "/matheusmanageren.png"}
                     width={1200}
                     height={500}
                     alt="Picture of the author"
@@ -33,7 +33,7 @@ export default function landingscreen({params: {lang}}) {
 
                 <h3 className='mt-10 text-xl'>{dict.landingscreen.adminfeatures}</h3>
                 <Image className='mt-3 text-xl'
-                    src="/adminscreenpunchy.png"
+                    src={lang === "pt" ? "/alessandraadminpt.png" : "/alessandraadminen.png"}
                     width={1200}
                     height={500}
                     alt="Picture of the author"

@@ -45,7 +45,7 @@ export default function managerLayout({children, params: {lang}}) {
                     {children}
 
                 </div>
-                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy: created by Matheus R.</footer>
+                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy 2023</footer>
             </div>
         </>
     )

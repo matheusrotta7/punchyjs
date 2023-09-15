@@ -65,6 +65,7 @@ export default function myEmployeesScreen({params: {lang}}) {
                     employeeId={employeeId} 
                     managerActionCounter={managerActionCounter} 
                     setManagerActionCounter={setManagerActionCounter} 
+                    dict={dict}
                 />
             )
         } else {

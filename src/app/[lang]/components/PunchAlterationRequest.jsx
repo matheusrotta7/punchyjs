@@ -7,6 +7,7 @@ import { alterPunch, deletePunch } from "../../services/PunchService";
 export default function PunchAlterationRequest(props) {
 
     var p = props.punch 
+    const dict = props.dict
 
     function approvePunchAlteration() {
         console.log("approve!")
@@ -37,7 +38,7 @@ export default function PunchAlterationRequest(props) {
     return (
         <div key={p.id}>
             <div className="flex">
-                <li>{p.timestamp} {p.punchStatus}</li> 
+                <li>{p.punchStatus === "PENDING_ADDITION" ? dict.myemployeesscreen.additionrequestat : dict.myemployeesscreen.deletionrequestat} {p.timestamp}</li> 
                 <div className="flex mx-4">
                     <CheckCircle2 onClick={approvePunchAlteration} strokeWidth={3} className="mx-1 text-green-700/75 hover:text-green-500/75" /> <XCircle onClick={denyPunchAlteration} className="mx-1 text-red-700/75 hover:text-red-500/75" strokeWidth={3} />
                 </div>
