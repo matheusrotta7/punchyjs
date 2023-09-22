@@ -169,7 +169,7 @@ export default function myEmployeesScreen({ params: { lang } }) {
             return null
         }
 
-        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} punchStatus={punch.punchStatus} />)
+        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} punchStatus={punch.punchStatus} managerScreen />)
     }
 
     function simplifyTimestamp(timestamp) {
@@ -277,7 +277,7 @@ export default function myEmployeesScreen({ params: { lang } }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-row mt-4 justify-center">
+                                    <div className="flex flex-row my-8 justify-center">
                                         {generatePunchCirclesTimestamped()}
                                     </div>
                                     <div className="flex flex-col text-sm">
@@ -286,54 +286,7 @@ export default function myEmployeesScreen({ params: { lang } }) {
                                             <span className="float-right p-3">{dateUtils.calculateWorkedHours(selectedDayPunchList)}</span>
                                         </div>
 
-                                        <div className="cursor-pointer mt-5 float-left bg-zinc-800 p-3 shadow-xl ring-1 ring-gray-900/5 border mx-3 border-zinc-700   sm:rounded-md w-auto h-auto"
-                                            onClick={() => { setIsModalOpen(true) }}
-                                        >
-                                            <span>{dict.punchmirrorscreen.punchalterationrequest}</span>
-                                        </div>
-                                        <Modal
-                                            isModalOpen={isModalOpen}
-                                            setIsModalOpen={setIsModalOpen}
-                                        >
-                                            <div className="flex flex-col items-center">
-                                                <span className="text-black text-lg mt-32">{dict.punchmirrorscreen.punchalterationrequest}</span>
-                                                <div className="mt-5">
-                                                    {punchAlterationOptions != null ?
-                                                        <div>
-                                                            <span>{dict.punchmirrorscreen.punchalterationtype}</span> <Dropdown options={punchAlterationOptions} selectedOption={selectedPunchAlterationOption} setSelectedOption={setSelectedPunchAlterationOption} />
-                                                        </div>
-                                                        :
-                                                        <></>
-                                                    }
-                                                </div>
-
-                                                {selectedPunchAlterationOption.backendName === "PENDING_ADDITION" ?
-
-                                                    <div className="mt-3">
-                                                        <span className="mr-2">{dict.punchmirrorscreen.additionTime}</span> <input type="time" value={alterPunchTimestamp} onChange={(e) => setAlterPunchTimestamp(e.target.value)} ></input>
-                                                    </div> :
-
-                                                    <div className="mt-3">
-                                                        {selectedDayPunchList != null && selectedDayPunchList.length > 0 ?
-                                                            <div>
-                                                                <span>{dict.punchmirrorscreen.whichpunchdeleted} </span> <Dropdown options={selectedDayPunchList != null ? selectedDayPunchList.map((p) => ({ id: p.id, name: p.timestamp })) : null} setSelectedOption={setToBeDeletedPunch} selectedOption={toBeDeletedPunch} />
-                                                            </div>
-                                                            :
-                                                            <span>{dict.punchmirrorscreen.nopunchestodelete}</span>
-                                                        }
-                                                    </div>
-
-                                                }
-
-                                                <div className="mt-4">
-                                                    <SubmitButton
-                                                        text={dict.submit}
-                                                        onClickFunction={savePunchAlterationRequestAndCloseModal}
-                                                    ></SubmitButton>
-                                                </div>
-
-                                            </div>
-                                        </Modal>
+                                        
 
 
                                     </div>
