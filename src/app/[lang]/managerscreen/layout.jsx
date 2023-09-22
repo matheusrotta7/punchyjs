@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Clock, PersonStanding } from "lucide-react";
+import { Calendar, CalendarDays, Clock, PersonStanding } from "lucide-react";
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 import PunchyLogo from "../components/PunchyLogo";
@@ -36,6 +36,9 @@ export default function managerLayout({children, params: {lang}}) {
                         />
                         <Link href={"/" + locale + "/managerscreen/myemployees"} className="flex p-2 hover:bg-zinc-800">
                             <PersonStanding /> <span className="ml-2">{dict.myemployeesscreen.myemployees}</span>
+                        </Link>
+                        <Link href={"/" + locale + "/managerscreen/punchmirror"} className="flex p-2 hover:bg-zinc-800">
+                            <CalendarDays /> <span className="ml-2">{dict.employeelayoutscreen.punchmirror}</span>
                         </Link>
                         <LogoutButton
                             dict={dict}
