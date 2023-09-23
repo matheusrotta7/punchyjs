@@ -1,8 +1,10 @@
 import { CheckCircle, CheckCircle2, X, XCircle } from "lucide-react"
+import { alterPunch, deletePunch } from "@/app/services/PunchService"
 
 export default function PunchCircleTimestamped (props) {
 
     var punchStatus = props.punchStatus
+    var p = props.punch
 
     function getBorderColor() {
         if (punchStatus === null || punchStatus === 'NORMAL' || punchStatus === 'APPROVED') {

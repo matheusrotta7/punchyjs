@@ -6,7 +6,6 @@ import { getAllEmployeesWithManager } from "../../../services/EmployeeService";
 import { Check, CheckCircle, CheckCircle2, LoaderIcon, X, XCircle } from "lucide-react";
 import { AuthContext } from "@/app/contexts/AuthContext";
 import { getPunches } from "@/app/services/PunchService";
-import PunchAlterationRequest from "../../components/PunchAlterationRequest";
 import { getDictionary } from "../../dictionaries";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import MonthYearHeader from "../../components/MonthYearHeader";
@@ -16,17 +15,15 @@ import punchUtils from "@/app/utils/PunchUtils";
 import { getReport } from "@/app/services/ReportService";
 import download from "downloadjs";
 import dateUtils from "@/app/utils/DateUtils";
-import Modal from "../../components/Modal";
 import PunchCircleTimestamped from "../../components/PunchCircleTimestamped";
 
 export default function myEmployeesScreen({ params: { lang } }) {
 
     const dict = getDictionary(lang)
-    const { user, logOut } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const [employeeList, setEmployeeList] = useState();
     const [selectedEmployee, setSelectedEmployee] = useState({});
-    const [pendingPunches, setPendingPunches] = useState([])
     const [managerActionCounter, setManagerActionCounter] = useState(0)
 
     useEffect(() => {
@@ -49,47 +46,12 @@ export default function myEmployeesScreen({ params: { lang } }) {
             });
     }
 
-    useEffect(() => {
-        if (employeeList === null || employeeList === undefined) {
-            return
-        }
-        var employeeId = selectedEmployee.id
-        getPunches(employeeId, null, null, "ALL_PENDING").then(punches => {
-            setPendingPunches(punches)
-        })
-    }, [selectedEmployee, managerActionCounter])
-
-
-    function renderPendingPunches() {
-        if (employeeList === null || employeeList === undefined) {
-            return
-        }
-
-        var employeeId = selectedEmployee.id
-        if (atLeastOnePendingPunch()) {
-            console.log(pendingPunches)
-            return pendingPunches.map(p =>
-                <PunchAlterationRequest
-                    key={p.id}
-                    punch={p}
-                    employeeId={employeeId}
-                    managerActionCounter={managerActionCounter}
-                    setManagerActionCounter={setManagerActionCounter}
-                    dict={dict}
-                />
-            )
-        } else {
-            return null
-        }
-    }
 
     function atLeastOneEmployee(employeeList) {
         return employeeList != null && employeeList != undefined && employeeList.length > 0
     }
 
-    function atLeastOnePendingPunch() {
-        return pendingPunches != null && pendingPunches != undefined && pendingPunches.length > 0
-    }
+    
 
 
 
@@ -132,7 +94,7 @@ export default function myEmployeesScreen({ params: { lang } }) {
 
     useEffect(() => {
         fetchPunches();
-    }, [curMonth, curYear, selectedEmployee])
+    }, [curMonth, curYear, selectedEmployee, managerActionCounter])
 
 
     function fetchPunches() {
@@ -169,7 +131,18 @@ export default function myEmployeesScreen({ params: { lang } }) {
             return null
         }
 
-        return selectedDayPunchList.map((punch, i) => <PunchCircleTimestamped key={i} time={simplifyTimestamp(punch.timestamp)} punchStatus={punch.punchStatus} managerScreen />)
+        return selectedDayPunchList.map(
+            (punch, i) => <PunchCircleTimestamped 
+                            key={i} 
+                            time={simplifyTimestamp(punch.timestamp)} 
+                            punchStatus={punch.punchStatus}
+                            punch={punch}
+                            managerScreen 
+                            setManagerActionCounter={setManagerActionCounter}
+                            managerActionCounter={managerActionCounter}
+                            />
+        
+        )
     }
 
     function simplifyTimestamp(timestamp) {
