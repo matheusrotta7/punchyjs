@@ -59,7 +59,7 @@ export default function mainlayout({children, params: { lang }}) {
                         {children}
                     </main>
                 </div>
-                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy: created by Matheus R.</footer>
+                <footer className="bg-zinc-800 px-6 border-t border-zinc-700">Punchy Software Services LTDA - CNPJ: 52.237.883/0001-51</footer>
             </div>
         </>
     )
