@@ -41,6 +41,7 @@ export default function punchScreen({params: {lang}}) {
     const [alterPunchTimestamp, setAlterPunchTimestamp] = useState("")
     const [toBeDeletedPunch, setToBeDeletedPunch] = useState("")
     const [punchAlterationOptions, setPunchAlterationOptions] = useState(null)
+    const [alterationCounter, setAlterationCounter] = useState(0)
 
     useEffect(() => {
         console.log("I am inside dict punch alterations use effect")
@@ -68,7 +69,7 @@ export default function punchScreen({params: {lang}}) {
 
     useEffect(() => {
         fetchPunches();
-    }, [curMonth, curYear, user])
+    }, [curMonth, curYear, user, alterationCounter])
 
 
     function fetchPunches() {
@@ -125,7 +126,8 @@ export default function punchScreen({params: {lang}}) {
         } else {
             alert("An unknown alteration action was selected")
         }
-
+        setAlterationCounter(alterationCounter+1)
+        console.log("alterationCounter: " + alterationCounter)
         setIsModalOpen(false)
     }
 

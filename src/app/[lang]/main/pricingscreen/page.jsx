@@ -21,7 +21,7 @@ export default function pricingscreen ({params: {lang}}) {
                     <h2 className="mt-5">{dict.pricingscreen.testbudget}</h2>
                     <input type="range" min={3} max={1000} value={numOfEmployees} onChange={e => {setNumberOfEmployees(e.target.value)}} className="w-3/5"></input>
                     <h3>{dict.pricingscreen.numofemployees}: {numOfEmployees}</h3>
-                    <h3>{dict.pricingscreen.estimatedcost}: R$ {numOfEmployees*5}</h3>
+                    <h3>{dict.pricingscreen.estimatedcost}: R$ {numOfEmployees*3}</h3>
                 </div>
                 :
                 <></>
